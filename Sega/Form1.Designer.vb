@@ -698,8 +698,8 @@ Partial Class Sega
         Me.im2.Name = "im2"
         Me.im2.Size = New System.Drawing.Size(41, 41)
         Me.im2.TabIndex = 139
-        Me.TTen.SetToolTip(Me.im2, "I got much better")
-        Me.TTar.SetToolTip(Me.im2, "لقد أصبحت أفضل بكثير")
+        Me.TTen.SetToolTip(Me.im2, "Perhaps this style of game solves the problems of half the world's population")
+        Me.TTar.SetToolTip(Me.im2, "قد يحل هذا النمط في اللعبة مشاكل نصف سكان العالم")
         '
         'im1
         '
@@ -709,8 +709,8 @@ Partial Class Sega
         Me.im1.Name = "im1"
         Me.im1.Size = New System.Drawing.Size(41, 41)
         Me.im1.TabIndex = 137
-        Me.TTen.SetToolTip(Me.im1, "I feel the change now")
-        Me.TTar.SetToolTip(Me.im1, "أنا أشعر بالتغيير الآن")
+        Me.TTen.SetToolTip(Me.im1, "My life has improved for this better because of this")
+        Me.TTar.SetToolTip(Me.im1, "لقد تحسنت حياتي للأفضل بسبب هذه")
         '
         'im0
         '
