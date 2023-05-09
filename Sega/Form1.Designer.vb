@@ -1,4 +1,4 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class Sega
     Inherits System.Windows.Forms.Form
 
@@ -709,8 +709,8 @@ Partial Class Sega
         Me.im1.Name = "im1"
         Me.im1.Size = New System.Drawing.Size(41, 41)
         Me.im1.TabIndex = 137
-        Me.TTen.SetToolTip(Me.im1, "My life has improved for this better because of this")
-        Me.TTar.SetToolTip(Me.im1, "لقد تحسنت حياتي للأفضل بسبب هذه")
+        Me.TTen.SetToolTip(Me.im1, "My life has improved for the better because of this style")
+        Me.TTar.SetToolTip(Me.im1, "لقد تحسنت حياتي للأفضل بسبب هذا النمط")
         '
         'im0
         '
