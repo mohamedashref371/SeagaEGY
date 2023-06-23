@@ -36,7 +36,7 @@
         Text = Text.Replace(".371.3317", "")
     End Sub
 
-    ' Keys and Mouse 🤷‍♂️
+#Region "Keys and Mouse 🤷‍♂️"
     Private Sub nm12_Key(sender As Object, e As KeyEventArgs) Handles name1.KeyDown, name2.KeyDown, fst.KeyDown
         If e.KeyCode = Global.System.Windows.Forms.Keys.F11 Then
             keys = True
@@ -349,6 +349,7 @@
     Private Sub a3_Clic(sender As Object, e As EventArgs) Handles a3.MouseMove, a3.MouseEnter, a3.MouseHover
         If hold Then zxcvi(6)
     End Sub
+#End Region
 
     Sub zxcvi(i As Integer)
         If theGame(0) = 0 And (i = 1 Or i = 2 Or i = 3) Or theGame(0) = 1 And (i = 7 Or i = 8 Or i = 9) And Not computer.Checked Then
@@ -370,9 +371,8 @@
             rf() : ne() : Wn() : ComputerTurn()
         End If
     End Sub
-    '-----------------------------------------------------------
 
-    ' start, stop and style
+#Region "start, stop and style"
     Private Sub start_Click(sender As Object, e As EventArgs) Handles start.Click
         StartSub()
     End Sub
@@ -536,9 +536,9 @@
             End If
         End If
     End Sub
-    '-----------------------------------------------
+#End Region
 
-    ' the win
+#Region "the win"
     Sub wn19()
         If aRLine(1, 2, 3) Then
             lwz = "0"
@@ -668,9 +668,9 @@
             End If
         End If
     End Sub
-    '--------------------------------------------------
+#End Region
 
-    ' interface
+#Region "interface"
     Sub lcn()
         If computer.Checked Then
             name2.Tag = "Computer"
@@ -777,9 +777,9 @@
         pic()
         ox2()
     End Sub
-    '----------------------------------------------
+#End Region
 
-    ' Computer
+#Region "Computer"
     Private Sub Computer_CheckedChanged(sender As Object, e As EventArgs) Handles computer.CheckedChanged
         If Not busy Then
             If computer.Checked = True Then
@@ -1023,6 +1023,7 @@ theEnd:
         theGame(zc + 10) += plus
     End Sub
 
+#Region "Computer Intelligence Functions"
     Function SleeperPiece(blue As Byte) As Boolean
         Return theGame(blue + 10) = 0
     End Function
@@ -1256,9 +1257,10 @@ break:
     Function aBlueLoc(loc As Integer) As Boolean
         Return theGame(7) = loc And theGame(17) > 0 Or theGame(8) = loc And theGame(18) > 0 Or theGame(9) = loc And theGame(19) > 0
     End Function
-    '--------------------------------------------
+#End Region
+#End Region
 
-    ' language
+#Region "language"
     Sub language()
         If lang.Text = "عربي" Then
             Bu1.Text = "حول"
@@ -1364,9 +1366,9 @@ break:
     Private Sub lang_Click(sender As Object, e As EventArgs) Handles lang.Click
         language()
     End Sub
-    '-----------------------------------------------
+#End Region
 
-    ' save and load
+#Region "save and load"
     Function SaveG() As String
         Dim wer As String = win1.Text + split + win2.Text + split + step1.Text + split + step2.Text + split + name1.Text.Replace(split, " ") + split + name2.Text.Replace(split, " ") + split + undo1 + split + redo1 ' 0 to 7
         For i = 0 To 20
@@ -1486,9 +1488,9 @@ break:
     Private Sub ld1_Click(sender As Object, e As EventArgs) Handles ld1.Click
         lde1()
     End Sub
-    '----------------------------------------
+#End Region
 
-    ' settings
+#Region "settings"
     Private Sub Bu6_Click(sender As Object, e As EventArgs) Handles Bu6.Click
         buttons += 1
         B67()
@@ -1560,9 +1562,9 @@ break:
             Bu6.Visible = True
         End If
     End Sub
+#End Region
 
-
-    ' rotation
+#Region "rotation"
     Private Sub rl_Click(sender As Object, e As EventArgs) Handles rl.Click
         If Not busy Then
             For i = 1 To 9
@@ -1654,9 +1656,9 @@ break:
             loc()
         End If
     End Sub
-    '------------------------------------------
+#End Region
 
-    ' cheating
+#Region "cheating"
     Sub swapping()
         lzc(1, 7) : lzc(11, 17)
         lzc(2, 8) : lzc(12, 18)
@@ -1880,6 +1882,7 @@ break:
             Next
         End If
     End Sub
+#End Region
 
     Private Sub Bu1_Click(sender As Object, e As EventArgs) Handles Bu1.Click
         If lang.Text = "English" Then
