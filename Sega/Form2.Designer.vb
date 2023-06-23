@@ -154,11 +154,11 @@ Partial Class Sega2
         Me.dy.BackColor = System.Drawing.Color.Transparent
         Me.dy.Font = New System.Drawing.Font("Tahoma", 17.0!)
         Me.dy.ForeColor = System.Drawing.Color.White
-        Me.dy.Location = New System.Drawing.Point(133, 42)
+        Me.dy.Location = New System.Drawing.Point(143, 42)
         Me.dy.Name = "dy"
-        Me.dy.Size = New System.Drawing.Size(282, 28)
+        Me.dy.Size = New System.Drawing.Size(240, 28)
         Me.dy.TabIndex = 38
-        Me.dy.Text = "هذا اليوم هو يوم عيد ميلادي"
+        Me.dy.Text = "هذا اليوم هو يوم ميلادي"
         Me.dy.Visible = False
         '
         'Sega2

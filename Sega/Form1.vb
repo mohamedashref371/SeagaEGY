@@ -407,7 +407,7 @@
             im0.Visible = False : im1.Visible = False : im2.Visible = False
             RB0.Visible = False : RB1.Visible = False : RB2.Visible = False
             big.Visible = False ' جديد
-            If buttons = "2" Then sv1.Visible = True
+            If buttons = 2 Then sv1.Visible = True
         End If
     End Sub
 
@@ -531,7 +531,7 @@
             loc1() : pic()
             If Not My.Computer.FileSystem.FileExists(sg + "ABC.seaga") Then
                 My.Computer.FileSystem.WriteAllText(sg + "ABC.seaga", "", False)
-                buttons = "4"
+                buttons = 4
                 B67()
             End If
         End If
@@ -835,9 +835,8 @@
         Dim i As Integer = 0
         game.AddRange({4, 7, 4, 8, 4, 9, 5, 7, 5, 8, 5, 9, 6, 7, 6, 8, 6, 9})
         temp.AddRange(game)
-        If theGame(14) = 0 Then
-            GoTo theEnd
-        End If
+        If theGame(14) = 0 Then GoTo theEnd
+
         ''''''''''''''''''''If Not VaH.Checked And NoS.Checked And step2.Text = step1.Text Then  <إختيار الفوز القطري>  End If
 
         While i < game.Count - 1
@@ -1456,7 +1455,7 @@ break:
             nsn()
             loc()
             sv.Enabled = True
-            If buttons = "2" Then
+            If buttons = 2 Then
                 sv1.Visible = True
             End If
         Catch ex As Exception
