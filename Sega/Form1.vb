@@ -1,5 +1,4 @@
-﻿Imports System.Windows.Forms
-Public Class Sega
+﻿Public Class Sega
     Dim sg As String = My.Computer.FileSystem.SpecialDirectories.AllUsersApplicationData.Replace("1.0.371.3317", "")
     Dim msg As MsgBoxStyle = vbInformation
     Dim split As String = "\"
