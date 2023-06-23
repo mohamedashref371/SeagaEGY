@@ -1,4 +1,5 @@
-﻿Public Class Sega
+﻿Imports System.Windows.Forms
+Public Class Sega
     Dim sg As String = My.Computer.FileSystem.SpecialDirectories.AllUsersApplicationData.Replace("1.0.371.3317", "")
     Dim msg As MsgBoxStyle = vbInformation
     Dim split As String = "\"
@@ -9,7 +10,7 @@
     Dim lwc As String = "2"
     Dim plyFrst As Integer = 0
     Dim sn As Integer = 1
-    Dim keys As Boolean = True
+    Dim keyboard As Boolean = True
     Dim hold As Boolean = False
     Dim undo1 As String = ""
     Dim redo1 As String = ""
@@ -38,8 +39,8 @@
 
 #Region "Keys and Mouse 🤷‍♂️"
     Private Sub nm12_Key(sender As Object, e As KeyEventArgs) Handles name1.KeyDown, name2.KeyDown, fst.KeyDown
-        If e.KeyCode = Global.System.Windows.Forms.Keys.F11 Then
-            keys = True
+        If e.KeyCode = Keys.F11 Then
+            keyboard = True
             name1.Visible = False
             name2.Visible = False
             fst.Visible = False
@@ -47,32 +48,32 @@
             name2.Visible = True
             If buttons = 5 Then fst.Visible = True
         End If
-        If keys Then
-            If e.KeyCode = Global.System.Windows.Forms.Keys.F2 Then
+        If keyboard Then
+            If e.KeyCode = Keys.F2 Then
                 If sv.Enabled = True Then
                     sve()
                 End If
-            ElseIf e.KeyCode = Global.System.Windows.Forms.Keys.F4 Then
+            ElseIf e.KeyCode = Keys.F4 Then
                 If ld.Enabled = True Then
                     lde()
                 End If
-            ElseIf e.KeyCode = Global.System.Windows.Forms.Keys.F8 Then
+            ElseIf e.KeyCode = Keys.F8 Then
                 If clr < 255 Then
                     clr += 1
                 End If
                 clr2()
-            ElseIf e.KeyCode = Global.System.Windows.Forms.Keys.F6 Then
+            ElseIf e.KeyCode = Keys.F6 Then
                 If clr > 185 Then
                     clr -= 1
                 End If
                 clr2()
-            ElseIf e.KeyCode = Global.System.Windows.Forms.Keys.F9 Then
+            ElseIf e.KeyCode = Keys.F9 Then
                 theBest = Not theBest
-            ElseIf e.KeyCode = Global.System.Windows.Forms.Keys.F10 Then
+            ElseIf e.KeyCode = Keys.F10 Then
                 If help.Visible = True Then
                     helping()
                 End If
-            ElseIf e.KeyCode = Global.System.Windows.Forms.Keys.F5 Then
+            ElseIf e.KeyCode = Keys.F5 Then
                 If ok1.Visible Then
                     If Not ok1.Checked Or Not ok2.Checked Then
                         ok1.Checked = True : ok2.Checked = True
@@ -81,13 +82,13 @@
                         If Not computer.Checked Then ok2.Checked = False
                     End If
                 End If
-            ElseIf e.KeyCode = Global.System.Windows.Forms.Keys.F7 Then
+            ElseIf e.KeyCode = Keys.F7 Then
                 img2(e)
-            ElseIf e.KeyCode = Global.System.Windows.Forms.Keys.F12 Then
+            ElseIf e.KeyCode = Keys.F12 Then
                 B5()
-            ElseIf e.KeyCode = Global.System.Windows.Forms.Keys.F1 Then
+            ElseIf e.KeyCode = Keys.F1 Then
                 RstA()
-            ElseIf e.KeyCode = Global.System.Windows.Forms.Keys.F3 Then
+            ElseIf e.KeyCode = Keys.F3 Then
                 Rst()
             End If
         End If
@@ -103,56 +104,56 @@
     End Sub
 
     Private Sub Sega_Key(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown, MyClass.KeyDown, Me.KeyDown, Bu1.KeyDown, rest.KeyDown, restA.KeyDown, start.KeyDown, Bu5.KeyDown, Bu6.KeyDown, Bu7.KeyDown, lang.KeyDown, help.KeyDown, B10.KeyDown, B11.KeyDown, XO.KeyDown, OX.KeyDown, secret.KeyDown, level.KeyDown, computer.KeyDown, playFirst.KeyDown, undo.KeyDown, redo.KeyDown, ok1.KeyDown, ok2.KeyDown, NoS.KeyDown, VaH.KeyDown, ns.KeyDown, sv.KeyDown, ld.KeyDown, rh.KeyDown, rr.KeyDown, rl.KeyDown, rv.KeyDown, sv1.KeyDown, ld1.KeyDown, RB0.KeyDown, RB1.KeyDown, RB2.KeyDown, big.KeyDown
-        If keys Then
-            If e.KeyCode = Global.System.Windows.Forms.Keys.NumPad7 Or e.KeyCode = Global.System.Windows.Forms.Keys.Q Then
+        If keyboard Then
+            If e.KeyCode = Keys.NumPad7 Or e.KeyCode = Keys.Q Then
                 zxcv(1)
-            ElseIf e.KeyCode = Global.System.Windows.Forms.Keys.NumPad8 Or e.KeyCode = Global.System.Windows.Forms.Keys.W Then
+            ElseIf e.KeyCode = Keys.NumPad8 Or e.KeyCode = Keys.W Then
                 zxcv(2)
-            ElseIf e.KeyCode = Global.System.Windows.Forms.Keys.NumPad9 Or e.KeyCode = Global.System.Windows.Forms.Keys.E Then
+            ElseIf e.KeyCode = Keys.NumPad9 Or e.KeyCode = Keys.E Then
                 zxcv(3)
-            ElseIf e.KeyCode = Global.System.Windows.Forms.Keys.NumPad4 Or e.KeyCode = Global.System.Windows.Forms.Keys.A Then
+            ElseIf e.KeyCode = Keys.NumPad4 Or e.KeyCode = Keys.A Then
                 zxcv(4)
-            ElseIf e.KeyCode = Global.System.Windows.Forms.Keys.NumPad5 Or e.KeyCode = Global.System.Windows.Forms.Keys.S Then
+            ElseIf e.KeyCode = Keys.NumPad5 Or e.KeyCode = Keys.S Then
                 zxcv(5)
-            ElseIf e.KeyCode = Global.System.Windows.Forms.Keys.NumPad6 Or e.KeyCode = Global.System.Windows.Forms.Keys.D Then
+            ElseIf e.KeyCode = Keys.NumPad6 Or e.KeyCode = Keys.D Then
                 zxcv(6)
-            ElseIf e.KeyCode = Global.System.Windows.Forms.Keys.NumPad1 Or e.KeyCode = Global.System.Windows.Forms.Keys.Z Then
+            ElseIf e.KeyCode = Keys.NumPad1 Or e.KeyCode = Keys.Z Then
                 zxcv(7)
-            ElseIf e.KeyCode = Global.System.Windows.Forms.Keys.NumPad2 Or e.KeyCode = Global.System.Windows.Forms.Keys.X Then
+            ElseIf e.KeyCode = Keys.NumPad2 Or e.KeyCode = Keys.X Then
                 zxcv(8)
-            ElseIf e.KeyCode = Global.System.Windows.Forms.Keys.NumPad3 Or e.KeyCode = Global.System.Windows.Forms.Keys.C Then
+            ElseIf e.KeyCode = Keys.NumPad3 Or e.KeyCode = Keys.C Then
                 zxcv(9)
-            ElseIf e.KeyCode = Global.System.Windows.Forms.Keys.F2 Or e.KeyCode = Global.System.Windows.Forms.Keys.O Then
+            ElseIf e.KeyCode = Keys.F2 Or e.KeyCode = Keys.O Then
                 If sv.Enabled = True Then
                     sve()
                 End If
-            ElseIf e.KeyCode = Global.System.Windows.Forms.Keys.F4 Or e.KeyCode = Global.System.Windows.Forms.Keys.L Then
+            ElseIf e.KeyCode = Keys.F4 Or e.KeyCode = Keys.L Then
                 If ld.Enabled = True Then
                     lde()
                 End If
-            ElseIf e.KeyCode = Global.System.Windows.Forms.Keys.R Then
+            ElseIf e.KeyCode = Keys.R Then
                 If sv.Enabled = True Then
                     sve1()
                 End If
-            ElseIf e.KeyCode = Global.System.Windows.Forms.Keys.F Then
+            ElseIf e.KeyCode = Keys.F Then
                 lde1()
-            ElseIf e.KeyCode = Global.System.Windows.Forms.Keys.F8 Then
+            ElseIf e.KeyCode = Keys.F8 Then
                 If clr < 255 Then
                     clr += 1
                 End If
                 clr2()
-            ElseIf e.KeyCode = Global.System.Windows.Forms.Keys.F6 Then
+            ElseIf e.KeyCode = Keys.F6 Then
                 If clr > 185 Then
                     clr -= 1
                 End If
                 clr2()
-            ElseIf e.KeyCode = Global.System.Windows.Forms.Keys.M Or e.KeyCode = Global.System.Windows.Forms.Keys.F9 Then
+            ElseIf e.KeyCode = Keys.M Or e.KeyCode = Keys.F9 Then
                 theBest = Not theBest
-            ElseIf e.KeyCode = Global.System.Windows.Forms.Keys.H Or e.KeyCode = Global.System.Windows.Forms.Keys.F10 Then
+            ElseIf e.KeyCode = Keys.H Or e.KeyCode = Keys.F10 Then
                 If help.Visible = True Then
                     helping()
                 End If
-            ElseIf e.KeyCode = Global.System.Windows.Forms.Keys.F5 Then
+            ElseIf e.KeyCode = Keys.F5 Then
                 If ok1.Visible Then
                     If Not ok1.Checked Or Not ok2.Checked Then
                         ok1.Checked = True : ok2.Checked = True
@@ -161,84 +162,84 @@
                         If Not computer.Checked Then ok2.Checked = False
                     End If
                 End If
-            ElseIf e.KeyCode = Global.System.Windows.Forms.Keys.F7 Then
+            ElseIf e.KeyCode = Keys.F7 Then
                 img2(e)
-            ElseIf e.KeyCode = Global.System.Windows.Forms.Keys.G Then
+            ElseIf e.KeyCode = Keys.G Then
                 language()
-            ElseIf e.KeyCode = Global.System.Windows.Forms.Keys.U Then
+            ElseIf e.KeyCode = Keys.U Then
                 If undo.Enabled = True Then
                     undoSub()
                 End If
-            ElseIf e.KeyCode = Global.System.Windows.Forms.Keys.I Then
+            ElseIf e.KeyCode = Keys.I Then
                 If redo.Enabled = True Then
                     redoSub()
                 End If
-            ElseIf e.KeyCode = Global.System.Windows.Forms.Keys.T Then
+            ElseIf e.KeyCode = Keys.T Then
                 If computer.Checked = False Then
                     computer.Checked = True
                 ElseIf computer.Checked = True And Not busy Then
                     computer.Checked = False
                 End If
-            ElseIf e.KeyCode = Global.System.Windows.Forms.Keys.Y Then
+            ElseIf e.KeyCode = Keys.Y Then
                 If theGame(14) = 7 Then
                     theGame(14) = 0
                 Else
                     theGame(14) += 1
                 End If
                 iLevel()
-            ElseIf e.KeyCode = Global.System.Windows.Forms.Keys.F12 Then
+            ElseIf e.KeyCode = Keys.F12 Then
                 B5()
-            ElseIf e.KeyCode = Global.System.Windows.Forms.Keys.D1 Then
+            ElseIf e.KeyCode = Keys.D1 Then
                 buttons = 1
                 B67()
-            ElseIf e.KeyCode = Global.System.Windows.Forms.Keys.D2 Then
+            ElseIf e.KeyCode = Keys.D2 Then
                 buttons = 2
                 B67()
-            ElseIf e.KeyCode = Global.System.Windows.Forms.Keys.D3 Then
+            ElseIf e.KeyCode = Keys.D3 Then
                 buttons = 3
                 B67()
-            ElseIf e.KeyCode = Global.System.Windows.Forms.Keys.D4 Then
+            ElseIf e.KeyCode = Keys.D4 Then
                 buttons = 4
                 B67()
-            ElseIf e.KeyCode = Global.System.Windows.Forms.Keys.D5 Then
+            ElseIf e.KeyCode = Keys.D5 Then
                 buttons = 5
                 B67()
-            ElseIf e.KeyCode = Global.System.Windows.Forms.Keys.D6 Then
+            ElseIf e.KeyCode = Keys.D6 Then
                 buttons = 6
                 B67()
-            ElseIf e.KeyCode = Global.System.Windows.Forms.Keys.P Then
+            ElseIf e.KeyCode = Keys.P Then
                 If start.Visible = True Then
                     StartSub()
                 End If
-            ElseIf e.KeyCode = Global.System.Windows.Forms.Keys.B Or e.KeyCode = Global.System.Windows.Forms.Keys.F1 Then
+            ElseIf e.KeyCode = Keys.B Or e.KeyCode = Keys.F1 Then
                 RstA()
-            ElseIf e.KeyCode = Global.System.Windows.Forms.Keys.N Or e.KeyCode = Global.System.Windows.Forms.Keys.F3 Then
+            ElseIf e.KeyCode = Keys.N Or e.KeyCode = Keys.F3 Then
                 Rst()
-            ElseIf e.KeyCode = Global.System.Windows.Forms.Keys.J Then
+            ElseIf e.KeyCode = Keys.J Then
                 If VaH.Checked = True Then
                     VaH.Checked = False
                 Else
                     VaH.Checked = True
                 End If
-            ElseIf e.KeyCode = Global.System.Windows.Forms.Keys.K Then
+            ElseIf e.KeyCode = Keys.K Then
                 If NoS.Checked = True Then
                     NoS.Checked = False
                 Else
                     NoS.Checked = True
                 End If
-            ElseIf e.KeyCode = Global.System.Windows.Forms.Keys.V And My.Computer.FileSystem.FileExists(sg + "New Text Document.txt") Then
+            ElseIf e.KeyCode = Keys.V And My.Computer.FileSystem.FileExists(sg + "New Text Document.txt") Then
                 If help.Visible = True Then
                     sve()
                     helping()
                 End If
             End If
         End If
-        If e.KeyCode = Global.System.Windows.Forms.Keys.F11 Then
-            If keys Then
-                keys = False
+        If e.KeyCode = Keys.F11 Then
+            If keyboard Then
+                keyboard = False
                 TTen.Active = False : TTar.Active = False
             Else
-                keys = True
+                keyboard = True
             End If
         End If
     End Sub
