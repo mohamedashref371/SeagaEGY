@@ -1678,7 +1678,7 @@ break:
                     theGame(14) = 7
                     ComputerIntelligence()
                     busy = False
-                ElseIf theGame(0) = "1" And computer.Checked = False Then
+                ElseIf theGame(0) = "1" And Not computer.Checked Then
                     busy = True
                     swap = theGame(14)
                     theGame(14) = 7
@@ -1699,7 +1699,7 @@ break:
             If ok1.Checked = True And ok2.Checked = True Then
                 Dim gh As String
                 gh = undo1.Substring(undo1.Length - 2)
-                redo1 = redo1 + gh
+                redo1 += gh
                 undo1 = undo1.Substring(0, undo1.Length - 2)
                 moving(gh(0).ToString, gh(1).ToString, -1)
                 theGame(20) = 2
@@ -1737,7 +1737,7 @@ break:
             If ok1.Checked = True And ok2.Checked = True Then
                 Dim gh As String
                 gh = redo1.Substring(redo1.Length - 2)
-                undo1 = undo1 + gh
+                undo1 += gh
                 redo1 = redo1.Substring(0, redo1.Length - 2)
                 moving(gh(0).ToString, gh(1).ToString, 1)
                 If theGame(0) = 0 Then
