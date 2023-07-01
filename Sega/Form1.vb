@@ -17,7 +17,6 @@
     Dim ok As Integer = 0
     Dim buttons As Integer = 1
     Dim clr As Integer = 245
-    Dim big1 As Boolean = False
     Dim theBest As Integer = 0
     ' theGame(0) is player role, 10 is choosed piece, 11-13, 17-19 is movementOfPieces, 14 is level, 15 is who started playing first, 16 is style of game
     Dim theGame As New List(Of Integer)
@@ -28,24 +27,32 @@
     Private Sub Sega_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If Not CheckHash(Sega2.LMhmd.Text, Sega2.Ihash) Then End
         ld.Enabled = My.Computer.FileSystem.FileExists(sg + "save.seaga")
-        locations.AddRange({PB1.Location, New Point(77, 80), New Point(195, 80), New Point(314, 80), New Point(77, 192), New Point(195, 192), New Point(314, 192), New Point(77, 304), New Point(195, 304), New Point(314, 304)})
-        pictures.AddRange({My.Resources.zx, My.Resources.zx2, My.Resources.zx3, My.Resources.zx23, My.Resources.zx4, My.Resources.zx24, My.Resources._as, My.Resources.as23, My.Resources.as24, My.Resources.cv, My.Resources.cv2, My.Resources.cv3, My.Resources.cv23, My.Resources.cv4, My.Resources.cv24})
         thePieces.AddRange({PB1, z1, z2, z3, a1, a2, a3, c1, c2, c3})
+        For i = 0 To thePieces.Count - 1
+            locations.Add(thePieces(i).Location)
+        Next
+        pictures.AddRange({My.Resources.zx, My.Resources.zx2, My.Resources.zx3, My.Resources.zx23, My.Resources.zx4, My.Resources.zx24, My.Resources._as, My.Resources.as23, My.Resources.as24, My.Resources.cv, My.Resources.cv2, My.Resources.cv3, My.Resources.cv23, My.Resources.cv4, My.Resources.cv24})
         theGame.AddRange({3, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 0, 0, 0, 4, 3, 0, 0, 0, 0, 2})
         iLevel() : plyFrstN() : nsn() ' سيكون هنا عربي وانجليزي بدل هذا السطر
         Text = Text.Replace(".371.3317", "")
     End Sub
 
 #Region "Keys and Mouse 🤷‍♂️"
-    Private Sub nm12_Key(sender As Object, e As KeyEventArgs) Handles name1.KeyDown, name2.KeyDown, fst.KeyDown
+    Private Sub nm12_Key(sender As Object, e As KeyEventArgs) Handles name1.KeyDown, name2.KeyDown, fst.KeyDown, fstAr.KeyDown
         If e.KeyCode = Keys.F11 Then
             keyboard = True
             name1.Visible = False
             name2.Visible = False
-            fst.Visible = False
+            fst.Visible = False : fstAr.Visible = False
             name1.Visible = True
             name2.Visible = True
-            If buttons = 5 Then fst.Visible = True
+            If buttons = 5 Then
+                If lang.Text = "عربي" Then
+                    fstAr.Visible = True
+                Else
+                    fst.Visible = True
+                End If
+            End If
         End If
         If keyboard Then
             If e.KeyCode = Keys.F2 Then
@@ -102,7 +109,7 @@
         Next
     End Sub
 
-    Private Sub Sega_Key(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown, MyClass.KeyDown, Me.KeyDown, Bu1.KeyDown, rest.KeyDown, restA.KeyDown, start.KeyDown, Bu5.KeyDown, Bu6.KeyDown, Bu7.KeyDown, lang.KeyDown, help.KeyDown, B10.KeyDown, B11.KeyDown, XO.KeyDown, OX.KeyDown, secret.KeyDown, level.KeyDown, computer.KeyDown, playFirst.KeyDown, undo.KeyDown, redo.KeyDown, ok1.KeyDown, ok2.KeyDown, NoS.KeyDown, VaH.KeyDown, ns.KeyDown, sv.KeyDown, ld.KeyDown, rh.KeyDown, rr.KeyDown, rl.KeyDown, rv.KeyDown, sv1.KeyDown, ld1.KeyDown, RB0.KeyDown, RB1.KeyDown, RB2.KeyDown, big.KeyDown
+    Private Sub Sega_Key(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown, MyClass.KeyDown, Me.KeyDown, Bu1.KeyDown, rest.KeyDown, restA.KeyDown, start.KeyDown, Bu5.KeyDown, Bu6.KeyDown, Bu7.KeyDown, lang.KeyDown, help.KeyDown, B10.KeyDown, B11.KeyDown, XO.KeyDown, OX.KeyDown, secret.KeyDown, level.KeyDown, computer.KeyDown, playFirst.KeyDown, undo.KeyDown, redo.KeyDown, ok1.KeyDown, ok2.KeyDown, NoS.KeyDown, VaH.KeyDown, ns.KeyDown, nsAr.KeyDown, sv.KeyDown, ld.KeyDown, rh.KeyDown, rr.KeyDown, rl.KeyDown, rv.KeyDown, sv1.KeyDown, ld1.KeyDown, RB0.KeyDown, RB1.KeyDown, RB2.KeyDown, zoomIn.KeyDown, zoomOut.KeyDown
         If keyboard Then
             If e.KeyCode = Keys.NumPad7 Or e.KeyCode = Keys.Q Then
                 zxcv(1)
@@ -249,9 +256,9 @@
         name1.BackColor = cl
         name2.BackColor = cl
         level.BackColor = cl
-        ns.BackColor = cl
+        ns.BackColor = cl : nsAr.BackColor = cl
         playFirst.BackColor = cl
-        fst.BackColor = cl
+        fst.BackColor = cl : fstAr.BackColor = cl
     End Sub
 
     Sub img2(ByVal e As EventArgs)
@@ -268,7 +275,7 @@
     End Sub
 
 
-    Private Sub sgM(sender As Object, e As EventArgs) Handles MyBase.MouseEnter, MyClass.MouseEnter, Me.MouseEnter, PB1.MouseEnter, Pwait.MouseEnter, PB4.MouseEnter, PB5.MouseEnter, PB6.MouseEnter, PB7.MouseEnter, PB8.MouseEnter, PB9.MouseEnter, P10.MouseEnter, P11.MouseEnter, wait.MouseEnter, player1.MouseEnter, player2.MouseEnter, name1.MouseEnter, name2.MouseEnter, win1.MouseEnter, win2.MouseEnter, step1.MouseEnter, step2.MouseEnter, computer.MouseEnter, level.MouseEnter, ok1.MouseEnter, ok2.MouseEnter, VaH.MouseEnter, NoS.MouseEnter, secret.MouseEnter, lns.MouseEnter, ns.MouseEnter, playFirst.MouseEnter, Lf.MouseEnter, fst.MouseDown, undo.MouseEnter, redo.MouseEnter, rr.MouseEnter, rl.MouseEnter, rh.MouseEnter, rv.MouseEnter, sv.MouseEnter, ld.MouseEnter, sv1.MouseEnter, ld1.MouseEnter, Bu1.MouseEnter, rest.MouseEnter, restA.MouseEnter, start.MouseEnter, Bu5.MouseEnter, Bu6.MouseEnter, Bu7.MouseEnter, lang.MouseEnter, help.MouseEnter, B10.MouseEnter, B11.MouseEnter, XO.MouseEnter, OX.MouseEnter, a1.MouseDown, a2.MouseDown, a3.MouseDown, z1.Click, z2.Click, z3.Click, c1.Click, c2.Click, c3.Click
+    Private Sub sgM(sender As Object, e As EventArgs) Handles MyBase.MouseEnter, MyClass.MouseEnter, Me.MouseEnter, PB1.MouseEnter, Pwait.MouseEnter, PB4.MouseEnter, PB5.MouseEnter, PB6.MouseEnter, PB7.MouseEnter, PB8.MouseEnter, PB9.MouseEnter, P10.MouseEnter, P11.MouseEnter, wait.MouseEnter, player1.MouseEnter, player2.MouseEnter, name1.MouseEnter, name2.MouseEnter, win1.MouseEnter, win2.MouseEnter, step1.MouseEnter, step2.MouseEnter, computer.MouseEnter, level.MouseEnter, ok1.MouseEnter, ok2.MouseEnter, VaH.MouseEnter, NoS.MouseEnter, secret.MouseEnter, lns.MouseEnter, ns.MouseEnter, playFirst.MouseEnter, Lf.MouseEnter, fst.MouseDown, fstAr.MouseDown, undo.MouseEnter, redo.MouseEnter, rr.MouseEnter, rl.MouseEnter, rh.MouseEnter, rv.MouseEnter, sv.MouseEnter, ld.MouseEnter, sv1.MouseEnter, ld1.MouseEnter, Bu1.MouseEnter, rest.MouseEnter, restA.MouseEnter, start.MouseEnter, Bu5.MouseEnter, Bu6.MouseEnter, Bu7.MouseEnter, lang.MouseEnter, help.MouseEnter, B10.MouseEnter, B11.MouseEnter, XO.MouseEnter, OX.MouseEnter, a1.MouseDown, a2.MouseDown, a3.MouseDown, z1.Click, z2.Click, z3.Click, c1.Click, c2.Click, c3.Click
         hold = False
     End Sub
 
@@ -406,7 +413,7 @@
             If computer.Checked Then ok2.Checked = True
             im0.Visible = False : im1.Visible = False : im2.Visible = False
             RB0.Visible = False : RB1.Visible = False : RB2.Visible = False
-            big.Visible = False ' جديد
+            zoomIn.Visible = False : zoomOut.Visible = False
             If buttons = 2 Then sv1.Visible = True
         End If
     End Sub
@@ -504,7 +511,7 @@
             ok1.Visible = False : ok2.Visible = False
             im0.Visible = True : im1.Visible = True : im2.Visible = True
             RB0.Visible = True : RB1.Visible = True : RB2.Visible = True
-            big.Visible = True ' جديد
+            zoomIn.Visible = True : zoomOut.Visible = True ' جديد
         End If
     End Sub
 
@@ -580,7 +587,7 @@
             hp.Visible = False
             ok1.Visible = False : ok2.Visible = False
             PB1.BackgroundImage = Nothing
-            big.Visible = True
+            zoomIn.Visible = True : zoomOut.Visible = True
         ElseIf plyFrst = 4 Then
             Dim rand = New Random
             theGame(0) = rand.Next(0, 2)
@@ -804,11 +811,24 @@
         Try
             If fst.Value >= 1 Then
                 T2.Interval = fst.Value
+
+                If fst.Value <> fstAr.Value Then fstAr.Value = fst.Value
             End If
         Catch ex As Exception
             fst.Value = 175
+            If fst.Value <> fstAr.Value Then fstAr.Value = 175
             T2.Interval = 175
         End Try
+    End Sub
+
+    Private Sub fstAr_ValueChanged(sender As Object, e As EventArgs) Handles fstAr.ValueChanged
+        If fst.Value <> fstAr.Value Then
+            Try
+                fst.Value = fstAr.Value
+            Catch ex As Exception
+                fst.Value = 175
+            End Try
+        End If
     End Sub
 
     Private Sub T2_Tick(sender As Object, e As EventArgs) Handles T2.Tick
@@ -1286,30 +1306,20 @@ break:
             playFirst.Items.Clear()
             playFirst.Items.AddRange({"الفائز يلعب أولا", "الخاسر يلعب أولا", "الذي لعب أولا يلعب آخرا المرة القادمة", "إختيار من سيلعب أولا بالقرعة", "إختيار من سيلعب أولا تلقائيا"})
             plyFrstN()
-            ns.Items.Clear()
-            ns.Items.AddRange({"أولا", "آخرا"})
             nsn()
-            If big1 Then
-                lns.Location = New Point(150, 615)
-                ns.Location = New Point(50, 613)
-                Lf.Location = New Point(200, 665)
-                fst.Location = New Point(60, 663)
-                fst.Size = New Size(105, 38)
-            Else
-                lns.Location = New Point(111, 480)
-                ns.Location = New Point(34, 477)
-                Lf.Location = New Point(145, 519)
-                fst.Location = New Point(47, 515)
-                fst.Size = New Size(85, 32)
-            End If
-            lns.Text = "عندما لا يفز أحد: الذي قام باللعب أولاً، يلعب"
             sv.Text = "حفظ"
             ld.Text = "تحميل "
-            Lf.Text = "سرعة الحاسوب بالملي ثانية :"
-            Lf.RightToLeft = RightToLeft.Yes
             help.Text = "مساعدة"
             TTar.Active = TTen.Active : TTen.Active = False
             msg = vbInformation + vbMsgBoxRight + vbMsgBoxRtlReading
+            If buttons = 5 Then
+                Lf.Visible = False : fst.Visible = False
+                LfAr.Visible = True : fstAr.Visible = True
+            End If
+            If B11.Visible = True Then
+                lns.Visible = False : ns.Visible = False
+                lnsAr.Visible = True : nsAr.Visible = True
+            End If
         Else
             Bu1.Text = "About"
             rest.Text = "Restart"
@@ -1335,30 +1345,20 @@ break:
             playFirst.Items.Clear()
             playFirst.Items.AddRange({"The winner plays first", "The loser plays first", "Who played first, plays second next time", "Choose who will play first by lot", "Choose who will play first automatically"})
             plyFrstN()
-            ns.Items.Clear()
-            ns.Items.AddRange({"first", "second"})
             nsn()
-            If big1 Then
-                lns.Location = New Point(48, 615)
-                ns.Location = New Point(480, 613)
-                Lf.Location = New Point(49, 665)
-                fst.Location = New Point(443, 663)
-                fst.Size = New Size(95, 38)
-            Else
-                lns.Location = New Point(34, 480)
-                ns.Location = New Point(383, 477)
-                Lf.Location = New Point(42, 519)
-                fst.Location = New Point(347, 515)
-                fst.Size = New Size(75, 32)
-            End If
-            lns.Text = "When no one wins: who played first, plays"
             sv.Text = "Save"
             ld.Text = "Load"
-            Lf.Text = "Computer speed in milliseconds:"
-            Lf.RightToLeft = RightToLeft.No
             help.Text = "Help"
             TTen.Active = TTar.Active : TTar.Active = False
             msg = vbInformation
+            If buttons = 5 Then
+                LfAr.Visible = False : fstAr.Visible = False
+                Lf.Visible = True : fst.Visible = True
+            End If
+            If B11.Visible = True Then
+                lnsAr.Visible = False : nsAr.Visible = False
+                lns.Visible = True : ns.Visible = True
+            End If
         End If
     End Sub
 
@@ -1433,7 +1433,8 @@ break:
             plyFrst = Data(34) : sn = Data(35).Substring(0, 1)
 
             start.Visible = False : ok1.Visible = True : ok2.Visible = True
-            help.Visible = True : secret.Visible = True : hp.Visible = True : big.Visible = False
+            help.Visible = True : secret.Visible = True : hp.Visible = True
+            zoomIn.Visible = False : zoomOut.Visible = False
             If lang.Text = "عربي" Then
                 start.Text = "Start"
             Else
@@ -1547,11 +1548,16 @@ break:
             rv.Visible = False
         End If
         If buttons = 5 Then
-            Lf.Visible = True
-            fst.Visible = True
+            If lang.Text = "عربي" Then
+                Lf.Visible = True
+                fst.Visible = True
+            Else
+                LfAr.Visible = True
+                fstAr.Visible = True
+            End If
         Else
-            Lf.Visible = False
-            fst.Visible = False
+            Lf.Visible = False : LfAr.Visible = False
+            fst.Visible = False : fstAr.Visible = False
         End If
         If buttons = 6 Then
             Bu6.Visible = False
@@ -1943,16 +1949,21 @@ break:
         B11.Visible = True
         B10.Visible = False
         NoS.Visible = False
-        ns.Visible = True
-        lns.Visible = True
+        If lang.Text = "عربي" Then
+            ns.Visible = True
+            lns.Visible = True
+        Else
+            nsAr.Visible = True
+            lnsAr.Visible = True
+        End If
     End Sub
 
     Private Sub B11_Click(sender As Object, e As EventArgs) Handles B11.Click
         B10.TabIndex = 22
         B10.Visible = True
         B11.Visible = False
-        ns.Visible = False
-        lns.Visible = False
+        ns.Visible = False : nsAr.Visible = False
+        lns.Visible = False : lnsAr.Visible = False
         B10.TabIndex = 20
         NoS.Visible = True
     End Sub
@@ -2041,7 +2052,7 @@ And If you press the writing boxes, press F11 to remove the pressure.", msg, "Ho
             wait.ForeColor = Color.DarkGreen
             ok2.ForeColor = Color.DarkGreen
             Lf.ForeColor = Color.DarkGreen
-            fst.ForeColor = Color.DarkGreen
+            fst.ForeColor = Color.DarkGreen : fstAr.ForeColor = Color.DarkGreen
             pictures.RemoveRange(9, 6)
             pictures.AddRange({My.Resources.cb, My.Resources.cb2, My.Resources.cb3, My.Resources.cb23, My.Resources.cb4, My.Resources.cb24})
         Else
@@ -2056,7 +2067,7 @@ And If you press the writing boxes, press F11 to remove the pressure.", msg, "Ho
             wait.ForeColor = Color.Blue
             ok2.ForeColor = Color.Blue
             Lf.ForeColor = Color.Blue
-            fst.ForeColor = Color.Blue
+            fst.ForeColor = Color.Blue : fstAr.ForeColor = Color.Blue
             pictures.RemoveRange(9, 6)
             pictures.AddRange({My.Resources.cv, My.Resources.cv2, My.Resources.cv3, My.Resources.cv23, My.Resources.cv4, My.Resources.cv24})
         End If
@@ -2087,337 +2098,35 @@ And If you press the writing boxes, press F11 to remove the pressure.", msg, "Ho
 
     Private Sub ns_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ns.SelectedIndexChanged
         sn = ns.SelectedIndex
+        If nsAr.SelectedIndex <> sn Then
+            nsAr.SelectedIndex = sn
+        End If
     End Sub
 
-
-    Private Sub big_Click(sender As Object, e As EventArgs) Handles big.Click
-        Dim f19 As Font = New Font("Tahoma", 19.0!)
-        Dim f20 As Font = New Font("Tahoma", 20.0!)
-        If big1 = False Then
-            Dim f24 As Font = New Font("Tahoma", 24.0!)
-            Dim f25 As Font = New Font("Tahoma", 25.0!)
-            big1 = True
-            Bu1.Font = f24
-            Bu1.Location = New Point(413, 656)
-            Bu1.Size = New Size(129, 51)
-            rest.Font = f24
-            rest.Location = New Point(241, 656)
-            rest.Size = New Size(166, 51)
-            restA.Font = f24
-            restA.Location = New Point(12, 656)
-            restA.Size = New Size(223, 51)
-            start.Font = f25
-            start.Location = New Point(295, 505)
-            start.Size = New Size(182, 51)
-            Bu5.Font = f24
-            Bu5.Location = New Point(48, 656)
-            Bu5.Size = New Size(530, 51)
-            Bu6.Font = f24
-            Bu6.Location = New Point(548, 656)
-            Bu6.Size = New Size(30, 51)
-            Bu7.Font = f24
-            Bu7.Location = New Point(12, 656)
-            Bu7.Size = New Size(30, 51)
-            lang.Font = f25
-            lang.Location = New Point(48, 656)
-            lang.Size = New Size(187, 51)
-            help.Font = f24
-            help.Location = New Point(139, 505)
-            help.Size = New Size(150, 51)
-            B10.Font = New Font("Tahoma", 16.0!)
-            B10.Location = New Point(548, 608)
-            B10.Size = New Size(30, 39)
-            B11.Font = New Font("Tahoma", 16.0!)
-            B11.Location = New Point(12, 608)
-            B11.Size = New Size(30, 39)
-            sv.Font = f25
-            sv.Location = New Point(246, 656)
-            sv.Size = New Size(145, 51)
-            sv1.Location = New Point(359, 675)
-            sv1.Size = New Size(32, 32)
-            ld.Font = f25
-            ld.Location = New Point(397, 656)
-            ld.Size = New Size(145, 51)
-            ld1.Location = New Point(510, 675)
-            ld1.Size = New Size(32, 32)
-            player1.Font = New Font("Tahoma", 18.0!)
-            player1.Location = New Point(12, 9)
-            player2.Font = New Font("Tahoma", 18.0!)
-            player2.Location = New Point(318, 9)
-            name1.Font = New Font("Tahoma", 18.0!)
-            name1.Location = New Point(125, 6)
-            name1.Size = New Size(147, 36)
-            name2.Font = New Font("Tahoma", 18.0!)
-            name2.Location = New Point(431, 6)
-            name2.Size = New Size(147, 36)
-            win1.Font = f25
-            win1.Location = New Point(-30, 101)
-            win1.Size = New Size(131, 41)
-            win2.Font = f25
-            win2.Location = New Point(489, 101)
-            win2.Size = New Size(131, 41)
-            step1.Font = f20
-            step1.Location = New Point(-30, 150)
-            step1.Size = New Size(130, 33)
-            step2.Font = f20
-            step2.Location = New Point(489, 150)
-            step2.Size = New Size(130, 33)
-            computer.Font = New Font("Tahoma", 15.0!)
-            computer.Location = New Point(478, 50)
-            level.Font = New Font("Tahoma", 11.0!)
-            level.Location = New Point(371, 50)
-            level.Size = New Size(104, 26)
-            intelligence.Font = New Font("Tahoma", 11.0!)
-            intelligence.Location = New Point(323, 54)
-            wait.Font = New Font("Tahoma", 14.0!)
-            wait.Location = New Point(523, 254)
-            VaH.Font = New Font("Tahoma", 27.0!)
-            VaH.Location = New Point(48, 565)
-            NoS.Font = f24
-            NoS.Location = New Point(14, 607)
-            lns.Font = New Font("Tahoma", 16.0!)
-            ns.Font = New Font("Tahoma", 16.0!)
-            If lang.Text = "English" Then
-                lns.Location = New Point(150, 615)
-                ns.Location = New Point(50, 613)
-                Lf.Location = New Point(200, 665)
-                fst.Location = New Point(60, 663)
-                fst.Size = New Size(105, 38)
-            Else
-                lns.Location = New Point(48, 615)
-                ns.Location = New Point(480, 613)
-                Lf.Location = New Point(49, 665)
-                fst.Location = New Point(443, 663)
-                fst.Size = New Size(95, 38)
-            End If
-            ns.Size = New Size(97, 33)
-            ok1.Font = New Font("Tahoma", 10.0!)
-            ok1.Location = New Point(483, 507)
-            ok2.Font = New Font("Tahoma", 10.0!)
-            ok2.Location = New Point(483, 534)
-            hp.Font = New Font("Tahoma", 18.0!)
-            hp.Location = New Point(520, 480)
-            Lf.Font = f19
-            fst.Font = f19
-            playFirst.Font = f19
-            playFirst.Location = New Point(48, 662)
-            playFirst.Size = New Size(494, 38)
-            PB1.Location = New Point(71, 499)
-            PB1.Size = New Size(62, 62)
-            Pwait.Location = New Point(527, 194)
-            Pwait.Size = New Size(57, 57)
-            PB4.Location = New Point(71, 80)
-            PB4.Size = New Size(448, 4)
-            PB5.Location = New Point(71, 80)
-            PB5.Size = New Size(4, 408)
-            PB6.Location = New Point(515, 80)
-            PB6.Size = New Size(4, 408)
-            PB7.Location = New Point(71, 484)
-            PB7.Size = New Size(448, 4)
-            PB8.Location = New Point(219, 80)
-            PB8.Size = New Size(4, 408)
-            PB9.Location = New Point(367, 80)
-            PB9.Size = New Size(4, 408)
-            P10.Location = New Point(71, 214)
-            P10.Size = New Size(448, 5)
-            P11.Location = New Point(71, 349)
-            P11.Size = New Size(448, 5)
-            locations.Clear()
-            locations.AddRange({PB1.Location, New Point(98, 100), New Point(246, 100), New Point(394, 100), New Point(98, 235), New Point(246, 235), New Point(394, 235), New Point(98, 370), New Point(246, 370), New Point(394, 370)})
-            Dim sz As New Size(98, 98)
-            For i = 1 To 9
-                thePieces(i).Size = sz
-            Next
-            redo.Location = New Point(389, 505)
-            redo.Size = New Size(88, 51)
-            undo.Location = New Point(295, 505)
-            undo.Size = New Size(88, 51)
-            rr.Location = New Point(171, 656)
-            rr.Size = New Size(117, 51)
-            rl.Location = New Point(48, 656)
-            rl.Size = New Size(117, 51)
-            rh.Location = New Point(302, 656)
-            rh.Size = New Size(117, 51)
-            rv.Location = New Point(425, 656)
-            rv.Size = New Size(117, 51)
-            im0.Location = New Point(536, 256)
-            im1.Location = New Point(536, 305)
-            im2.Location = New Point(536, 354)
-            RB0.Location = New Point(550, 270)
-            RB1.Location = New Point(550, 319)
-            RB2.Location = New Point(550, 368)
-            secret.Location = New Point(2, 550)
-            secret.Size = New Size(14, 14)
-            XO.Location = New Point(7, 417)
-            XO.Size = New Size(53, 120)
-            OX.Location = New Point(24, 539)
-            OX.Size = New Size(30, 30)
-            big.Location = New Point(5, 215)
-            big.Size = New Size(60, 60)
-            big.BackgroundImage = My.Resources.Resources.sa
-            ClientSize = New Size(590, 719)
-        Else
-            big1 = False
-            Bu1.Font = f19
-            Bu1.Location = New Point(320, 511)
-            Bu1.Size = New Size(102, 40)
-            rest.Font = f19
-            rest.Location = New Point(191, 511)
-            rest.Size = New Size(123, 40)
-            restA.Font = f19
-            restA.Location = New Point(12, 511)
-            restA.Size = New Size(173, 40)
-            start.Font = f20
-            start.Location = New Point(234, 399)
-            start.Size = New Size(144, 40)
-            Bu5.Font = f19
-            Bu5.Location = New Point(42, 511)
-            Bu5.Size = New Size(410, 40)
-            Bu6.Font = f19
-            Bu6.Location = New Point(428, 511)
-            Bu6.Size = New Size(24, 40)
-            Bu7.Font = f19
-            Bu7.Location = New Point(12, 511)
-            Bu7.Size = New Size(24, 40)
-            lang.Font = f19
-            lang.Location = New Point(42, 511)
-            lang.Size = New Size(144, 40)
-            help.Font = f19
-            help.Location = New Point(110, 399)
-            help.Size = New Size(119, 40)
-            B10.Font = New Font("Tahoma", 13.0!)
-            B10.Location = New Point(433, 475)
-            B10.Size = New Size(24, 31)
-            B11.Font = New Font("Tahoma", 13.0!)
-            B11.Location = New Point(8, 475)
-            B11.Size = New Size(24, 31)
-            sv.Font = f20
-            sv.Location = New Point(192, 511)
-            sv.Size = New Size(112, 40)
-            sv1.Location = New Point(279, 526)
-            sv1.Size = New Size(25, 25)
-            ld.Font = f20
-            ld.Location = New Point(310, 511)
-            ld.Size = New Size(112, 40)
-            ld1.Location = New Point(397, 526)
-            ld1.Size = New Size(25, 25)
-            player1.Font = New Font("Tahoma", 14.0!)
-            player1.Location = New Point(9, 9)
-            player2.Font = New Font("Tahoma", 14.0!)
-            player2.Location = New Point(247, 9)
-            name1.Font = New Font("Tahoma", 14.0!)
-            name1.Location = New Point(98, 6)
-            name1.Size = New Size(116, 30)
-            name2.Font = New Font("Tahoma", 14.0!)
-            name2.Location = New Point(336, 6)
-            name2.Size = New Size(116, 30)
-            win1.Font = f20
-            win1.Location = New Point(-20, 60)
-            win1.Size = New Size(94, 33)
-            win2.Font = f20
-            win2.Location = New Point(391, 60)
-            win2.Size = New Size(94, 33)
-            step1.Font = New Font("Tahoma", 16.0!)
-            step1.Location = New Point(-10, 101)
-            step1.Size = New Size(74, 27)
-            step2.Font = New Font("Tahoma", 16.0!)
-            step2.Location = New Point(401, 101)
-            step2.Size = New Size(74, 27)
-            computer.Font = New Font("Tahoma", 10.0!)
-            computer.Location = New Point(380, 38)
-            level.Font = New Font("Tahoma", 8.0!)
-            level.Location = New Point(295, 38)
-            level.Size = New Size(82, 21)
-            intelligence.Font = New Font("Tahoma", 8.0!)
-            intelligence.Location = New Point(259, 43)
-            wait.Font = New Font("Tahoma", 11.0!)
-            wait.Location = New Point(413, 182)
-            VaH.Font = New Font("Tahoma", 21.0!)
-            VaH.Location = New Point(25, 441)
-            NoS.Font = f19
-            NoS.Location = New Point(8, 474)
-            lns.Font = New Font("Tahoma", 13.0!)
-            ns.Font = New Font("Tahoma", 13.0!)
-            If lang.Text = "English" Then
-                lns.Location = New Point(111, 480)
-                ns.Location = New Point(34, 477)
-                Lf.Location = New Point(145, 519)
-                fst.Location = New Point(47, 515)
-                fst.Size = New Size(85, 32)
-            Else
-                lns.Location = New Point(34, 480)
-                ns.Location = New Point(383, 477)
-                Lf.Location = New Point(42, 519)
-                fst.Location = New Point(347, 515)
-                fst.Size = New Size(75, 32)
-            End If
-            ns.Size = New Size(77, 29)
-            ok1.Font = New Font("Tahoma", 8.0!)
-            ok1.Location = New Point(384, 400)
-            ok2.Font = New Font("Tahoma", 8.0!)
-            ok2.Location = New Point(384, 423)
-            hp.Font = New Font("Tahoma", 14.0!)
-            hp.Location = New Point(418, 379)
-            Lf.Font = New Font("Tahoma", 15.0!)
-            fst.Font = New Font("Tahoma", 15.0!)
-            playFirst.Font = New Font("Tahoma", 15.0!)
-            playFirst.Location = New Point(40, 515)
-            playFirst.Size = New Size(385, 32)
-            PB1.Location = New Point(55, 397)
-            PB1.Size = New Size(50, 47)
-            Pwait.Location = New Point(416, 135)
-            Pwait.Size = New Size(45, 45)
-            PB4.Location = New Point(54, 59)
-            PB4.Size = New Size(358, 4)
-            PB5.Location = New Point(54, 169)
-            PB5.Size = New Size(358, 5)
-            PB6.Location = New Point(54, 282)
-            PB6.Size = New Size(358, 5)
-            PB7.Location = New Point(54, 393)
-            PB7.Size = New Size(358, 4)
-            PB8.Location = New Point(54, 59)
-            PB8.Size = New Size(4, 338)
-            PB9.Location = New Point(171, 59)
-            PB9.Size = New Size(5, 338)
-            P10.Location = New Point(290, 59)
-            P10.Size = New Size(5, 338)
-            P11.Location = New Point(408, 59)
-            P11.Size = New Size(4, 338)
-            locations.Clear()
-            locations.AddRange({PB1.Location, New Point(77, 80), New Point(195, 80), New Point(314, 80), New Point(77, 192), New Point(195, 192), New Point(314, 192), New Point(77, 304), New Point(195, 304), New Point(314, 304)})
-            Dim sz As New Size(75, 72)
-            For i = 1 To 9
-                thePieces(i).Size = sz
-            Next
-            redo.Location = New Point(309, 399)
-            redo.Size = New Size(69, 40)
-            undo.Location = New Point(234, 399)
-            undo.Size = New Size(69, 40)
-            rr.Location = New Point(138, 511)
-            rr.Size = New Size(90, 40)
-            rl.Location = New Point(42, 511)
-            rl.Size = New Size(90, 40)
-            rh.Location = New Point(236, 511)
-            rh.Size = New Size(90, 40)
-            rv.Location = New Point(332, 511)
-            rv.Size = New Size(90, 40)
-            im0.Location = New Point(418, 206)
-            im1.Location = New Point(418, 255)
-            im2.Location = New Point(418, 304)
-            RB0.Location = New Point(432, 220)
-            RB1.Location = New Point(432, 269)
-            RB2.Location = New Point(432, 318)
-            secret.Location = New Point(0, 430)
-            secret.Size = New Size(14, 14)
-            XO.Location = New Point(7, 317)
-            XO.Size = New Size(44, 100)
-            OX.Location = New Point(24, 419)
-            OX.Size = New Size(25, 25)
-            big.Location = New Point(7, 172)
-            big.Size = New Size(40, 40)
-            big.BackgroundImage = My.Resources.Resources.ba
-            ClientSize = New Size(464, 561)
+    Private Sub nsAr_SelectedIndexChanged(sender As Object, e As EventArgs) Handles nsAr.SelectedIndexChanged
+        sn = nsAr.SelectedIndex
+        If ns.SelectedIndex <> sn Then
+            ns.SelectedIndex = sn
         End If
-        loc1()
+    End Sub
+
+    Private Sub zoomIn_Click(sender As Object, e As EventArgs) Handles zoomIn.Click
+        zoom.zoom()
+        zoom.zoomIn()
+
+        locations.Clear()
+        For i = 0 To thePieces.Count - 1
+            locations.Add(thePieces(i).Location)
+        Next
+    End Sub
+
+    Private Sub zoomOut_Click(sender As Object, e As EventArgs) Handles zoomOut.Click
+
+        If Size.Width > 481 Then zoom.zoomOut()
+
+        locations.Clear()
+        For i = 0 To thePieces.Count - 1
+            locations.Add(thePieces(i).Location)
+        Next
     End Sub
 End Class

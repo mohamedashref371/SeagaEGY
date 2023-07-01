@@ -71,12 +71,12 @@ Partial Class Sega
         Me.OFD2 = New System.Windows.Forms.OpenFileDialog()
         Me.TTen = New System.Windows.Forms.ToolTip(Me.components)
         Me.XO = New System.Windows.Forms.Button()
-        Me.im2 = New System.Windows.Forms.Label()
-        Me.im1 = New System.Windows.Forms.Label()
-        Me.im0 = New System.Windows.Forms.Label()
+        Me.im2 = New System.Windows.Forms.PictureBox()
+        Me.im1 = New System.Windows.Forms.PictureBox()
+        Me.im0 = New System.Windows.Forms.PictureBox()
         Me.redo = New System.Windows.Forms.Button()
         Me.undo = New System.Windows.Forms.Button()
-        Me.big = New System.Windows.Forms.Button()
+        Me.zoomIn = New System.Windows.Forms.Button()
         Me.sv1 = New System.Windows.Forms.Button()
         Me.ld1 = New System.Windows.Forms.Button()
         Me.P11 = New System.Windows.Forms.PictureBox()
@@ -103,7 +103,15 @@ Partial Class Sega
         Me.Pwait = New System.Windows.Forms.PictureBox()
         Me.PB1 = New System.Windows.Forms.PictureBox()
         Me.TTar = New System.Windows.Forms.ToolTip(Me.components)
+        Me.lnsAr = New System.Windows.Forms.Label()
+        Me.LfAr = New System.Windows.Forms.Label()
+        Me.nsAr = New System.Windows.Forms.ComboBox()
+        Me.fstAr = New System.Windows.Forms.NumericUpDown()
+        Me.zoomOut = New System.Windows.Forms.Button()
         CType(Me.fst, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.im2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.im1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.im0, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.P11, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.P10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PB9, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -123,6 +131,7 @@ Partial Class Sega
         CType(Me.c1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Pwait, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PB1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.fstAr, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Bu1
@@ -131,7 +140,7 @@ Partial Class Sega
         Me.Bu1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.Bu1.Font = New System.Drawing.Font("Tahoma", 19.0!)
         Me.Bu1.ForeColor = System.Drawing.Color.Blue
-        Me.Bu1.Location = New System.Drawing.Point(320, 511)
+        Me.Bu1.Location = New System.Drawing.Point(320, 512)
         Me.Bu1.Name = "Bu1"
         Me.Bu1.Size = New System.Drawing.Size(102, 40)
         Me.Bu1.TabIndex = 3
@@ -144,7 +153,7 @@ Partial Class Sega
         Me.rest.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.rest.Font = New System.Drawing.Font("Tahoma", 19.0!)
         Me.rest.ForeColor = System.Drawing.Color.FromArgb(CType(CType(150, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.rest.Location = New System.Drawing.Point(191, 511)
+        Me.rest.Location = New System.Drawing.Point(191, 512)
         Me.rest.Name = "rest"
         Me.rest.Size = New System.Drawing.Size(123, 40)
         Me.rest.TabIndex = 2
@@ -213,7 +222,7 @@ Partial Class Sega
         Me.VaH.Checked = True
         Me.VaH.CheckState = System.Windows.Forms.CheckState.Checked
         Me.VaH.Font = New System.Drawing.Font("Tahoma", 21.0!)
-        Me.VaH.Location = New System.Drawing.Point(25, 441)
+        Me.VaH.Location = New System.Drawing.Point(25, 442)
         Me.VaH.Name = "VaH"
         Me.VaH.Size = New System.Drawing.Size(372, 38)
         Me.VaH.TabIndex = 18
@@ -255,7 +264,7 @@ Partial Class Sega
         Me.restA.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.restA.Font = New System.Drawing.Font("Tahoma", 19.0!)
         Me.restA.ForeColor = System.Drawing.Color.Red
-        Me.restA.Location = New System.Drawing.Point(12, 511)
+        Me.restA.Location = New System.Drawing.Point(12, 512)
         Me.restA.Name = "restA"
         Me.restA.Size = New System.Drawing.Size(173, 40)
         Me.restA.TabIndex = 1
@@ -297,7 +306,7 @@ Partial Class Sega
         Me.NoS.AutoSize = True
         Me.NoS.BackColor = System.Drawing.Color.Transparent
         Me.NoS.Font = New System.Drawing.Font("Tahoma", 19.0!)
-        Me.NoS.Location = New System.Drawing.Point(8, 474)
+        Me.NoS.Location = New System.Drawing.Point(8, 475)
         Me.NoS.Name = "NoS"
         Me.NoS.Size = New System.Drawing.Size(433, 35)
         Me.NoS.TabIndex = 19
@@ -310,7 +319,7 @@ Partial Class Sega
         Me.start.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.start.Font = New System.Drawing.Font("Tahoma", 20.0!)
         Me.start.ForeColor = System.Drawing.Color.DarkGreen
-        Me.start.Location = New System.Drawing.Point(234, 399)
+        Me.start.Location = New System.Drawing.Point(234, 400)
         Me.start.Name = "start"
         Me.start.Size = New System.Drawing.Size(144, 40)
         Me.start.TabIndex = 0
@@ -358,7 +367,7 @@ Partial Class Sega
         Me.Bu5.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.Bu5.Font = New System.Drawing.Font("Tahoma", 19.0!)
         Me.Bu5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.Bu5.Location = New System.Drawing.Point(42, 511)
+        Me.Bu5.Location = New System.Drawing.Point(42, 512)
         Me.Bu5.Name = "Bu5"
         Me.Bu5.Size = New System.Drawing.Size(410, 40)
         Me.Bu5.TabIndex = 17
@@ -371,7 +380,7 @@ Partial Class Sega
         Me.Bu7.BackColor = System.Drawing.Color.Transparent
         Me.Bu7.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.Bu7.Font = New System.Drawing.Font("Tahoma", 19.0!)
-        Me.Bu7.Location = New System.Drawing.Point(12, 511)
+        Me.Bu7.Location = New System.Drawing.Point(12, 512)
         Me.Bu7.Name = "Bu7"
         Me.Bu7.Size = New System.Drawing.Size(24, 40)
         Me.Bu7.TabIndex = 5
@@ -384,7 +393,7 @@ Partial Class Sega
         Me.Bu6.BackColor = System.Drawing.Color.Transparent
         Me.Bu6.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.Bu6.Font = New System.Drawing.Font("Tahoma", 19.0!)
-        Me.Bu6.Location = New System.Drawing.Point(428, 511)
+        Me.Bu6.Location = New System.Drawing.Point(428, 512)
         Me.Bu6.Name = "Bu6"
         Me.Bu6.Size = New System.Drawing.Size(24, 40)
         Me.Bu6.TabIndex = 4
@@ -397,7 +406,7 @@ Partial Class Sega
         Me.lang.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.lang.Font = New System.Drawing.Font("Tahoma", 19.0!)
         Me.lang.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(180, Byte), Integer), CType(CType(180, Byte), Integer))
-        Me.lang.Location = New System.Drawing.Point(42, 511)
+        Me.lang.Location = New System.Drawing.Point(42, 512)
         Me.lang.Name = "lang"
         Me.lang.Size = New System.Drawing.Size(144, 40)
         Me.lang.TabIndex = 6
@@ -423,7 +432,7 @@ Partial Class Sega
         Me.sv.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.sv.Font = New System.Drawing.Font("Tahoma", 20.0!)
         Me.sv.ForeColor = System.Drawing.Color.Navy
-        Me.sv.Location = New System.Drawing.Point(192, 511)
+        Me.sv.Location = New System.Drawing.Point(192, 512)
         Me.sv.Name = "sv"
         Me.sv.Size = New System.Drawing.Size(112, 40)
         Me.sv.TabIndex = 7
@@ -438,7 +447,7 @@ Partial Class Sega
         Me.ld.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.ld.Font = New System.Drawing.Font("Tahoma", 20.0!)
         Me.ld.ForeColor = System.Drawing.Color.Purple
-        Me.ld.Location = New System.Drawing.Point(310, 511)
+        Me.ld.Location = New System.Drawing.Point(310, 512)
         Me.ld.Name = "ld"
         Me.ld.Size = New System.Drawing.Size(112, 40)
         Me.ld.TabIndex = 9
@@ -451,7 +460,7 @@ Partial Class Sega
         Me.ok1.AutoSize = True
         Me.ok1.BackColor = System.Drawing.Color.Transparent
         Me.ok1.ForeColor = System.Drawing.Color.Red
-        Me.ok1.Location = New System.Drawing.Point(384, 400)
+        Me.ok1.Location = New System.Drawing.Point(384, 401)
         Me.ok1.Name = "ok1"
         Me.ok1.Size = New System.Drawing.Size(40, 17)
         Me.ok1.TabIndex = 26
@@ -464,7 +473,7 @@ Partial Class Sega
         Me.ok2.AutoSize = True
         Me.ok2.BackColor = System.Drawing.Color.Transparent
         Me.ok2.ForeColor = System.Drawing.Color.Blue
-        Me.ok2.Location = New System.Drawing.Point(384, 423)
+        Me.ok2.Location = New System.Drawing.Point(384, 424)
         Me.ok2.Name = "ok2"
         Me.ok2.Size = New System.Drawing.Size(40, 17)
         Me.ok2.TabIndex = 27
@@ -477,7 +486,7 @@ Partial Class Sega
         Me.help.BackColor = System.Drawing.Color.Transparent
         Me.help.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.help.Font = New System.Drawing.Font("Tahoma", 19.0!)
-        Me.help.Location = New System.Drawing.Point(110, 399)
+        Me.help.Location = New System.Drawing.Point(110, 400)
         Me.help.Name = "help"
         Me.help.Size = New System.Drawing.Size(119, 40)
         Me.help.TabIndex = 23
@@ -493,7 +502,7 @@ Partial Class Sega
         Me.Lf.BackColor = System.Drawing.Color.Transparent
         Me.Lf.Font = New System.Drawing.Font("Tahoma", 15.0!)
         Me.Lf.ForeColor = System.Drawing.Color.Blue
-        Me.Lf.Location = New System.Drawing.Point(42, 519)
+        Me.Lf.Location = New System.Drawing.Point(42, 520)
         Me.Lf.Name = "Lf"
         Me.Lf.Size = New System.Drawing.Size(299, 24)
         Me.Lf.TabIndex = 93
@@ -505,7 +514,7 @@ Partial Class Sega
         Me.fst.BackColor = System.Drawing.Color.WhiteSmoke
         Me.fst.Font = New System.Drawing.Font("Tahoma", 15.0!)
         Me.fst.ForeColor = System.Drawing.Color.Blue
-        Me.fst.Location = New System.Drawing.Point(347, 515)
+        Me.fst.Location = New System.Drawing.Point(347, 516)
         Me.fst.Maximum = New Decimal(New Integer() {350, 0, 0, 0})
         Me.fst.Name = "fst"
         Me.fst.Size = New System.Drawing.Size(75, 32)
@@ -520,7 +529,7 @@ Partial Class Sega
         Me.playFirst.Font = New System.Drawing.Font("Tahoma", 15.0!)
         Me.playFirst.FormattingEnabled = True
         Me.playFirst.Items.AddRange(New Object() {"The winner plays first", "The loser plays first", "Who played first, plays second next time", "Choose who will play first by lot", "Choose who will play first automatically"})
-        Me.playFirst.Location = New System.Drawing.Point(40, 515)
+        Me.playFirst.Location = New System.Drawing.Point(40, 516)
         Me.playFirst.Name = "playFirst"
         Me.playFirst.Size = New System.Drawing.Size(385, 32)
         Me.playFirst.TabIndex = 11
@@ -531,7 +540,7 @@ Partial Class Sega
         Me.B10.BackColor = System.Drawing.Color.Transparent
         Me.B10.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.B10.Font = New System.Drawing.Font("Tahoma", 13.0!)
-        Me.B10.Location = New System.Drawing.Point(433, 475)
+        Me.B10.Location = New System.Drawing.Point(433, 476)
         Me.B10.Name = "B10"
         Me.B10.Size = New System.Drawing.Size(24, 31)
         Me.B10.TabIndex = 20
@@ -545,7 +554,7 @@ Partial Class Sega
         Me.ns.Font = New System.Drawing.Font("Tahoma", 13.0!)
         Me.ns.FormattingEnabled = True
         Me.ns.Items.AddRange(New Object() {"first", "second"})
-        Me.ns.Location = New System.Drawing.Point(383, 477)
+        Me.ns.Location = New System.Drawing.Point(383, 478)
         Me.ns.Name = "ns"
         Me.ns.Size = New System.Drawing.Size(77, 29)
         Me.ns.TabIndex = 22
@@ -556,7 +565,7 @@ Partial Class Sega
         Me.B11.BackColor = System.Drawing.Color.Transparent
         Me.B11.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.B11.Font = New System.Drawing.Font("Tahoma", 13.0!)
-        Me.B11.Location = New System.Drawing.Point(8, 475)
+        Me.B11.Location = New System.Drawing.Point(8, 476)
         Me.B11.Name = "B11"
         Me.B11.Size = New System.Drawing.Size(24, 31)
         Me.B11.TabIndex = 21
@@ -569,7 +578,7 @@ Partial Class Sega
         Me.lns.AutoSize = True
         Me.lns.BackColor = System.Drawing.Color.Transparent
         Me.lns.Font = New System.Drawing.Font("Tahoma", 13.0!)
-        Me.lns.Location = New System.Drawing.Point(34, 480)
+        Me.lns.Location = New System.Drawing.Point(34, 481)
         Me.lns.Name = "lns"
         Me.lns.Size = New System.Drawing.Size(346, 22)
         Me.lns.TabIndex = 115
@@ -630,7 +639,7 @@ Partial Class Sega
         Me.OX.BackColor = System.Drawing.Color.Transparent
         Me.OX.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.OX.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.OX.Location = New System.Drawing.Point(24, 419)
+        Me.OX.Location = New System.Drawing.Point(24, 420)
         Me.OX.Name = "OX"
         Me.OX.Size = New System.Drawing.Size(25, 25)
         Me.OX.TabIndex = 26
@@ -646,7 +655,7 @@ Partial Class Sega
         Me.hp.BackColor = System.Drawing.Color.Transparent
         Me.hp.Cursor = System.Windows.Forms.Cursors.Hand
         Me.hp.Font = New System.Drawing.Font("Tahoma", 14.0!)
-        Me.hp.Location = New System.Drawing.Point(418, 379)
+        Me.hp.Location = New System.Drawing.Point(418, 380)
         Me.hp.Name = "hp"
         Me.hp.Size = New System.Drawing.Size(19, 23)
         Me.hp.TabIndex = 140
@@ -658,7 +667,7 @@ Partial Class Sega
         'secret
         '
         Me.secret.Appearance = System.Windows.Forms.Appearance.Button
-        Me.secret.Location = New System.Drawing.Point(0, 430)
+        Me.secret.Location = New System.Drawing.Point(0, 431)
         Me.secret.Name = "secret"
         Me.secret.Size = New System.Drawing.Size(14, 14)
         Me.secret.TabIndex = 26
@@ -681,7 +690,7 @@ Partial Class Sega
         Me.XO.BackgroundImage = Global.Sega.My.Resources.Resources.XO1
         Me.XO.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.XO.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.XO.Location = New System.Drawing.Point(7, 317)
+        Me.XO.Location = New System.Drawing.Point(7, 318)
         Me.XO.Name = "XO"
         Me.XO.Size = New System.Drawing.Size(44, 100)
         Me.XO.TabIndex = 26
@@ -693,33 +702,39 @@ Partial Class Sega
         'im2
         '
         Me.im2.BackColor = System.Drawing.Color.Transparent
-        Me.im2.Image = Global.Sega.My.Resources.Resources.unno2
+        Me.im2.BackgroundImage = Global.Sega.My.Resources.Resources.unno2
+        Me.im2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.im2.Location = New System.Drawing.Point(418, 304)
         Me.im2.Name = "im2"
         Me.im2.Size = New System.Drawing.Size(41, 41)
         Me.im2.TabIndex = 139
+        Me.im2.TabStop = False
         Me.TTen.SetToolTip(Me.im2, "Perhaps this style of game solves the problems of half the world's population")
         Me.TTar.SetToolTip(Me.im2, "قد يحل هذا النمط في اللعبة مشاكل نصف سكان العالم")
         '
         'im1
         '
         Me.im1.BackColor = System.Drawing.Color.Transparent
-        Me.im1.Image = Global.Sega.My.Resources.Resources.unno1
+        Me.im1.BackgroundImage = Global.Sega.My.Resources.Resources.unno1
+        Me.im1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.im1.Location = New System.Drawing.Point(418, 255)
         Me.im1.Name = "im1"
         Me.im1.Size = New System.Drawing.Size(41, 41)
         Me.im1.TabIndex = 137
+        Me.im1.TabStop = False
         Me.TTen.SetToolTip(Me.im1, "My life has improved for the better because of this style")
         Me.TTar.SetToolTip(Me.im1, "لقد تحسنت حياتي للأفضل بسبب هذا النمط")
         '
         'im0
         '
         Me.im0.BackColor = System.Drawing.Color.Transparent
-        Me.im0.Image = Global.Sega.My.Resources.Resources.normal
+        Me.im0.BackgroundImage = Global.Sega.My.Resources.Resources.normal
+        Me.im0.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.im0.Location = New System.Drawing.Point(418, 206)
         Me.im0.Name = "im0"
         Me.im0.Size = New System.Drawing.Size(41, 41)
         Me.im0.TabIndex = 135
+        Me.im0.TabStop = False
         Me.TTen.SetToolTip(Me.im0, "the default")
         Me.TTar.SetToolTip(Me.im0, "الافتراضي")
         '
@@ -732,7 +747,7 @@ Partial Class Sega
         Me.redo.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.redo.Font = New System.Drawing.Font("Tahoma", 20.0!)
         Me.redo.ForeColor = System.Drawing.Color.DarkGreen
-        Me.redo.Location = New System.Drawing.Point(309, 399)
+        Me.redo.Location = New System.Drawing.Point(309, 400)
         Me.redo.Name = "redo"
         Me.redo.Size = New System.Drawing.Size(69, 40)
         Me.redo.TabIndex = 25
@@ -748,24 +763,24 @@ Partial Class Sega
         Me.undo.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.undo.Font = New System.Drawing.Font("Tahoma", 20.0!)
         Me.undo.ForeColor = System.Drawing.Color.DarkGreen
-        Me.undo.Location = New System.Drawing.Point(234, 399)
+        Me.undo.Location = New System.Drawing.Point(234, 400)
         Me.undo.Name = "undo"
         Me.undo.Size = New System.Drawing.Size(69, 40)
         Me.undo.TabIndex = 24
         Me.TTen.SetToolTip(Me.undo, "Undo")
         Me.undo.UseVisualStyleBackColor = False
         '
-        'big
+        'zoomIn
         '
-        Me.big.BackColor = System.Drawing.Color.Transparent
-        Me.big.BackgroundImage = Global.Sega.My.Resources.Resources.ba
-        Me.big.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.big.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.big.Location = New System.Drawing.Point(7, 172)
-        Me.big.Name = "big"
-        Me.big.Size = New System.Drawing.Size(40, 40)
-        Me.big.TabIndex = 141
-        Me.big.UseVisualStyleBackColor = False
+        Me.zoomIn.BackColor = System.Drawing.Color.Transparent
+        Me.zoomIn.BackgroundImage = Global.Sega.My.Resources.Resources.ba
+        Me.zoomIn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.zoomIn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.zoomIn.Location = New System.Drawing.Point(7, 150)
+        Me.zoomIn.Name = "zoomIn"
+        Me.zoomIn.Size = New System.Drawing.Size(40, 40)
+        Me.zoomIn.TabIndex = 141
+        Me.zoomIn.UseVisualStyleBackColor = False
         '
         'sv1
         '
@@ -773,7 +788,7 @@ Partial Class Sega
         Me.sv1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.sv1.ForeColor = System.Drawing.Color.Blue
         Me.sv1.Image = Global.Sega.My.Resources.Resources.sav
-        Me.sv1.Location = New System.Drawing.Point(279, 526)
+        Me.sv1.Location = New System.Drawing.Point(279, 527)
         Me.sv1.Name = "sv1"
         Me.sv1.Size = New System.Drawing.Size(25, 25)
         Me.sv1.TabIndex = 8
@@ -786,7 +801,7 @@ Partial Class Sega
         Me.ld1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.ld1.ForeColor = System.Drawing.Color.Purple
         Me.ld1.Image = Global.Sega.My.Resources.Resources.lod
-        Me.ld1.Location = New System.Drawing.Point(397, 526)
+        Me.ld1.Location = New System.Drawing.Point(397, 527)
         Me.ld1.Name = "ld1"
         Me.ld1.Size = New System.Drawing.Size(25, 25)
         Me.ld1.TabIndex = 10
@@ -796,7 +811,7 @@ Partial Class Sega
         'P11
         '
         Me.P11.BackColor = System.Drawing.Color.Black
-        Me.P11.Location = New System.Drawing.Point(408, 59)
+        Me.P11.Location = New System.Drawing.Point(407, 59)
         Me.P11.Name = "P11"
         Me.P11.Size = New System.Drawing.Size(4, 338)
         Me.P11.TabIndex = 134
@@ -805,7 +820,7 @@ Partial Class Sega
         'P10
         '
         Me.P10.BackColor = System.Drawing.Color.Black
-        Me.P10.Location = New System.Drawing.Point(290, 59)
+        Me.P10.Location = New System.Drawing.Point(289, 59)
         Me.P10.Name = "P10"
         Me.P10.Size = New System.Drawing.Size(5, 338)
         Me.P10.TabIndex = 133
@@ -832,9 +847,9 @@ Partial Class Sega
         'PB7
         '
         Me.PB7.BackColor = System.Drawing.Color.Black
-        Me.PB7.Location = New System.Drawing.Point(54, 393)
+        Me.PB7.Location = New System.Drawing.Point(54, 394)
         Me.PB7.Name = "PB7"
-        Me.PB7.Size = New System.Drawing.Size(358, 4)
+        Me.PB7.Size = New System.Drawing.Size(357, 4)
         Me.PB7.TabIndex = 130
         Me.PB7.TabStop = False
         '
@@ -843,16 +858,16 @@ Partial Class Sega
         Me.PB6.BackColor = System.Drawing.Color.Black
         Me.PB6.Location = New System.Drawing.Point(54, 282)
         Me.PB6.Name = "PB6"
-        Me.PB6.Size = New System.Drawing.Size(358, 5)
+        Me.PB6.Size = New System.Drawing.Size(357, 5)
         Me.PB6.TabIndex = 129
         Me.PB6.TabStop = False
         '
         'PB5
         '
         Me.PB5.BackColor = System.Drawing.Color.Black
-        Me.PB5.Location = New System.Drawing.Point(54, 169)
+        Me.PB5.Location = New System.Drawing.Point(54, 170)
         Me.PB5.Name = "PB5"
-        Me.PB5.Size = New System.Drawing.Size(358, 5)
+        Me.PB5.Size = New System.Drawing.Size(357, 5)
         Me.PB5.TabIndex = 128
         Me.PB5.TabStop = False
         '
@@ -861,7 +876,7 @@ Partial Class Sega
         Me.PB4.BackColor = System.Drawing.Color.Black
         Me.PB4.Location = New System.Drawing.Point(54, 59)
         Me.PB4.Name = "PB4"
-        Me.PB4.Size = New System.Drawing.Size(358, 4)
+        Me.PB4.Size = New System.Drawing.Size(357, 4)
         Me.PB4.TabIndex = 127
         Me.PB4.TabStop = False
         '
@@ -870,9 +885,9 @@ Partial Class Sega
         Me.z3.BackColor = System.Drawing.Color.Transparent
         Me.z3.BackgroundImage = Global.Sega.My.Resources.Resources.zx3
         Me.z3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.z3.Location = New System.Drawing.Point(314, 80)
+        Me.z3.Location = New System.Drawing.Point(312, 78)
         Me.z3.Name = "z3"
-        Me.z3.Size = New System.Drawing.Size(75, 72)
+        Me.z3.Size = New System.Drawing.Size(77, 77)
         Me.z3.TabIndex = 48
         Me.z3.TabStop = False
         '
@@ -881,9 +896,9 @@ Partial Class Sega
         Me.z2.BackColor = System.Drawing.Color.Transparent
         Me.z2.BackgroundImage = Global.Sega.My.Resources.Resources.zx3
         Me.z2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.z2.Location = New System.Drawing.Point(195, 80)
+        Me.z2.Location = New System.Drawing.Point(194, 78)
         Me.z2.Name = "z2"
-        Me.z2.Size = New System.Drawing.Size(75, 72)
+        Me.z2.Size = New System.Drawing.Size(77, 77)
         Me.z2.TabIndex = 47
         Me.z2.TabStop = False
         '
@@ -892,9 +907,9 @@ Partial Class Sega
         Me.z1.BackColor = System.Drawing.Color.Transparent
         Me.z1.BackgroundImage = Global.Sega.My.Resources.Resources.zx3
         Me.z1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.z1.Location = New System.Drawing.Point(77, 80)
+        Me.z1.Location = New System.Drawing.Point(76, 78)
         Me.z1.Name = "z1"
-        Me.z1.Size = New System.Drawing.Size(75, 72)
+        Me.z1.Size = New System.Drawing.Size(77, 77)
         Me.z1.TabIndex = 46
         Me.z1.TabStop = False
         '
@@ -903,9 +918,9 @@ Partial Class Sega
         Me.a3.BackColor = System.Drawing.Color.Transparent
         Me.a3.BackgroundImage = Global.Sega.My.Resources.Resources._as
         Me.a3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.a3.Location = New System.Drawing.Point(314, 192)
+        Me.a3.Location = New System.Drawing.Point(312, 190)
         Me.a3.Name = "a3"
-        Me.a3.Size = New System.Drawing.Size(75, 72)
+        Me.a3.Size = New System.Drawing.Size(77, 77)
         Me.a3.TabIndex = 45
         Me.a3.TabStop = False
         Me.a3.Visible = False
@@ -915,9 +930,9 @@ Partial Class Sega
         Me.a2.BackColor = System.Drawing.Color.Transparent
         Me.a2.BackgroundImage = Global.Sega.My.Resources.Resources._as
         Me.a2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.a2.Location = New System.Drawing.Point(195, 192)
+        Me.a2.Location = New System.Drawing.Point(194, 190)
         Me.a2.Name = "a2"
-        Me.a2.Size = New System.Drawing.Size(75, 72)
+        Me.a2.Size = New System.Drawing.Size(77, 77)
         Me.a2.TabIndex = 44
         Me.a2.TabStop = False
         Me.a2.Visible = False
@@ -927,9 +942,9 @@ Partial Class Sega
         Me.a1.BackColor = System.Drawing.Color.Transparent
         Me.a1.BackgroundImage = Global.Sega.My.Resources.Resources._as
         Me.a1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.a1.Location = New System.Drawing.Point(77, 192)
+        Me.a1.Location = New System.Drawing.Point(76, 190)
         Me.a1.Name = "a1"
-        Me.a1.Size = New System.Drawing.Size(75, 72)
+        Me.a1.Size = New System.Drawing.Size(77, 77)
         Me.a1.TabIndex = 43
         Me.a1.TabStop = False
         Me.a1.Visible = False
@@ -939,9 +954,9 @@ Partial Class Sega
         Me.c3.BackColor = System.Drawing.Color.Transparent
         Me.c3.BackgroundImage = Global.Sega.My.Resources.Resources.cv3
         Me.c3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.c3.Location = New System.Drawing.Point(314, 304)
+        Me.c3.Location = New System.Drawing.Point(312, 302)
         Me.c3.Name = "c3"
-        Me.c3.Size = New System.Drawing.Size(75, 72)
+        Me.c3.Size = New System.Drawing.Size(77, 77)
         Me.c3.TabIndex = 42
         Me.c3.TabStop = False
         '
@@ -950,9 +965,9 @@ Partial Class Sega
         Me.c2.BackColor = System.Drawing.Color.Transparent
         Me.c2.BackgroundImage = Global.Sega.My.Resources.Resources.cv3
         Me.c2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.c2.Location = New System.Drawing.Point(195, 304)
+        Me.c2.Location = New System.Drawing.Point(194, 302)
         Me.c2.Name = "c2"
-        Me.c2.Size = New System.Drawing.Size(75, 72)
+        Me.c2.Size = New System.Drawing.Size(77, 77)
         Me.c2.TabIndex = 41
         Me.c2.TabStop = False
         '
@@ -961,9 +976,9 @@ Partial Class Sega
         Me.c1.BackColor = System.Drawing.Color.Transparent
         Me.c1.BackgroundImage = Global.Sega.My.Resources.Resources.cv3
         Me.c1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.c1.Location = New System.Drawing.Point(77, 304)
+        Me.c1.Location = New System.Drawing.Point(76, 302)
         Me.c1.Name = "c1"
-        Me.c1.Size = New System.Drawing.Size(75, 72)
+        Me.c1.Size = New System.Drawing.Size(77, 77)
         Me.c1.TabIndex = 40
         Me.c1.TabStop = False
         '
@@ -973,7 +988,7 @@ Partial Class Sega
         Me.rr.BackgroundImage = Global.Sega.My.Resources.Resources.right
         Me.rr.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.rr.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.rr.Location = New System.Drawing.Point(138, 511)
+        Me.rr.Location = New System.Drawing.Point(138, 512)
         Me.rr.Name = "rr"
         Me.rr.Size = New System.Drawing.Size(90, 40)
         Me.rr.TabIndex = 13
@@ -986,7 +1001,7 @@ Partial Class Sega
         Me.rl.BackgroundImage = Global.Sega.My.Resources.Resources.left
         Me.rl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.rl.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.rl.Location = New System.Drawing.Point(42, 511)
+        Me.rl.Location = New System.Drawing.Point(42, 512)
         Me.rl.Name = "rl"
         Me.rl.Size = New System.Drawing.Size(90, 40)
         Me.rl.TabIndex = 12
@@ -999,7 +1014,7 @@ Partial Class Sega
         Me.rh.BackgroundImage = Global.Sega.My.Resources.Resources.Ho
         Me.rh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.rh.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.rh.Location = New System.Drawing.Point(236, 511)
+        Me.rh.Location = New System.Drawing.Point(236, 512)
         Me.rh.Name = "rh"
         Me.rh.Size = New System.Drawing.Size(90, 40)
         Me.rh.TabIndex = 14
@@ -1012,7 +1027,7 @@ Partial Class Sega
         Me.rv.BackgroundImage = Global.Sega.My.Resources.Resources.Vi
         Me.rv.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.rv.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.rv.Location = New System.Drawing.Point(332, 511)
+        Me.rv.Location = New System.Drawing.Point(332, 512)
         Me.rv.Name = "rv"
         Me.rv.Size = New System.Drawing.Size(90, 40)
         Me.rv.TabIndex = 15
@@ -1035,7 +1050,7 @@ Partial Class Sega
         '
         Me.PB1.BackColor = System.Drawing.Color.Transparent
         Me.PB1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.PB1.Location = New System.Drawing.Point(55, 397)
+        Me.PB1.Location = New System.Drawing.Point(55, 398)
         Me.PB1.Name = "PB1"
         Me.PB1.Size = New System.Drawing.Size(50, 47)
         Me.PB1.TabIndex = 50
@@ -1046,6 +1061,67 @@ Partial Class Sega
         Me.TTar.Active = False
         Me.TTar.AutomaticDelay = 1000
         '
+        'lnsAr
+        '
+        Me.lnsAr.AutoSize = True
+        Me.lnsAr.Font = New System.Drawing.Font("Tahoma", 13.0!)
+        Me.lnsAr.Location = New System.Drawing.Point(111, 481)
+        Me.lnsAr.Name = "lnsAr"
+        Me.lnsAr.Size = New System.Drawing.Size(335, 22)
+        Me.lnsAr.TabIndex = 115
+        Me.lnsAr.Text = "عندما لا يفز أحد: الذي قام باللعب أولاً، يلعب"
+        Me.lnsAr.Visible = False
+        '
+        'LfAr
+        '
+        Me.LfAr.AutoSize = True
+        Me.LfAr.Font = New System.Drawing.Font("Tahoma", 15.0!)
+        Me.LfAr.Location = New System.Drawing.Point(145, 520)
+        Me.LfAr.Name = "LfAr"
+        Me.LfAr.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.LfAr.Size = New System.Drawing.Size(261, 24)
+        Me.LfAr.TabIndex = 142
+        Me.LfAr.Text = "سرعة الحاسوب بالملي ثانية :"
+        Me.LfAr.Visible = False
+        '
+        'nsAr
+        '
+        Me.nsAr.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.nsAr.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.nsAr.Font = New System.Drawing.Font("Tahoma", 13.0!)
+        Me.nsAr.FormattingEnabled = True
+        Me.nsAr.Items.AddRange(New Object() {"أولا", "آخرا"})
+        Me.nsAr.Location = New System.Drawing.Point(34, 478)
+        Me.nsAr.Name = "nsAr"
+        Me.nsAr.Size = New System.Drawing.Size(77, 29)
+        Me.nsAr.TabIndex = 143
+        Me.nsAr.Visible = False
+        '
+        'fstAr
+        '
+        Me.fstAr.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.fstAr.Font = New System.Drawing.Font("Tahoma", 15.0!)
+        Me.fstAr.ForeColor = System.Drawing.Color.Blue
+        Me.fstAr.Location = New System.Drawing.Point(47, 516)
+        Me.fstAr.Maximum = New Decimal(New Integer() {350, 0, 0, 0})
+        Me.fstAr.Name = "fstAr"
+        Me.fstAr.Size = New System.Drawing.Size(85, 32)
+        Me.fstAr.TabIndex = 144
+        Me.fstAr.Value = New Decimal(New Integer() {175, 0, 0, 0})
+        Me.fstAr.Visible = False
+        '
+        'zoomOut
+        '
+        Me.zoomOut.BackColor = System.Drawing.Color.Transparent
+        Me.zoomOut.BackgroundImage = Global.Sega.My.Resources.Resources.sa
+        Me.zoomOut.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.zoomOut.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.zoomOut.Location = New System.Drawing.Point(7, 196)
+        Me.zoomOut.Name = "zoomOut"
+        Me.zoomOut.Size = New System.Drawing.Size(40, 40)
+        Me.zoomOut.TabIndex = 145
+        Me.zoomOut.UseVisualStyleBackColor = False
+        '
         'Sega
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1053,7 +1129,9 @@ Partial Class Sega
         Me.BackColor = System.Drawing.Color.WhiteSmoke
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(464, 561)
-        Me.Controls.Add(Me.big)
+        Me.Controls.Add(Me.zoomOut)
+        Me.Controls.Add(Me.nsAr)
+        Me.Controls.Add(Me.zoomIn)
         Me.Controls.Add(Me.secret)
         Me.Controls.Add(Me.OX)
         Me.Controls.Add(Me.XO)
@@ -1125,6 +1203,9 @@ Partial Class Sega
         Me.Controls.Add(Me.step2)
         Me.Controls.Add(Me.step1)
         Me.Controls.Add(Me.hp)
+        Me.Controls.Add(Me.lnsAr)
+        Me.Controls.Add(Me.LfAr)
+        Me.Controls.Add(Me.fstAr)
         Me.DoubleBuffered = True
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -1132,6 +1213,9 @@ Partial Class Sega
         Me.Name = "Sega"
         Me.Text = "SEAGA EGY 2023 v1.0.371.3317"
         CType(Me.fst, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.im2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.im1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.im0, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.P11, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.P10, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PB9, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1151,6 +1235,7 @@ Partial Class Sega
         CType(Me.c1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Pwait, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PB1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.fstAr, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1222,19 +1307,24 @@ Partial Class Sega
     Friend WithEvents sv1 As Button
     Friend WithEvents SFD As SaveFileDialog
     Friend WithEvents OFD As OpenFileDialog
-    Friend WithEvents im0 As Label
+    Friend WithEvents im0 As PictureBox
     Friend WithEvents RB0 As RadioButton
     Friend WithEvents RB1 As RadioButton
-    Friend WithEvents im1 As Label
+    Friend WithEvents im1 As PictureBox
     Friend WithEvents RB2 As RadioButton
-    Friend WithEvents im2 As Label
+    Friend WithEvents im2 As PictureBox
     Friend WithEvents XO As Button
     Friend WithEvents OX As Button
     Friend WithEvents hp As Label
     Friend WithEvents secret As CheckBox
     Friend WithEvents intelligence As Label
     Friend WithEvents OFD2 As OpenFileDialog
-    Friend WithEvents big As Button
+    Friend WithEvents zoomIn As Button
     Friend WithEvents TTen As ToolTip
     Friend WithEvents TTar As ToolTip
+    Friend WithEvents lnsAr As Label
+    Friend WithEvents LfAr As Label
+    Friend WithEvents nsAr As ComboBox
+    Friend WithEvents fstAr As NumericUpDown
+    Friend WithEvents zoomOut As Button
 End Class
