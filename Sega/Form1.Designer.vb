@@ -785,9 +785,10 @@ Partial Class Sega
         'sv1
         '
         Me.sv1.BackColor = System.Drawing.Color.Transparent
+        Me.sv1.BackgroundImage = Global.Sega.My.Resources.Resources.sav
+        Me.sv1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.sv1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.sv1.ForeColor = System.Drawing.Color.Blue
-        Me.sv1.Image = Global.Sega.My.Resources.Resources.sav
         Me.sv1.Location = New System.Drawing.Point(279, 527)
         Me.sv1.Name = "sv1"
         Me.sv1.Size = New System.Drawing.Size(25, 25)
@@ -798,9 +799,10 @@ Partial Class Sega
         'ld1
         '
         Me.ld1.BackColor = System.Drawing.Color.Transparent
+        Me.ld1.BackgroundImage = Global.Sega.My.Resources.Resources.lod
+        Me.ld1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.ld1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.ld1.ForeColor = System.Drawing.Color.Purple
-        Me.ld1.Image = Global.Sega.My.Resources.Resources.lod
         Me.ld1.Location = New System.Drawing.Point(397, 527)
         Me.ld1.Name = "ld1"
         Me.ld1.Size = New System.Drawing.Size(25, 25)
