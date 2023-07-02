@@ -25,6 +25,7 @@
     Dim pictures As New List(Of Bitmap) ' Pictures of Pieces
 
     Private Sub Sega_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Icon = Icon.FromHandle(My.Resources.cv.GetHicon())
         If Not CheckHash(Sega2.LMhmd.Text, Sega2.Ihash) Then End
         ld.Enabled = My.Computer.FileSystem.FileExists(sg + "save.seaga")
         thePieces.AddRange({PB1, z1, z2, z3, a1, a2, a3, c1, c2, c3})
@@ -2052,6 +2053,7 @@ And If you press the writing boxes, press F11 to remove the pressure.", msg, "Ho
             fst.ForeColor = Color.DarkGreen : fstAr.ForeColor = Color.DarkGreen
             pictures.RemoveRange(9, 6)
             pictures.AddRange({My.Resources.cb, My.Resources.cb2, My.Resources.cb3, My.Resources.cb23, My.Resources.cb4, My.Resources.cb24})
+            Icon = Icon.FromHandle(My.Resources.cb.GetHicon())
         Else
             player2.ForeColor = Color.Blue
             name2.ForeColor = Color.Blue
@@ -2067,6 +2069,7 @@ And If you press the writing boxes, press F11 to remove the pressure.", msg, "Ho
             fst.ForeColor = Color.Blue : fstAr.ForeColor = Color.Blue
             pictures.RemoveRange(9, 6)
             pictures.AddRange({My.Resources.cv, My.Resources.cv2, My.Resources.cv3, My.Resources.cv23, My.Resources.cv4, My.Resources.cv24})
+            Icon = Icon.FromHandle(My.Resources.cv.GetHicon())
         End If
         loc()
     End Sub

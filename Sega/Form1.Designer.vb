@@ -23,7 +23,6 @@ Partial Class Sega
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Sega))
         Me.Bu1 = New System.Windows.Forms.Button()
         Me.rest = New System.Windows.Forms.Button()
         Me.player1 = New System.Windows.Forms.Label()
@@ -1210,7 +1209,6 @@ Partial Class Sega
         Me.Controls.Add(Me.fstAr)
         Me.DoubleBuffered = True
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
-        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.Name = "Sega"
         Me.Text = "SEAGA EGY 2023 v1.0.371.3317"
