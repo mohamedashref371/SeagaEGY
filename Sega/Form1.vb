@@ -2049,7 +2049,7 @@ And If you press the writing boxes, press F11 to remove the pressure.", msg, "Ho
             Pwait.BackgroundImage = My.Resources.Rotat2
             wait.ForeColor = Color.DarkGreen
             ok2.ForeColor = Color.DarkGreen
-            Lf.ForeColor = Color.DarkGreen
+            Lf.ForeColor = Color.DarkGreen : LfAr.ForeColor = Color.DarkGreen
             fst.ForeColor = Color.DarkGreen : fstAr.ForeColor = Color.DarkGreen
             pictures.RemoveRange(9, 6)
             pictures.AddRange({My.Resources.cb, My.Resources.cb2, My.Resources.cb3, My.Resources.cb23, My.Resources.cb4, My.Resources.cb24})
@@ -2065,7 +2065,7 @@ And If you press the writing boxes, press F11 to remove the pressure.", msg, "Ho
             Pwait.BackgroundImage = My.Resources.Rotat
             wait.ForeColor = Color.Blue
             ok2.ForeColor = Color.Blue
-            Lf.ForeColor = Color.Blue
+            Lf.ForeColor = Color.Blue : LfAr.ForeColor = Color.Blue
             fst.ForeColor = Color.Blue : fstAr.ForeColor = Color.Blue
             pictures.RemoveRange(9, 6)
             pictures.AddRange({My.Resources.cv, My.Resources.cv2, My.Resources.cv3, My.Resources.cv23, My.Resources.cv4, My.Resources.cv24})

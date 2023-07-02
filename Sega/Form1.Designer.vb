@@ -1077,6 +1077,7 @@ Partial Class Sega
         '
         Me.LfAr.AutoSize = True
         Me.LfAr.Font = New System.Drawing.Font("Tahoma", 15.0!)
+        Me.LfAr.ForeColor = System.Drawing.Color.Blue
         Me.LfAr.Location = New System.Drawing.Point(145, 520)
         Me.LfAr.Name = "LfAr"
         Me.LfAr.RightToLeft = System.Windows.Forms.RightToLeft.Yes
