@@ -875,7 +875,7 @@
         If theGame(14) >= 2 Then
             i = 0
             While i < game.Count - 1
-                If OpponentWin(game(i), game(i + 1)) Then
+                If OpponentNotWin(game(i), game(i + 1)) Then
                     i += 2
                 Else
                     game.RemoveAt(i) : game.RemoveAt(i)
@@ -911,7 +911,7 @@
         If theGame(14) = 7 Or theGame(14) = 6 And constant < 75 Or theGame(14) = 5 And constant < 50 Or theGame(14) = 4 And constant < 25 Then
             i = 0
             While i < game.Count - 1
-                If OpponentDouWin(game(i), game(i + 1)) Then
+                If OpponentNotDouWin(game(i), game(i + 1)) Then
                     i += 2
                 Else
                     game.RemoveAt(i) : game.RemoveAt(i)
@@ -947,7 +947,7 @@
 
                 i = 0
                 While i < game.Count - 1
-                    If DiagonalCatchingSleeperPiece(game(i), game(i + 1)) Then
+                    If DiagonalCatchingSleeperComputerPiece(game(i), game(i + 1)) Then
                         i += 2
                     Else
                         game.RemoveAt(i) : game.RemoveAt(i)
@@ -1055,7 +1055,7 @@ theEnd:
         Return yes
     End Function
 
-    Function OpponentWin(space As Byte, blue As Byte) As Boolean
+    Function OpponentNotWin(space As Byte, blue As Byte) As Boolean
         Dim yes As Boolean = False
         moving(space, blue, 1)
         For k = 4 To 6
@@ -1088,7 +1088,7 @@ break:
         Return counter > 1
     End Function
 
-    Function OpponentDouWin(space As Byte, blue As Byte) As Boolean
+    Function OpponentNotDouWin(space As Byte, blue As Byte) As Boolean
         Dim counter As Integer = 0
         moving(space, blue, 1)
         For i = 4 To 6
@@ -1124,9 +1124,7 @@ break:
     Function PieceInMiddle(space As Byte, blue As Byte) As Boolean
         Dim yes As Boolean = False
         moving(space, blue, 1)
-        If aBlueLoc(5) Then
-            yes = True
-        End If
+        If aBlueLoc(5) Then yes = True
         moving(space, blue, -1)
         Return yes
     End Function
@@ -1165,7 +1163,7 @@ break2:
                 moving(i, j, 1)
                 For i1 = 4 To 6
                     For j1 = 7 To 9
-                        If OpponentWin(i1, j1) And DiagonalCatchingSleeperPiece(i1, j1) And OpponentDouWin(i1, j1) Then
+                        If OpponentNotWin(i1, j1) And DiagonalCatchingSleeperComputerPiece(i1, j1) And OpponentNotDouWin(i1, j1) Then
                             yes = True
                             GoTo break
                         ElseIf i1 = 6 And j1 = 9 Then
@@ -1191,7 +1189,7 @@ break2:
         Return yes
     End Function
 
-    Function DiagonalCatchingSleeperPiece(space As Byte, blue As Byte)
+    Function DiagonalCatchingSleeperComputerPiece(space As Byte, blue As Byte)
         Dim yes As Boolean = True
         moving(space, blue, 1)
         For i = 4 To 6
@@ -1218,16 +1216,12 @@ break:
     End Function
 
     Function aRLine(piece1 As Integer, piece2 As Integer, piece3 As Integer) As Boolean ' active red in line
-        If redIdle(piece1) Or redIdle(piece2) Or redIdle(piece3) Then
-            Return False
-        End If
+        If redIdle(piece1) Or redIdle(piece2) Or redIdle(piece3) Then Return False
         Return line(piece1, piece2, piece3)
     End Function
 
     Function aBLine(piece1 As Integer, piece2 As Integer, piece3 As Integer) As Boolean ' active blue in line
-        If blueIdle(piece1) Or blueIdle(piece2) Or blueIdle(piece3) Then
-            Return False
-        End If
+        If blueIdle(piece1) Or blueIdle(piece2) Or blueIdle(piece3) Then Return False
         Return line(piece1, piece2, piece3)
     End Function
 
@@ -2032,7 +2026,7 @@ And If you press the writing boxes, press F11 to remove the pressure.", msg, "Ho
     End Sub
 
     Private Sub player1_Click(sender As Object, e As EventArgs) Handles player1.Click
-        TTen.SetToolTip(player1, "") : TTar.SetToolTip(player1, "")
+        TTen.SetToolTip(player1, "")
         If name1.Text = "Player1" Then
             name1.Text = "not " + name1.Text
         End If
