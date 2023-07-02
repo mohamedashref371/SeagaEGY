@@ -2032,7 +2032,7 @@ And If you press the writing boxes, press F11 to remove the pressure.", msg, "Ho
     End Sub
 
     Private Sub player1_Click(sender As Object, e As EventArgs) Handles player1.Click
-        TTen.SetToolTip(player1, "")
+        TTen.SetToolTip(player1, "") : TTar.SetToolTip(player1, "")
         If name1.Text = "Player1" Then
             name1.Text = "not " + name1.Text
         End If
@@ -2040,7 +2040,7 @@ And If you press the writing boxes, press F11 to remove the pressure.", msg, "Ho
 
     Private Sub player2_Click(sender As Object, e As EventArgs) Handles player2.Click
         If player2.ForeColor = Color.Blue Then
-            TTen.SetToolTip(player2, "")
+            TTen.SetToolTip(player2, "") : TTar.SetToolTip(player2, "")
             player2.ForeColor = Color.DarkGreen
             name2.ForeColor = Color.DarkGreen
             intelligence.ForeColor = Color.DarkGreen
