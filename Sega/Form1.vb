@@ -89,7 +89,7 @@
                     End If
                 End If
             ElseIf e.KeyCode = Keys.F7 Then
-                img2(e)
+                img2()
             ElseIf e.KeyCode = Keys.F12 Then
                 B5()
             ElseIf e.KeyCode = Keys.F1 Then
@@ -169,7 +169,7 @@
                     End If
                 End If
             ElseIf e.KeyCode = Keys.F7 Then
-                img2(e)
+                img2()
             ElseIf e.KeyCode = Keys.G Then
                 language()
             ElseIf e.KeyCode = Keys.U Then
@@ -261,12 +261,15 @@
         fst.BackColor = cl : fstAr.BackColor = cl
     End Sub
 
-    Sub img2(ByVal e As EventArgs)
-        On Error Resume Next
+    Sub img2()
         If Not img Then
             If OFD2.ShowDialog() = DialogResult.OK Then
-                BackgroundImage = Image.FromFile(OFD2.FileName)
-                img = True
+                Try
+                    BackgroundImage = Image.FromFile(OFD2.FileName)
+                    img = True
+                Catch ex As Exception
+                    MsgBox(ex.Message)
+                End Try
             End If
         Else
             BackgroundImage = Nothing
@@ -1893,7 +1896,7 @@ break:
     End Sub
 
     Private Sub VaH_CheckedChanged(sender As Object, e As EventArgs) Handles VaH.CheckedChanged
-        On Error Resume Next
+        If theGame.Count = 0 Then Exit Sub
         If Not VaH.Checked Then
             If theGame(20) = 2 Then
                 Wn()
