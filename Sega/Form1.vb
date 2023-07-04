@@ -22,6 +22,7 @@
     Dim theGame As New List(Of Integer)
     Dim thePieces As New List(Of PictureBox)
     Dim locations As New List(Of Point) ' Locations of Pieces
+    Dim originalLocations As List(Of Point)
     Dim pictures As New List(Of Bitmap) ' Pictures of Pieces
 
     Private Sub Sega_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -813,26 +814,19 @@
 
     Private Sub fst_ValueChanged(sender As Object, e As EventArgs) Handles fst.ValueChanged
         Try
-            If fst.Value >= 1 Then
-                T2.Interval = fst.Value
-
-                If fst.Value <> fstAr.Value Then fstAr.Value = fst.Value
-            End If
+            If fst.Value >= 1 Then T2.Interval = fst.Value
+            If fst.Value <> fstAr.Value Then fstAr.Value = fst.Value
         Catch ex As Exception
             fst.Value = 175
-            If fst.Value <> fstAr.Value Then fstAr.Value = 175
-            T2.Interval = 175
         End Try
     End Sub
 
     Private Sub fstAr_ValueChanged(sender As Object, e As EventArgs) Handles fstAr.ValueChanged
-        If fst.Value <> fstAr.Value Then
-            Try
-                fst.Value = fstAr.Value
-            Catch ex As Exception
-                fst.Value = 175
-            End Try
-        End If
+        Try
+            If fst.Value <> fstAr.Value Then fst.Value = fstAr.Value
+        Catch ex As Exception
+            fstAr.Value = 175
+        End Try
     End Sub
 
     Private Sub T2_Tick(sender As Object, e As EventArgs) Handles T2.Tick
@@ -2098,35 +2092,33 @@ And If you press the writing boxes, press F11 to remove the pressure.", msg, "Ho
 
     Private Sub ns_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ns.SelectedIndexChanged
         sn = ns.SelectedIndex
-        If nsAr.SelectedIndex <> sn Then
-            nsAr.SelectedIndex = sn
-        End If
+        If nsAr.SelectedIndex <> sn Then nsAr.SelectedIndex = sn
     End Sub
 
     Private Sub nsAr_SelectedIndexChanged(sender As Object, e As EventArgs) Handles nsAr.SelectedIndexChanged
         sn = nsAr.SelectedIndex
-        If ns.SelectedIndex <> sn Then
-            ns.SelectedIndex = sn
-        End If
+        If ns.SelectedIndex <> sn Then ns.SelectedIndex = sn
     End Sub
 
     Private Sub zoomIn_Click(sender As Object, e As EventArgs) Handles zoomIn.Click
-        zoom.zoom()
+        If zoom.x = 0 Then
+            zoom.zoom()
+            originalLocations = locations.ToList
+        End If
         zoom.zoomIn()
-
-        locations.Clear()
-        For i = 0 To thePieces.Count - 1
-            locations.Add(thePieces(i).Location)
+        For i = 0 To locations.Count - 1
+            locations(i) = zoom.newPoint(originalLocations(i))
         Next
+        loc1()
     End Sub
 
     Private Sub zoomOut_Click(sender As Object, e As EventArgs) Handles zoomOut.Click
-
-        If Size.Width > 481 Then zoom.zoomOut()
-
-        locations.Clear()
-        For i = 0 To thePieces.Count - 1
-            locations.Add(thePieces(i).Location)
-        Next
+        If Size.Width > 481 Then
+            zoom.zoomOut()
+            For i = 0 To locations.Count - 1
+                locations(i) = zoom.newPoint(originalLocations(i))
+            Next
+            loc1()
+        End If
     End Sub
 End Class

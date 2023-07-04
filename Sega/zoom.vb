@@ -4,23 +4,21 @@
     Public Shared boxes As New List(Of box)
 
     Public Shared Sub zoom()
-        If x = 0 Then
-            x = Sega.ClientSize.Width : x1 = x
-            y = Sega.ClientSize.Height : y1 = y
-            Dim box As box
-            For i = 0 To Sega.Controls.Count - 1
-                box = New box
-                box.tool = Sega.Controls(i)
-                box.size = Sega.Controls(i).Size
-                box.location = Sega.Controls(i).Location
-                If Sega.Controls(i).Text = "" Then
-                    box.font = Nothing
-                Else
-                    box.font = Sega.Controls(i).Font.Size
-                End If
-                boxes.Add(box)
-            Next
-        End If
+        x = Sega.ClientSize.Width : x1 = x
+        y = Sega.ClientSize.Height : y1 = y
+        Dim box As box
+        For i = 0 To Sega.Controls.Count - 1
+            box = New box
+            box.tool = Sega.Controls(i)
+            box.size = Sega.Controls(i).Size
+            box.location = Sega.Controls(i).Location
+            If Sega.Controls(i).Text = "" Then
+                box.font = Nothing
+            Else
+                box.font = Sega.Controls(i).Font.Size
+            End If
+            boxes.Add(box)
+        Next
     End Sub
 
     Public Shared Sub zoomIn()
@@ -44,6 +42,10 @@
         Next
         Sega.ClientSize = New Size(x1, y1)
     End Sub
+
+    Public Shared Function newPoint(point As Point) As Point
+        Return New Point(point.X * (x1 / x), point.Y * (y1 / y))
+    End Function
 End Class
 
 
