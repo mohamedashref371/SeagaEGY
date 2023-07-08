@@ -1435,6 +1435,7 @@ break:
             If buttons = 2 Then
                 sv1.Visible = True
             End If
+            ComputerTurn() ' not important except in the worst case
         Catch ex As Exception
             MsgBox(ex.Message, msg, ":(")
         End Try
