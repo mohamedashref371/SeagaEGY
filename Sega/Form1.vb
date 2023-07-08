@@ -5,8 +5,8 @@
     Dim temp As Integer
     Dim busy As Boolean = False
     Dim swap As Integer = -1
-    Dim lwz As String = "2"
-    Dim lwc As String = "2"
+    Dim lwz As Integer = 2
+    Dim lwc As Integer = 2
     Dim plyFrst As Integer = 0
     Dim sn As Integer = 1
     Dim keyboard As Boolean = True
@@ -23,6 +23,9 @@
     Dim thePieces As New List(Of PictureBox)
     Dim locations As New List(Of Point) ' Locations of Pieces
     Dim originalLocations As List(Of Point)
+
+    Dim zx As Integer = 0
+    Dim cv As Integer = 0
     Dim pictures As New List(Of Bitmap) ' Pictures of Pieces
 
     Private Sub Sega_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -33,10 +36,11 @@
         For i = 0 To thePieces.Count - 1
             locations.Add(thePieces(i).Location)
         Next
-        pictures.AddRange({My.Resources.zx, My.Resources.zx2, My.Resources.zx3, My.Resources.zx23, My.Resources.zx4, My.Resources.zx24, My.Resources._as, My.Resources.as23, My.Resources.as24, My.Resources.cv, My.Resources.cv2, My.Resources.cv3, My.Resources.cv23, My.Resources.cv4, My.Resources.cv24})
+        pictures.AddRange({My.Resources.zx, My.Resources.cv, My.Resources.Rotat})
         theGame.AddRange({3, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 0, 0, 0, 4, 3, 0, 0, 0, 0, 2})
         iLevel() : plyFrstN() : nsn() ' سيكون هنا عربي وانجليزي بدل هذا السطر
         Text = Text.Replace(".371.3317", "")
+        loc()
     End Sub
 
 #Region "Keys and Mouse 🤷‍♂️"
@@ -398,7 +402,7 @@
             End If
             Dim rand = New Random
             theGame(15) = rand.Next(0, 2)
-            PB1.BackgroundImage = pictures(9 * theGame(15))
+            PB1.BackgroundImage = pictures(theGame(15))
             T1.Start()
         Else
             T1.Stop()
@@ -425,16 +429,14 @@
 
     Private Sub T1_Tick(sender As Object, e As EventArgs) Handles T1.Tick
         theGame(15) = 1 - theGame(15)
-        PB1.BackgroundImage = pictures(9 * theGame(15))
+        PB1.BackgroundImage = pictures(theGame(15))
     End Sub
 
     Sub ox2()
-        If theGame(0) > 2 Then
-            PB1.BackgroundImage = Nothing
-            Exit Sub
-        End If
-        PB1.BackgroundImage = pictures(9 * theGame(0))
-        OX.BackgroundImage = pictures(9 - 9 * theGame(0))
+        PB1.BackgroundImage = Nothing : OX.BackgroundImage = Nothing
+        If theGame(0) > 2 Then Exit Sub
+        PB1.BackgroundImage = pictures(theGame(0))
+        OX.BackgroundImage = pictures(1 - theGame(0))
     End Sub
 
     Sub Positions()
@@ -553,26 +555,26 @@
 #Region "the win"
     Sub wn19()
         If aRLine(1, 2, 3) Then
-            lwz = "0"
+            lwz = 0
         Else
-            lwz = "2"
+            lwz = 2
         End If
         If aBLine(7, 8, 9) Then
-            lwc = "1"
+            lwc = 1
         Else
-            lwc = "2"
+            lwc = 2
         End If
     End Sub
 
     Sub wn37()
         If plyFrst = 0 Then
-            If lwz = "0" Then
+            If lwz = 0 Then
                 theGame(0) = 0
             Else
                 theGame(0) = 1
             End If
         ElseIf plyFrst = 1 Then
-            If lwz = "0" Then
+            If lwz = 0 Then
                 theGame(0) = 1
             Else
                 theGame(0) = 0
@@ -612,43 +614,43 @@
 
         wn19()
         If Not NoS.Checked Or (NoS.Checked And step1.Text = step2.Text And theGame(20) = 2) Then
-            If lwz = "0" And lwc = "2" Then
+            If lwz = 0 And lwc = 2 Then
                 win1.Text += 1
-                zc(1, 4) : zc(2, 4) : zc(3, 4)
+                zc(1, False, False, True) : zc(2, False, False, True) : zc(3, False, False, True)
                 MsgBox(txt + name1.Text, msg, txt1) '
                 wn37()
                 Rst()
             End If
-            If lwc = "1" And lwz = "2" Then
+            If lwc = 1 And lwz = 2 Then
                 win2.Text += 1
-                zc(7, 13) : zc(8, 13) : zc(9, 13)
+                zc(7, False, False, True) : zc(8, False, False, True) : zc(9, False, False, True)
                 MsgBox(txt + name2.Text, msg, txt1) '
                 wn37()
                 Rst()
             End If
         ElseIf step1.Text <> step2.Text And NoS.Checked And theGame(20) = 2 Then
-            If lwz = "0" Then
+            If lwz = 0 Then
                 If step1.Text = step2.Text + 1 And theGame(0) = 1 Then theGame(20) = 0
-                zc(1, 4) : zc(2, 4) : zc(3, 4)
+                zc(1, False, False, True) : zc(2, False, False, True) : zc(3, False, False, True)
             End If
-            If lwc = "1" Then
+            If lwc = 1 Then
                 If step2.Text = step1.Text + 1 And theGame(0) = 0 Then theGame(20) = 1
-                zc(7, 13) : zc(8, 13) : zc(9, 13)
+                zc(7, False, False, True) : zc(8, False, False, True) : zc(9, False, False, True)
             End If
         ElseIf theGame(20) < 2 Then
             If step1.Text = step2.Text Then
                 If theGame(20) = 0 Then
-                    If lwc = "1" Then
+                    If lwc = 1 Then
                         undo1 = "" : redo1 = ""
                         theGame(11) = 0 : theGame(12) = 0 : theGame(13) = 0 : theGame(17) = 0 : theGame(18) = 0 : theGame(19) = 0
                         nf()
                         rf()
                         theGame(20) = 2
-                        zc(1, 2) : zc(2, 2) : zc(3, 2)
-                        zc(7, 11) : zc(8, 11) : zc(9, 11)
+                        zc(1, False, True) : zc(2, False, True) : zc(3, False, True)
+                        zc(7, False, True) : zc(8, False, True) : zc(9, False, True)
                         theGame(0) = sn
-                        PB1.BackgroundImage = pictures(9 * sn)
-                        OX.BackgroundImage = pictures(9 - 9 * sn)
+                        PB1.BackgroundImage = pictures(sn)
+                        OX.BackgroundImage = pictures(1 - sn)
                     Else
                         win1.Text = win1.Text + 1
                         MsgBox(txt + name1.Text, msg, txt1) '
@@ -656,17 +658,17 @@
                         Rst()
                     End If
                 ElseIf theGame(20) = 1 Then
-                    If lwz = "0" Then
+                    If lwz = 0 Then
                         undo1 = "" : redo1 = ""
                         theGame(11) = 0 : theGame(12) = 0 : theGame(13) = 0 : theGame(17) = 0 : theGame(18) = 0 : theGame(19) = 0
                         nf()
                         rf()
                         theGame(20) = 2
-                        zc(1, 2) : zc(2, 2) : zc(3, 2)
-                        zc(7, 11) : zc(8, 11) : zc(9, 11)
+                        zc(1, False, True) : zc(2, False, True) : zc(3, False, True)
+                        zc(7, False, True) : zc(8, False, True) : zc(9, False, True)
                         theGame(0) = 1 - sn
-                        PB1.BackgroundImage = pictures(9 * theGame(0))
-                        OX.BackgroundImage = pictures(9 - 9 * theGame(0))
+                        PB1.BackgroundImage = pictures(theGame(0))
+                        OX.BackgroundImage = pictures(1 - theGame(0))
                     Else
                         win2.Text = win2.Text + 1
                         MsgBox(txt + name2.Text, msg, txt1) '
@@ -703,52 +705,34 @@
         Next
     End Sub
 
-    Sub zc(z As Integer, pic As Integer) ' image of piece
-        thePieces(z).BackgroundImage = pictures(pic)
+    Sub zc(z As Integer, Optional selected As Boolean = False, Optional sleep As Boolean = False, Optional win As Boolean = False) ' image of piece    
+        Dim temp As Bitmap
+        If z <= 3 Then
+            temp = New Bitmap(pictures(0), New Size(98, 98))
+        ElseIf z >= 7 Then
+            temp = New Bitmap(pictures(1), New Size(98, 98))
+        Else
+            temp = New Bitmap(My.Resources._as, New Size(98, 98))
+        End If
+        If selected Then Graphics.FromImage(temp).DrawImage(My.Resources._as, New Point(0, 0))
+        If sleep Then
+            Graphics.FromImage(temp).DrawImage(My.Resources.sleep, New Point(75, 0))
+        ElseIf win Then
+            Graphics.FromImage(temp).DrawImage(My.Resources.win, New Point(75, 0))
+        End If
+        thePieces(z).BackgroundImage = temp
     End Sub
 
     Sub pic()
         For i = 7 To 9
-            If theGame(10 + i) > 0 Then
-                If theGame(10) = i And lwc = "1" Then
-                    zc(i, 14)
-                ElseIf lwc = "1" Then
-                    zc(i, 13)
-                ElseIf theGame(10) = i Then
-                    zc(i, 10)
-                Else
-                    zc(i, 9)
-                End If
-            Else
-                If theGame(10) = i Then
-                    zc(i, 12)
-                Else
-                    zc(i, 11)
-                End If
-            End If
+            zc(i, theGame(10) = i, theGame(10 + i) = 0, lwc = 1)
         Next
         For i = 1 To 3
-            If theGame(10 + i) > 0 Then
-                If theGame(10) = i And lwz = "0" Then
-                    zc(i, 5)
-                ElseIf lwz = "0" Then
-                    zc(i, 4)
-                ElseIf theGame(10) = i Then
-                    zc(i, 1)
-                Else
-                    zc(i, 0)
-                End If
-            Else
-                If theGame(10) = i Then
-                    zc(i, 3)
-                Else
-                    zc(i, 2)
-                End If
-            End If
+            zc(i, theGame(10) = i, theGame(10 + i) = 0, lwz = 0)
         Next
-        zc(4, 6) : zc(5, 6) : zc(6, 6)
-        If theBest > 3 Then
-            zc(theBest, 8) : theBest = -1
+        zc(4) : zc(5) : zc(6)
+        If theBest >= 4 And theBest <= 6 Then
+            zc(theBest, Nothing, False, True) : theBest = -1
         End If
     End Sub
 
@@ -2024,47 +2008,68 @@ And If you press the writing boxes, press F11 to remove the pressure.", msg, "Ho
     End Sub
 
     Private Sub player1_Click(sender As Object, e As EventArgs) Handles player1.Click
-        TTen.SetToolTip(player1, "")
-        If name1.Text = "Player1" Then
-            name1.Text = "not " + name1.Text
-        End If
+        Dim clr As Color
+        For i = 0 To pictures(0).Width - 1
+            For j = 0 To pictures(0).Height - 1
+                clr = pictures(0).GetPixel(i, j)
+                If zx = 0 Then
+                    pictures(0).SetPixel(i, j, Color.FromArgb(clr.A, clr.G, clr.R, clr.B))
+                Else
+                    pictures(0).SetPixel(i, j, Color.FromArgb(clr.A, clr.R, clr.B, clr.G))
+                End If
+            Next
+        Next
+        zx = (zx + 1) Mod 2
+
+        clr = pictures(0).GetPixel(30, 30)
+        player1.ForeColor = clr
+        name1.ForeColor = clr
+        win1.ForeColor = clr
+        step1.ForeColor = clr
+        ok1.ForeColor = clr
+
+        loc()
     End Sub
 
     Private Sub player2_Click(sender As Object, e As EventArgs) Handles player2.Click
-        If player2.ForeColor = Color.Blue Then
-            TTen.SetToolTip(player2, "") : TTar.SetToolTip(player2, "")
-            player2.ForeColor = Color.DarkGreen
-            name2.ForeColor = Color.DarkGreen
-            intelligence.ForeColor = Color.DarkGreen
-            level.ForeColor = Color.DarkGreen
-            computer.ForeColor = Color.DarkGreen
-            win2.ForeColor = Color.DarkGreen
-            step2.ForeColor = Color.DarkGreen
-            Pwait.BackgroundImage = My.Resources.Rotat2
-            wait.ForeColor = Color.DarkGreen
-            ok2.ForeColor = Color.DarkGreen
-            Lf.ForeColor = Color.DarkGreen : LfAr.ForeColor = Color.DarkGreen
-            fst.ForeColor = Color.DarkGreen : fstAr.ForeColor = Color.DarkGreen
-            pictures.RemoveRange(9, 6)
-            pictures.AddRange({My.Resources.cb, My.Resources.cb2, My.Resources.cb3, My.Resources.cb23, My.Resources.cb4, My.Resources.cb24})
-            Icon = Icon.FromHandle(My.Resources.cb.GetHicon())
-        Else
-            player2.ForeColor = Color.Blue
-            name2.ForeColor = Color.Blue
-            intelligence.ForeColor = Color.Blue
-            level.ForeColor = Color.Blue
-            computer.ForeColor = Color.Blue
-            win2.ForeColor = Color.Blue
-            step2.ForeColor = Color.Blue
-            Pwait.BackgroundImage = My.Resources.Rotat
-            wait.ForeColor = Color.Blue
-            ok2.ForeColor = Color.Blue
-            Lf.ForeColor = Color.Blue : LfAr.ForeColor = Color.Blue
-            fst.ForeColor = Color.Blue : fstAr.ForeColor = Color.Blue
-            pictures.RemoveRange(9, 6)
-            pictures.AddRange({My.Resources.cv, My.Resources.cv2, My.Resources.cv3, My.Resources.cv23, My.Resources.cv4, My.Resources.cv24})
-            Icon = Icon.FromHandle(My.Resources.cv.GetHicon())
-        End If
+        TTen.SetToolTip(player2, "") : TTar.SetToolTip(player2, "")
+        Dim clr As Color
+        For i = 0 To pictures(1).Width - 1
+            For j = 0 To pictures(1).Height - 1
+                clr = pictures(1).GetPixel(i, j)
+                If cv = 0 Then
+                    pictures(1).SetPixel(i, j, Color.FromArgb(clr.A, clr.G, clr.R, clr.B))
+                Else
+                    pictures(1).SetPixel(i, j, Color.FromArgb(clr.A, clr.R, clr.B, clr.G))
+                End If
+            Next
+        Next
+        For i = 0 To pictures(2).Width - 1
+            For j = 0 To pictures(2).Height - 1
+                clr = pictures(2).GetPixel(i, j)
+                If cv = 0 Then
+                    pictures(2).SetPixel(i, j, Color.FromArgb(clr.A, clr.G, clr.R, clr.B))
+                Else
+                    pictures(2).SetPixel(i, j, Color.FromArgb(clr.A, clr.R, clr.B, clr.G))
+                End If
+            Next
+        Next
+        cv = (cv + 1) Mod 2
+        Pwait.BackgroundImage = pictures(2)
+        Icon = Icon.FromHandle(pictures(1).GetHicon())
+
+        clr = pictures(1).GetPixel(30, 30)
+        player2.ForeColor = clr
+        name2.ForeColor = clr
+        intelligence.ForeColor = clr
+        level.ForeColor = clr
+        computer.ForeColor = clr
+        win2.ForeColor = clr
+        step2.ForeColor = clr
+        wait.ForeColor = clr
+        ok2.ForeColor = clr
+        Lf.ForeColor = clr : LfAr.ForeColor = clr
+        fst.ForeColor = clr : fstAr.ForeColor = clr
         loc()
     End Sub
 

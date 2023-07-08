@@ -121,14 +121,8 @@
   <data name="cv" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cv.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="cv2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cv2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="zx" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\zx.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="zx2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\zx2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="_as" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\as.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -138,24 +132,6 @@
   </data>
   <data name="Family_Kings_and_Queens_of_Computer2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Family Kings and Queens of Computer2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="cv23" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cv23.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="cv3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cv3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="zx23" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\zx23.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="zx3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\zx3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="cv4" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cv4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="zx4" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\zx4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Rotat" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Rotat.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -211,37 +187,10 @@
   <data name="sa" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="as23" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\as23.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="sleep" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sleep.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="cb" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cb.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="cb2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cb2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="cb23" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cb23.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="cb3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cb3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="cb4" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cb4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Rotat2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Rotat2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="as24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\as24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="cb24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cb24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="cv24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cv24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="zx24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\zx24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="win" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\win.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -164,23 +164,11 @@
     <None Include="Resources\cv.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\cv2.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\zx.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\zx2.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Family Kings and Queens of Computer.png" />
     <None Include="Resources\Family Kings and Queens of Computer2.png" />
-    <None Include="Resources\cv3.png" />
-    <None Include="Resources\cv23.png" />
-    <None Include="Resources\zx3.png" />
-    <None Include="Resources\zx23.png" />
-    <None Include="Resources\cv4.png" />
-    <None Include="Resources\zx4.png" />
     <None Include="Resources\Rotat.png" />
     <None Include="Resources\redo.png" />
     <None Include="Resources\undo.png" />
@@ -199,17 +187,8 @@
     <None Include="Resources\XO1.png" />
     <None Include="Resources\ba.png" />
     <None Include="Resources\sa.png" />
-    <None Include="Resources\as23.png" />
-    <None Include="Resources\cb.png" />
-    <None Include="Resources\cb2.png" />
-    <None Include="Resources\cb3.png" />
-    <None Include="Resources\cb4.png" />
-    <None Include="Resources\cb23.png" />
-    <None Include="Resources\Rotat2.png" />
-    <None Include="Resources\as24.png" />
-    <None Include="Resources\cb24.png" />
-    <None Include="Resources\cv24.png" />
-    <None Include="Resources\zx24.png" />
+    <None Include="Resources\sleep.png" />
+    <None Include="Resources\win.png" />
     <Content Include="seaga.ico" />
     <Content Include="zx.ico" />
   </ItemGroup>
