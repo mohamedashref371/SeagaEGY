@@ -1807,6 +1807,7 @@ break:
                 redo1 = redo1.Replace("a", "7").Replace("b", "8").Replace("c", "9")
                 loc()
                 busy = False
+                ComputerTurn()
             Else
                 ooo()
             End If
@@ -1825,6 +1826,7 @@ break:
                 theGame(10) = "0"
                 loc()
                 busy = False
+                ComputerTurn()
             Else
                 ooo()
             End If
