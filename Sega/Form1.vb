@@ -24,8 +24,8 @@
     Dim locations As New List(Of Point) ' Locations of Pieces
     Dim originalLocations As List(Of Point)
 
-    Dim zx As Integer = 0
-    Dim cv As Integer = 0
+    Dim zx As Boolean = False
+    Dim cv As Boolean = False
     Dim pictures As New List(Of Bitmap) ' Pictures of Pieces
 
     Private Sub Sega_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -40,7 +40,7 @@
         theGame.AddRange({3, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 0, 0, 0, 4, 3, 0, 0, 0, 0, 2})
         iLevel() : plyFrstN() : nsn() ' سيكون هنا عربي وانجليزي بدل هذا السطر
         Text = Text.Replace(".371.3317", "")
-        loc()
+        pic()
     End Sub
 
 #Region "Keys and Mouse 🤷‍♂️"
@@ -2015,14 +2015,14 @@ And If you press the writing boxes, press F11 to remove the pressure.", msg, "Ho
         For i = 0 To pictures(0).Width - 1
             For j = 0 To pictures(0).Height - 1
                 clr = pictures(0).GetPixel(i, j)
-                If zx = 0 Then
+                If zx Then
                     pictures(0).SetPixel(i, j, Color.FromArgb(clr.A, clr.G, clr.R, clr.B))
                 Else
                     pictures(0).SetPixel(i, j, Color.FromArgb(clr.A, clr.R, clr.B, clr.G))
                 End If
             Next
         Next
-        zx = (zx + 1) Mod 2
+        zx = Not zx
 
         clr = pictures(0).GetPixel(30, 30)
         player1.ForeColor = clr
@@ -2030,8 +2030,7 @@ And If you press the writing boxes, press F11 to remove the pressure.", msg, "Ho
         win1.ForeColor = clr
         step1.ForeColor = clr
         ok1.ForeColor = clr
-
-        loc()
+        pic()
     End Sub
 
     Private Sub player2_Click(sender As Object, e As EventArgs) Handles player2.Click
@@ -2050,14 +2049,14 @@ And If you press the writing boxes, press F11 to remove the pressure.", msg, "Ho
         For i = 0 To pictures(2).Width - 1
             For j = 0 To pictures(2).Height - 1
                 clr = pictures(2).GetPixel(i, j)
-                If cv = 0 Then
+                If cv Then
                     pictures(2).SetPixel(i, j, Color.FromArgb(clr.A, clr.G, clr.R, clr.B))
                 Else
                     pictures(2).SetPixel(i, j, Color.FromArgb(clr.A, clr.R, clr.B, clr.G))
                 End If
             Next
         Next
-        cv = (cv + 1) Mod 2
+        cv = Not cv
         Pwait.BackgroundImage = pictures(2)
         Icon = Icon.FromHandle(pictures(1).GetHicon())
 
@@ -2073,7 +2072,7 @@ And If you press the writing boxes, press F11 to remove the pressure.", msg, "Ho
         ok2.ForeColor = clr
         Lf.ForeColor = clr : LfAr.ForeColor = clr
         fst.ForeColor = clr : fstAr.ForeColor = clr
-        loc()
+        pic()
     End Sub
 
 

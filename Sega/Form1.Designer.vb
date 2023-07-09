@@ -588,7 +588,7 @@ Partial Class Sega
         Me.intelligence.AutoSize = True
         Me.intelligence.BackColor = System.Drawing.Color.Transparent
         Me.intelligence.ForeColor = System.Drawing.Color.Blue
-        Me.intelligence.Location = New System.Drawing.Point(259, 43)
+        Me.intelligence.Location = New System.Drawing.Point(258, 43)
         Me.intelligence.Name = "intelligence"
         Me.intelligence.Size = New System.Drawing.Size(30, 13)
         Me.intelligence.TabIndex = 125
