@@ -2101,13 +2101,12 @@ And If you press the writing boxes, press F11 to remove the pressure.", msg, "Ho
     End Sub
 
     Private Sub XO5()
-        XO.BackgroundImage = Nothing
         bitmap = New Bitmap(44, 100)
         Graphics.FromImage(bitmap).DrawImage(pictures(0), 0, 0, 44, 44)
         Graphics.FromImage(bitmap).DrawImage(pictures(1), 0, 56, 44, 44)
         Graphics.FromImage(bitmap).DrawImage(pictures(3), New Point(2, 17))
         Graphics.FromImage(bitmap).DrawImage(pictures(4), New Point(2, 17))
-        XO.BackgroundImage = bitmap
+        XO.BackgroundImage = Nothing : XO.BackgroundImage = bitmap
     End Sub
 
 
