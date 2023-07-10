@@ -616,14 +616,14 @@
         If Not NoS.Checked Or (NoS.Checked And step1.Text = step2.Text And theGame(20) = 2) Then
             If lwz = 0 And lwc = 2 Then
                 win1.Text += 1
-                zc(1, False, False, True) : zc(2, False, False, True) : zc(3, False, False, True)
+                zc(1, win:=True) : zc(2, win:=True) : zc(3, win:=True)
                 MsgBox(txt + name1.Text, msg, txt1) '
                 wn37()
                 Rst()
             End If
             If lwc = 1 And lwz = 2 Then
                 win2.Text += 1
-                zc(7, False, False, True) : zc(8, False, False, True) : zc(9, False, False, True)
+                zc(7, win:=True) : zc(8, win:=True) : zc(9, win:=True)
                 MsgBox(txt + name2.Text, msg, txt1) '
                 wn37()
                 Rst()
@@ -631,11 +631,11 @@
         ElseIf step1.Text <> step2.Text And NoS.Checked And theGame(20) = 2 Then
             If lwz = 0 Then
                 If step1.Text = step2.Text + 1 And theGame(0) = 1 Then theGame(20) = 0
-                zc(1, False, False, True) : zc(2, False, False, True) : zc(3, False, False, True)
+                zc(1, win:=True) : zc(2, win:=True) : zc(3, win:=True)
             End If
             If lwc = 1 Then
                 If step2.Text = step1.Text + 1 And theGame(0) = 0 Then theGame(20) = 1
-                zc(7, False, False, True) : zc(8, False, False, True) : zc(9, False, False, True)
+                zc(7, win:=True) : zc(8, win:=True) : zc(9, win:=True)
             End If
         ElseIf theGame(20) < 2 Then
             If step1.Text = step2.Text Then
@@ -646,8 +646,8 @@
                         nf()
                         rf()
                         theGame(20) = 2
-                        zc(1, False, True) : zc(2, False, True) : zc(3, False, True)
-                        zc(7, False, True) : zc(8, False, True) : zc(9, False, True)
+                        zc(1, sleep:=True) : zc(2, sleep:=True) : zc(3, sleep:=True)
+                        zc(7, sleep:=True) : zc(8, sleep:=True) : zc(9, sleep:=True)
                         theGame(0) = sn
                         PB1.BackgroundImage = pictures(sn)
                         OX.BackgroundImage = pictures(1 - sn)
@@ -664,8 +664,8 @@
                         nf()
                         rf()
                         theGame(20) = 2
-                        zc(1, False, True) : zc(2, False, True) : zc(3, False, True)
-                        zc(7, False, True) : zc(8, False, True) : zc(9, False, True)
+                        zc(1, sleep:=True) : zc(2, sleep:=True) : zc(3, sleep:=True)
+                        zc(7, sleep:=True) : zc(8, sleep:=True) : zc(9, sleep:=True)
                         theGame(0) = 1 - sn
                         PB1.BackgroundImage = pictures(theGame(0))
                         OX.BackgroundImage = pictures(1 - theGame(0))
@@ -732,7 +732,7 @@
         Next
         zc(4) : zc(5) : zc(6)
         If theBest >= 4 And theBest <= 6 Then
-            zc(theBest, Nothing, False, True) : theBest = -1
+            zc(theBest, win:=True) : theBest = -1
         End If
     End Sub
 
