@@ -685,7 +685,6 @@ Partial Class Sega
         'XO
         '
         Me.XO.BackColor = System.Drawing.Color.Transparent
-        Me.XO.BackgroundImage = Global.Sega.My.Resources.Resources.XO1
         Me.XO.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.XO.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.XO.Location = New System.Drawing.Point(7, 318)
@@ -883,7 +882,7 @@ Partial Class Sega
         'z3
         '
         Me.z3.BackColor = System.Drawing.Color.Transparent
-        Me.z3.BackgroundImage = Global.Sega.My.Resources.Resources.zx
+        'Me.z3.BackgroundImage = Global.Sega.My.Resources.Resources.zx
         Me.z3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.z3.Location = New System.Drawing.Point(312, 78)
         Me.z3.Name = "z3"
@@ -894,7 +893,7 @@ Partial Class Sega
         'z2
         '
         Me.z2.BackColor = System.Drawing.Color.Transparent
-        Me.z2.BackgroundImage = Global.Sega.My.Resources.Resources.zx
+        'Me.z2.BackgroundImage = Global.Sega.My.Resources.Resources.zx
         Me.z2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.z2.Location = New System.Drawing.Point(194, 78)
         Me.z2.Name = "z2"
@@ -905,7 +904,7 @@ Partial Class Sega
         'z1
         '
         Me.z1.BackColor = System.Drawing.Color.Transparent
-        Me.z1.BackgroundImage = Global.Sega.My.Resources.Resources.zx
+        'Me.z1.BackgroundImage = Global.Sega.My.Resources.Resources.zx
         Me.z1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.z1.Location = New System.Drawing.Point(76, 78)
         Me.z1.Name = "z1"
@@ -916,7 +915,7 @@ Partial Class Sega
         'a3
         '
         Me.a3.BackColor = System.Drawing.Color.Transparent
-        Me.a3.BackgroundImage = Global.Sega.My.Resources.Resources._as
+        'Me.a3.BackgroundImage = Global.Sega.My.Resources.Resources._as
         Me.a3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.a3.Location = New System.Drawing.Point(312, 190)
         Me.a3.Name = "a3"
@@ -928,7 +927,7 @@ Partial Class Sega
         'a2
         '
         Me.a2.BackColor = System.Drawing.Color.Transparent
-        Me.a2.BackgroundImage = Global.Sega.My.Resources.Resources._as
+        'Me.a2.BackgroundImage = Global.Sega.My.Resources.Resources._as
         Me.a2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.a2.Location = New System.Drawing.Point(194, 190)
         Me.a2.Name = "a2"
@@ -940,7 +939,7 @@ Partial Class Sega
         'a1
         '
         Me.a1.BackColor = System.Drawing.Color.Transparent
-        Me.a1.BackgroundImage = Global.Sega.My.Resources.Resources._as
+        'Me.a1.BackgroundImage = Global.Sega.My.Resources.Resources._as
         Me.a1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.a1.Location = New System.Drawing.Point(76, 190)
         Me.a1.Name = "a1"
@@ -952,7 +951,7 @@ Partial Class Sega
         'c3
         '
         Me.c3.BackColor = System.Drawing.Color.Transparent
-        Me.c3.BackgroundImage = Global.Sega.My.Resources.Resources.cv
+        'Me.c3.BackgroundImage = Global.Sega.My.Resources.Resources.cv
         Me.c3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.c3.Location = New System.Drawing.Point(312, 302)
         Me.c3.Name = "c3"
@@ -963,7 +962,7 @@ Partial Class Sega
         'c2
         '
         Me.c2.BackColor = System.Drawing.Color.Transparent
-        Me.c2.BackgroundImage = Global.Sega.My.Resources.Resources.cv
+        'Me.c2.BackgroundImage = Global.Sega.My.Resources.Resources.cv
         Me.c2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.c2.Location = New System.Drawing.Point(194, 302)
         Me.c2.Name = "c2"
@@ -974,7 +973,7 @@ Partial Class Sega
         'c1
         '
         Me.c1.BackColor = System.Drawing.Color.Transparent
-        Me.c1.BackgroundImage = Global.Sega.My.Resources.Resources.cv
+        'Me.c1.BackgroundImage = Global.Sega.My.Resources.Resources.cv
         Me.c1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.c1.Location = New System.Drawing.Point(76, 302)
         Me.c1.Name = "c1"

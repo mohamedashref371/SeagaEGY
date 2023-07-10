@@ -184,11 +184,12 @@
     <None Include="Resources\normal.png" />
     <None Include="Resources\unno1.png" />
     <None Include="Resources\unno2.png" />
-    <None Include="Resources\XO1.png" />
     <None Include="Resources\ba.png" />
     <None Include="Resources\sa.png" />
     <None Include="Resources\sleep.png" />
     <None Include="Resources\win.png" />
+    <None Include="Resources\XO3.png" />
+    <None Include="Resources\XO7.png" />
     <Content Include="seaga.ico" />
     <Content Include="zx.ico" />
   </ItemGroup>

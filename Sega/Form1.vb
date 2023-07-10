@@ -24,6 +24,7 @@
     Dim locations As New List(Of Point) ' Locations of Pieces
     Dim originalLocations As List(Of Point)
 
+    Dim bitmap As Bitmap
     Dim zx As Boolean = False
     Dim cv As Boolean = False
     Dim pictures As New List(Of Bitmap) ' Pictures of Pieces
@@ -36,11 +37,11 @@
         For i = 0 To thePieces.Count - 1
             locations.Add(thePieces(i).Location)
         Next
-        pictures.AddRange({My.Resources.zx, My.Resources.cv, My.Resources.Rotat})
+        pictures.AddRange({My.Resources.zx, My.Resources.cv, My.Resources.Rotat, My.Resources.XO3, My.Resources.XO7})
         theGame.AddRange({3, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 0, 0, 0, 4, 3, 0, 0, 0, 0, 2})
         iLevel() : plyFrstN() : nsn() ' سيكون هنا عربي وانجليزي بدل هذا السطر
         Text = Text.Replace(".371.3317", "")
-        pic()
+        pic() : XO5()
     End Sub
 
 #Region "Keys and Mouse 🤷‍♂️"
@@ -706,21 +707,20 @@
     End Sub
 
     Sub zc(z As Integer, Optional selected As Boolean = False, Optional sleep As Boolean = False, Optional win As Boolean = False) ' image of piece    
-        Dim temp As Bitmap
         If z <= 3 Then
-            temp = New Bitmap(pictures(0), New Size(98, 98))
+            bitmap = New Bitmap(pictures(0), New Size(98, 98))
         ElseIf z >= 7 Then
-            temp = New Bitmap(pictures(1), New Size(98, 98))
+            bitmap = New Bitmap(pictures(1), New Size(98, 98))
         Else
-            temp = New Bitmap(My.Resources._as, New Size(98, 98))
+            bitmap = New Bitmap(My.Resources._as, New Size(98, 98))
         End If
-        If selected Then Graphics.FromImage(temp).DrawImage(My.Resources._as, New Point(0, 0))
+        If selected Then Graphics.FromImage(bitmap).DrawImage(My.Resources._as, New Point(0, 0))
         If sleep Then
-            Graphics.FromImage(temp).DrawImage(My.Resources.sleep, New Point(75, 0))
+            Graphics.FromImage(bitmap).DrawImage(My.Resources.sleep, New Point(75, 0))
         ElseIf win Then
-            Graphics.FromImage(temp).DrawImage(My.Resources.win, New Point(75, 0))
+            Graphics.FromImage(bitmap).DrawImage(My.Resources.win, New Point(75, 0))
         End If
-        thePieces(z).BackgroundImage = temp
+        thePieces(z).BackgroundImage = bitmap
     End Sub
 
     Sub pic()
@@ -2015,6 +2015,7 @@ And If you press the writing boxes, press F11 to remove the pressure.", msg, "Ho
         For i = 0 To pictures(0).Width - 1
             For j = 0 To pictures(0).Height - 1
                 clr = pictures(0).GetPixel(i, j)
+                If clr.A = 0 Then Continue For
                 If zx Then
                     pictures(0).SetPixel(i, j, Color.FromArgb(clr.A, clr.G, clr.R, clr.B))
                 Else
@@ -2022,15 +2023,26 @@ And If you press the writing boxes, press F11 to remove the pressure.", msg, "Ho
                 End If
             Next
         Next
+        For i = 0 To pictures(3).Width - 1
+            For j = 0 To pictures(3).Height - 1
+                clr = pictures(3).GetPixel(i, j)
+                If clr.A = 0 Then Continue For
+                If zx Then
+                    pictures(3).SetPixel(i, j, Color.FromArgb(clr.A, clr.G, clr.R, clr.B))
+                Else
+                    pictures(3).SetPixel(i, j, Color.FromArgb(clr.A, clr.R, clr.B, clr.G))
+                End If
+            Next
+        Next
         zx = Not zx
-
+        XO5()
         clr = pictures(0).GetPixel(30, 30)
         player1.ForeColor = clr
         name1.ForeColor = clr
         win1.ForeColor = clr
         step1.ForeColor = clr
         ok1.ForeColor = clr
-        pic()
+        pic() : ox2()
     End Sub
 
     Private Sub player2_Click(sender As Object, e As EventArgs) Handles player2.Click
@@ -2039,7 +2051,8 @@ And If you press the writing boxes, press F11 to remove the pressure.", msg, "Ho
         For i = 0 To pictures(1).Width - 1
             For j = 0 To pictures(1).Height - 1
                 clr = pictures(1).GetPixel(i, j)
-                If cv = 0 Then
+                If clr.A = 0 Then Continue For
+                If cv Then
                     pictures(1).SetPixel(i, j, Color.FromArgb(clr.A, clr.G, clr.R, clr.B))
                 Else
                     pictures(1).SetPixel(i, j, Color.FromArgb(clr.A, clr.R, clr.B, clr.G))
@@ -2049,6 +2062,7 @@ And If you press the writing boxes, press F11 to remove the pressure.", msg, "Ho
         For i = 0 To pictures(2).Width - 1
             For j = 0 To pictures(2).Height - 1
                 clr = pictures(2).GetPixel(i, j)
+                If clr.A = 0 Then Continue For
                 If cv Then
                     pictures(2).SetPixel(i, j, Color.FromArgb(clr.A, clr.G, clr.R, clr.B))
                 Else
@@ -2056,10 +2070,21 @@ And If you press the writing boxes, press F11 to remove the pressure.", msg, "Ho
                 End If
             Next
         Next
+        For i = 0 To pictures(4).Width - 1
+            For j = 0 To pictures(4).Height - 1
+                clr = pictures(4).GetPixel(i, j)
+                If clr.A = 0 Then Continue For
+                If cv Then
+                    pictures(4).SetPixel(i, j, Color.FromArgb(clr.A, clr.G, clr.R, clr.B))
+                Else
+                    pictures(4).SetPixel(i, j, Color.FromArgb(clr.A, clr.R, clr.B, clr.G))
+                End If
+            Next
+        Next
         cv = Not cv
         Pwait.BackgroundImage = pictures(2)
         Icon = Icon.FromHandle(pictures(1).GetHicon())
-
+        XO5()
         clr = pictures(1).GetPixel(30, 30)
         player2.ForeColor = clr
         name2.ForeColor = clr
@@ -2072,7 +2097,17 @@ And If you press the writing boxes, press F11 to remove the pressure.", msg, "Ho
         ok2.ForeColor = clr
         Lf.ForeColor = clr : LfAr.ForeColor = clr
         fst.ForeColor = clr : fstAr.ForeColor = clr
-        pic()
+        pic() : ox2()
+    End Sub
+
+    Private Sub XO5()
+        XO.BackgroundImage = Nothing
+        bitmap = New Bitmap(44, 100)
+        Graphics.FromImage(bitmap).DrawImage(pictures(0), 0, 0, 44, 44)
+        Graphics.FromImage(bitmap).DrawImage(pictures(1), 0, 56, 44, 44)
+        Graphics.FromImage(bitmap).DrawImage(pictures(3), New Point(2, 17))
+        Graphics.FromImage(bitmap).DrawImage(pictures(4), New Point(2, 17))
+        XO.BackgroundImage = bitmap
     End Sub
 
 
