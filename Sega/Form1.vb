@@ -41,8 +41,8 @@
         pictures.AddRange({My.Resources.zx, My.Resources.cv, My.Resources.Rotat, My.Resources.XO3, My.Resources.XO7})
         theGame.AddRange({3, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 0, 0, 0, 4, 3, 0, 0, 0, 0, 2})
         iLevel() : plyFrstN() : nsn() ' سيكون هنا عربي وانجليزي بدل هذا السطر
-        Text = Text.Replace(".371.3317", "")
         pic() : XO5()
+        Text = Text.Replace(".371.3317", "")
     End Sub
 
 #Region "Keys and Mouse 🤷‍♂️"
@@ -707,7 +707,7 @@
         Next
     End Sub
 
-    Sub zc(z As Integer, Optional selected As Boolean = False, Optional sleep As Boolean = False, Optional win As Boolean = False) ' image of piece    
+    Sub zc(z As Integer, Optional selected As Boolean = False, Optional sleep As Boolean = False, Optional win As Boolean = False) ' image of piece   ' slow
         If z <= 3 Then
             bitmap = New Bitmap(pictures(0), New Size(98, 98))
         ElseIf z >= 7 Then
