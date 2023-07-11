@@ -16,7 +16,7 @@
     Dim img As Boolean = False
     Dim ok As Integer = 0
     Dim buttons As Integer = 1
-    Dim clr As Integer = 245
+    Dim bgClr As Integer = 245
     Dim theBest As Integer = 0
     ' theGame(0) is player role, 10 is choosed piece, 11-13, 17-19 is movementOfPieces, 14 is level, 15 is who started playing first, 16 is style of game
     Dim theGame As New List(Of Integer)
@@ -24,6 +24,7 @@
     Dim locations As New List(Of Point) ' Locations of Pieces
     Dim originalLocations As List(Of Point)
 
+    Dim clr As Color
     Dim bitmap As Bitmap
     Dim zx As Boolean = False
     Dim cv As Boolean = False
@@ -71,13 +72,13 @@
                     lde()
                 End If
             ElseIf e.KeyCode = Keys.F8 Then
-                If clr < 255 Then
-                    clr += 1
+                If bgClr < 255 Then
+                    bgClr += 1
                 End If
                 clr2()
             ElseIf e.KeyCode = Keys.F6 Then
-                If clr > 185 Then
-                    clr -= 1
+                If bgClr > 185 Then
+                    bgClr -= 1
                 End If
                 clr2()
             ElseIf e.KeyCode = Keys.F9 Then
@@ -151,13 +152,13 @@
             ElseIf e.KeyCode = Keys.F Then
                 lde1()
             ElseIf e.KeyCode = Keys.F8 Then
-                If clr < 255 Then
-                    clr += 1
+                If bgClr < 255 Then
+                    bgClr += 1
                 End If
                 clr2()
             ElseIf e.KeyCode = Keys.F6 Then
-                If clr > 185 Then
-                    clr -= 1
+                If bgClr > 185 Then
+                    bgClr -= 1
                 End If
                 clr2()
             ElseIf e.KeyCode = Keys.M Or e.KeyCode = Keys.F9 Then
@@ -258,14 +259,14 @@
     End Sub
 
     Sub clr2()
-        Dim cl = Color.FromArgb(clr, clr, clr)
-        BackColor = cl
-        name1.BackColor = cl
-        name2.BackColor = cl
-        level.BackColor = cl
-        ns.BackColor = cl : nsAr.BackColor = cl
-        playFirst.BackColor = cl
-        fst.BackColor = cl : fstAr.BackColor = cl
+        clr = Color.FromArgb(bgClr, bgClr, bgClr)
+        BackColor = clr
+        name1.BackColor = clr
+        name2.BackColor = clr
+        level.BackColor = clr
+        ns.BackColor = clr : nsAr.BackColor = clr
+        playFirst.BackColor = clr
+        fst.BackColor = clr : fstAr.BackColor = clr
     End Sub
 
     Sub img2()
@@ -1985,7 +1986,7 @@ And If you press the writing boxes, press F11 to remove the pressure.", msg, "Ho
         End If
     End Sub
 
-
+#Region "ToolTipTitle"
     Private Sub Sega_MouseHover(sender As Object, e As EventArgs) Handles MyBase.MouseHover, hp.MouseHover, z1.MouseHover, z2.MouseHover, z3.MouseHover, a1.MouseHover, a2.MouseHover, a3.MouseHover, c1.MouseHover, c2.MouseHover, c3.MouseHover, undo.MouseHover, redo.MouseHover, win1.MouseHover, win2.MouseHover, step1.MouseHover, step2.MouseHover, im0.MouseHover, im1.MouseHover, im2.MouseHover, player1.MouseHover, player2.MouseHover, name1.MouseHover, name2.MouseHover
         TTar.ToolTipTitle = "" : TTen.ToolTipTitle = ""
     End Sub
@@ -2009,32 +2010,39 @@ And If you press the writing boxes, press F11 to remove the pressure.", msg, "Ho
         TTar.ToolTipTitle = "ساعدني أرجوك أيها الحاسوب المحترف للغاية"
         TTen.ToolTipTitle = "Please help me, very professional computer."
     End Sub
+#End Region
+
+#Region "ChangeColors"
+    Sub switchColorRG(picture As Bitmap)
+        For i = 0 To picture.Width - 1
+            For j = 0 To picture.Height - 1
+                clr = picture.GetPixel(i, j)
+                If clr.A = 0 Then Continue For
+                picture.SetPixel(i, j, Color.FromArgb(clr.A, clr.G, clr.R, clr.B))
+            Next
+        Next
+    End Sub
+
+    Sub switchColorGB(picture As Bitmap)
+        For i = 0 To picture.Width - 1
+            For j = 0 To picture.Height - 1
+                clr = picture.GetPixel(i, j)
+                If clr.A = 0 Then Continue For
+                picture.SetPixel(i, j, Color.FromArgb(clr.A, clr.R, clr.B, clr.G))
+            Next
+        Next
+    End Sub
 
     Private Sub player1_Click(sender As Object, e As EventArgs) Handles player1.Click
-        Dim clr As Color
-        For i = 0 To pictures(0).Width - 1
-            For j = 0 To pictures(0).Height - 1
-                clr = pictures(0).GetPixel(i, j)
-                If clr.A = 0 Then Continue For
-                If zx Then
-                    pictures(0).SetPixel(i, j, Color.FromArgb(clr.A, clr.G, clr.R, clr.B))
-                Else
-                    pictures(0).SetPixel(i, j, Color.FromArgb(clr.A, clr.R, clr.B, clr.G))
-                End If
-            Next
-        Next
-        For i = 0 To pictures(3).Width - 1
-            For j = 0 To pictures(3).Height - 1
-                clr = pictures(3).GetPixel(i, j)
-                If clr.A = 0 Then Continue For
-                If zx Then
-                    pictures(3).SetPixel(i, j, Color.FromArgb(clr.A, clr.G, clr.R, clr.B))
-                Else
-                    pictures(3).SetPixel(i, j, Color.FromArgb(clr.A, clr.R, clr.B, clr.G))
-                End If
-            Next
-        Next
+        If zx Then
+            switchColorRG(pictures(0))
+            switchColorRG(pictures(3))
+        Else
+            switchColorGB(pictures(0))
+            switchColorGB(pictures(3))
+        End If
         zx = Not zx
+
         XO5()
         clr = pictures(0).GetPixel(30, 30)
         player1.ForeColor = clr
@@ -2047,41 +2055,17 @@ And If you press the writing boxes, press F11 to remove the pressure.", msg, "Ho
 
     Private Sub player2_Click(sender As Object, e As EventArgs) Handles player2.Click
         TTen.SetToolTip(player2, "") : TTar.SetToolTip(player2, "")
-        Dim clr As Color
-        For i = 0 To pictures(1).Width - 1
-            For j = 0 To pictures(1).Height - 1
-                clr = pictures(1).GetPixel(i, j)
-                If clr.A = 0 Then Continue For
-                If cv Then
-                    pictures(1).SetPixel(i, j, Color.FromArgb(clr.A, clr.G, clr.R, clr.B))
-                Else
-                    pictures(1).SetPixel(i, j, Color.FromArgb(clr.A, clr.R, clr.B, clr.G))
-                End If
-            Next
-        Next
-        For i = 0 To pictures(2).Width - 1
-            For j = 0 To pictures(2).Height - 1
-                clr = pictures(2).GetPixel(i, j)
-                If clr.A = 0 Then Continue For
-                If cv Then
-                    pictures(2).SetPixel(i, j, Color.FromArgb(clr.A, clr.G, clr.R, clr.B))
-                Else
-                    pictures(2).SetPixel(i, j, Color.FromArgb(clr.A, clr.R, clr.B, clr.G))
-                End If
-            Next
-        Next
-        For i = 0 To pictures(4).Width - 1
-            For j = 0 To pictures(4).Height - 1
-                clr = pictures(4).GetPixel(i, j)
-                If clr.A = 0 Then Continue For
-                If cv Then
-                    pictures(4).SetPixel(i, j, Color.FromArgb(clr.A, clr.G, clr.R, clr.B))
-                Else
-                    pictures(4).SetPixel(i, j, Color.FromArgb(clr.A, clr.R, clr.B, clr.G))
-                End If
-            Next
-        Next
+        If cv Then
+            switchColorRG(pictures(1))
+            switchColorRG(pictures(2))
+            switchColorRG(pictures(4))
+        Else
+            switchColorGB(pictures(1))
+            switchColorGB(pictures(2))
+            switchColorGB(pictures(4))
+        End If
         cv = Not cv
+
         Pwait.BackgroundImage = pictures(2)
         Icon = Icon.FromHandle(pictures(1).GetHicon())
         XO5()
@@ -2108,8 +2092,9 @@ And If you press the writing boxes, press F11 to remove the pressure.", msg, "Ho
         Graphics.FromImage(bitmap).DrawImage(pictures(4), New Point(2, 17))
         XO.BackgroundImage = Nothing : XO.BackgroundImage = bitmap
     End Sub
+#End Region
 
-
+#Region "ComboBoxes"
     Sub iLevel()
         level.SelectedIndex = theGame(14)
     End Sub
@@ -2140,7 +2125,9 @@ And If you press the writing boxes, press F11 to remove the pressure.", msg, "Ho
         sn = nsAr.SelectedIndex
         If ns.SelectedIndex <> sn Then ns.SelectedIndex = sn
     End Sub
+#End Region
 
+#Region "zoom"
     Private Sub zoomIn_Click(sender As Object, e As EventArgs) Handles zoomIn.Click
         If zoom.x = 0 Then
             zoom.zoom()
@@ -2162,4 +2149,5 @@ And If you press the writing boxes, press F11 to remove the pressure.", msg, "Ho
             loc1()
         End If
     End Sub
+#End Region
 End Class
