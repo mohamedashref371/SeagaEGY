@@ -1215,11 +1215,9 @@ break:
     End Function
 
     Function hLine(piece1 As Integer, piece2 As Integer, piece3 As Integer) As Boolean ' Horizontal line
-        Dim i As Integer = 1
-        While i <= 7
+        For i = 1 To 7 Step 3
             If (theGame(piece1) = i Or theGame(piece2) = i Or theGame(piece3) = i) And (theGame(piece1) = i + 1 Or theGame(piece2) = i + 1 Or theGame(piece3) = i + 1) And (theGame(piece1) = i + 2 Or theGame(piece2) = i + 2 Or theGame(piece3) = i + 2) Then Return True
-            i += 3
-        End While
+        Next
         Return False
     End Function
 
