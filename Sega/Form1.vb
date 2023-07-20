@@ -20,6 +20,7 @@
     Dim theBest As Integer = 0
     ' theGame(0) is player role, 10 is choosed piece, 11-13, 17-19 is movementOfPieces, 14 is level, 15 is who started playing first, 16 is style of game
     Dim theGame As New List(Of Integer)
+    Dim fastGame As New List(Of Integer)
     Dim thePieces As New List(Of PictureBox)
     Dim locations As New List(Of Point) ' Locations of Pieces
     Dim originalLocations As List(Of Point)
@@ -40,6 +41,7 @@
         Next
         pictures.AddRange({My.Resources.zx, My.Resources.cv, My.Resources.Rotat, My.Resources.XO3, My.Resources.XO7})
         theGame.AddRange({3, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 0, 0, 0, 4, 3, 0, 0, 0, 0, 2})
+        fastGame.AddRange({0, 1, 2, 3, 4, 5, 6, 7, 8, 9})
         iLevel() : plyFrstN() : nsn() ' سيكون هنا عربي وانجليزي بدل هذا السطر
         pic() : XO5()
         Text = Text.Replace(".371.3317", "")
@@ -108,35 +110,26 @@
         End If
     End Sub
 
-    Sub zxcv(i As Integer)
-        For j = 1 To 9
-            If theGame(j) = i Then
-                zxcvi(j)
-                Exit For
-            End If
-        Next
-    End Sub
-
     Private Sub Sega_Key(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown, MyClass.KeyDown, Me.KeyDown, Bu1.KeyDown, rest.KeyDown, restA.KeyDown, start.KeyDown, Bu5.KeyDown, Bu6.KeyDown, Bu7.KeyDown, lang.KeyDown, help.KeyDown, B10.KeyDown, B11.KeyDown, XO.KeyDown, OX.KeyDown, secret.KeyDown, level.KeyDown, computer.KeyDown, playFirst.KeyDown, undo.KeyDown, redo.KeyDown, ok1.KeyDown, ok2.KeyDown, NoS.KeyDown, VaH.KeyDown, ns.KeyDown, nsAr.KeyDown, sv.KeyDown, ld.KeyDown, rh.KeyDown, rr.KeyDown, rl.KeyDown, rv.KeyDown, sv1.KeyDown, ld1.KeyDown, RB0.KeyDown, RB1.KeyDown, RB2.KeyDown, zoomIn.KeyDown, zoomOut.KeyDown
         If keyboard Then
             If e.KeyCode = Keys.NumPad7 Or e.KeyCode = Keys.Q Then
-                zxcv(1)
+                zxcvi(fastGame(1))
             ElseIf e.KeyCode = Keys.NumPad8 Or e.KeyCode = Keys.W Then
-                zxcv(2)
+                zxcvi(fastGame(2))
             ElseIf e.KeyCode = Keys.NumPad9 Or e.KeyCode = Keys.E Then
-                zxcv(3)
+                zxcvi(fastGame(3))
             ElseIf e.KeyCode = Keys.NumPad4 Or e.KeyCode = Keys.A Then
-                zxcv(4)
+                zxcvi(fastGame(4))
             ElseIf e.KeyCode = Keys.NumPad5 Or e.KeyCode = Keys.S Then
-                zxcv(5)
+                zxcvi(fastGame(5))
             ElseIf e.KeyCode = Keys.NumPad6 Or e.KeyCode = Keys.D Then
-                zxcv(6)
+                zxcvi(fastGame(6))
             ElseIf e.KeyCode = Keys.NumPad1 Or e.KeyCode = Keys.Z Then
-                zxcv(7)
+                zxcvi(fastGame(7))
             ElseIf e.KeyCode = Keys.NumPad2 Or e.KeyCode = Keys.X Then
-                zxcv(8)
+                zxcvi(fastGame(8))
             ElseIf e.KeyCode = Keys.NumPad3 Or e.KeyCode = Keys.C Then
-                zxcv(9)
+                zxcvi(fastGame(9))
             ElseIf e.KeyCode = Keys.F2 Or e.KeyCode = Keys.O Then
                 If sv.Enabled = True Then
                     sve()
@@ -390,6 +383,18 @@
         End If
     End Sub
 
+    Sub moving(a As Integer, zc As Integer, plus As Integer)
+        temp = theGame(a) : theGame(a) = theGame(zc) : theGame(zc) = temp
+        temp = fastGame(theGame(a)) : fastGame(theGame(a)) = fastGame(theGame(zc)) : fastGame(theGame(zc)) = temp
+        theGame(zc + 10) += plus
+    End Sub
+
+    Sub fastGameUpdate()
+        For i = 1 To 9
+            fastGame(theGame(i)) = i
+        Next
+    End Sub
+
 #Region "start, stop and style"
     Private Sub start_Click(sender As Object, e As EventArgs) Handles start.Click
         StartSub()
@@ -458,6 +463,7 @@
                 theGame(10 + i) = theGame(16)
             End If
         Next
+        fastGameUpdate() ' new
     End Sub
 
     Private Sub Rest_Click(sender As Object, e As EventArgs) Handles rest.Click
@@ -1020,39 +1026,39 @@ theEnd:
         End If
     End Sub
 
-    Sub moving(a As Integer, zc As Integer, plus As Integer)
+#Region "Computer Intelligence Functions"
+    Sub TempMove(a As Integer, zc As Integer, plus As Integer)
         temp = theGame(a) : theGame(a) = theGame(zc) : theGame(zc) = temp
         theGame(zc + 10) += plus
     End Sub
 
-#Region "Computer Intelligence Functions"
     Function SleeperPiece(blue As Byte) As Boolean
         Return theGame(blue + 10) = 0
     End Function
 
     Function ComputerWin(space As Byte, blue As Byte) As Boolean
         Dim yes As Boolean = False
-        moving(space, blue, 1)
+        TempMove(space, blue, 1)
         If aBLine(7, 8, 9) Then yes = True
-        moving(space, blue, -1)
+        TempMove(space, blue, -1)
         Return yes
     End Function
 
     Function OpponentNotWin(space As Byte, blue As Byte) As Boolean
         Dim yes As Boolean = False
-        moving(space, blue, 1)
+        TempMove(space, blue, 1)
         For k = 4 To 6
             If aRLine(1, 2, k) Or aRLine(1, 3, k) Or aRLine(2, 3, k) Then GoTo break
         Next
         yes = True
 break:
-        moving(space, blue, -1)
+        TempMove(space, blue, -1)
         Return yes
     End Function
 
     Function ComputerDouWin(space As Byte, blue As Byte) As Boolean
         Dim counter As Integer = 0
-        moving(space, blue, 1)
+        TempMove(space, blue, 1)
         If theGame(17) > 0 And theGame(18) > 0 And (hLine(7, 8, 4) Or hLine(7, 8, 5) Or hLine(7, 8, 6)) Or theGame(17) > 0 And theGame(19) > 0 And (hLine(7, 9, 4) Or hLine(7, 9, 5) Or hLine(7, 9, 6)) Or theGame(18) > 0 And theGame(19) > 0 And (hLine(8, 9, 4) Or hLine(8, 9, 5) Or hLine(8, 9, 6)) Then
             counter += 1
         End If
@@ -1067,17 +1073,17 @@ break:
                 counter += 1
             End If
         End If
-        moving(space, blue, -1)
+        TempMove(space, blue, -1)
         Return counter > 1
     End Function
 
     Function OpponentNotDouWin(space As Byte, blue As Byte) As Boolean
         Dim counter As Integer = 0
-        moving(space, blue, 1)
+        TempMove(space, blue, 1)
         For i = 4 To 6
             For j = 1 To 3
                 counter = 0
-                moving(i, j, 1)
+                TempMove(i, j, 1)
                 If aBLine(7, 8, 4) Or aBLine(7, 8, 5) Or aBLine(7, 8, 6) Or aBLine(7, 9, 4) Or aBLine(7, 9, 5) Or aBLine(7, 9, 6) Or aBLine(8, 9, 4) Or aBLine(8, 9, 5) Or aBLine(8, 9, 6) Then
                 Else
                     If theGame(11) > 0 And theGame(12) > 0 And (hLine(1, 2, 4) Or hLine(1, 2, 5) Or hLine(1, 2, 6)) Or theGame(11) > 0 And theGame(13) > 0 And (hLine(1, 3, 4) Or hLine(1, 3, 5) Or hLine(1, 3, 6)) Or theGame(12) > 0 And theGame(13) > 0 And (hLine(2, 3, 4) Or hLine(2, 3, 5) Or hLine(2, 3, 6)) Then
@@ -1095,29 +1101,29 @@ break:
                         End If
                     End If
                 End If
-                moving(i, j, -1)
+                TempMove(i, j, -1)
                 If counter > 1 Then GoTo break
             Next
         Next
 break:
-        moving(space, blue, -1)
+        TempMove(space, blue, -1)
         Return counter <= 1
     End Function
 
     Function PieceInMiddle(space As Byte, blue As Byte) As Boolean
         Dim yes As Boolean = False
-        moving(space, blue, 1)
+        TempMove(space, blue, 1)
         If aBlueLoc(5) Then yes = True
-        moving(space, blue, -1)
+        TempMove(space, blue, -1)
         Return yes
     End Function
 
     Function ComputerSpecialCases(space As Byte, blue As Byte) As Boolean
         Dim yes As Boolean = False
-        moving(space, blue, 1)
+        TempMove(space, blue, 1)
         For i = 4 To 6
             For j = 1 To 3
-                moving(i, j, 1)
+                TempMove(i, j, 1)
                 For i1 = 4 To 6
                     For j1 = 7 To 9
                         If ComputerWin(i1, j1) Or ComputerDouWin(i1, j1) Then
@@ -1129,21 +1135,21 @@ break:
                     Next
                 Next
 break:
-                moving(i, j, -1)
+                TempMove(i, j, -1)
                 If Not yes Then GoTo break2
             Next
         Next
 break2:
-        moving(space, blue, -1)
+        TempMove(space, blue, -1)
         Return yes
     End Function
 
     Function OpponentSpecialCases(space As Byte, blue As Byte) As Boolean
         Dim yes As Boolean = False
-        moving(space, blue, 1)
+        TempMove(space, blue, 1)
         For i = 4 To 6
             For j = 1 To 3
-                moving(i, j, 1)
+                TempMove(i, j, 1)
                 For i1 = 4 To 6
                     For j1 = 7 To 9
                         If OpponentNotWin(i1, j1) And DiagonalCatchingSleeperComputerPiece(i1, j1) And OpponentNotDouWin(i1, j1) Then
@@ -1155,38 +1161,38 @@ break2:
                     Next
                 Next
 break:
-                moving(i, j, -1)
+                TempMove(i, j, -1)
                 If Not yes Then GoTo break2
             Next
         Next
 break2:
-        moving(space, blue, -1)
+        TempMove(space, blue, -1)
         Return yes
     End Function
 
     Function DiagonalCatchingSleeperOpponentPiece(space As Byte, blue As Byte) ' مستبعدة
         Dim yes As Boolean = False
-        moving(space, blue, 1)
+        TempMove(space, blue, 1)
         If aBlueLoc(5) And (aBlueLoc(9) And RedLoc(1) Or aBlueLoc(7) And RedLoc(3) Or aBlueLoc(3) And RedLoc(7) Or aBlueLoc(1) And RedLoc(9)) Then yes = True
-        moving(space, blue, -1)
+        TempMove(space, blue, -1)
         Return yes
     End Function
 
     Function DiagonalCatchingSleeperComputerPiece(space As Byte, blue As Byte)
         Dim yes As Boolean = True
-        moving(space, blue, 1)
+        TempMove(space, blue, 1)
         For i = 4 To 6
             For j = 1 To 3
-                moving(i, j, 1)
+                TempMove(i, j, 1)
                 If aRedLoc(5) And (aRedLoc(9) And BlueLoc(1) Or aRedLoc(7) And BlueLoc(3) Or aRedLoc(3) And BlueLoc(7) Or aRedLoc(1) And BlueLoc(9)) Then
                     yes = False
                 End If
-                moving(i, j, -1)
+                TempMove(i, j, -1)
                 If Not yes Then GoTo break
             Next
         Next
 break:
-        moving(space, blue, -1)
+        TempMove(space, blue, -1)
         Return yes
     End Function
 
@@ -1404,6 +1410,7 @@ break:
             For i = 0 To 20
                 theGame(i) = Data(i + 8) ' 8 to 28
             Next
+            fastGameUpdate() ' new
             VaH.Checked = Data(29) : NoS.Checked = Data(30)
             computer.Checked = Data(31)
             ok1.Checked = Data(32) : ok2.Checked = Data(32) : ok = Data(33)
@@ -1550,92 +1557,56 @@ break:
 #Region "rotation"
     Private Sub rl_Click(sender As Object, e As EventArgs) Handles rl.Click
         If Not busy Then
-            For i = 1 To 9
-                If theGame(i) = 3 Then
-                    theGame(i) = 1
-                ElseIf theGame(i) = 6 Then
-                    theGame(i) = 2
-                ElseIf theGame(i) = 9 Then
-                    theGame(i) = 3
-                ElseIf theGame(i) = 8 Then
-                    theGame(i) = 6
-                ElseIf theGame(i) = 7 Then
-                    theGame(i) = 9
-                ElseIf theGame(i) = 4 Then
-                    theGame(i) = 8
-                ElseIf theGame(i) = 1 Then
-                    theGame(i) = 7
-                ElseIf theGame(i) = 2 Then
-                    theGame(i) = 4
-                End If
-            Next
+            theGame(fastGame(3)) = 1
+            theGame(fastGame(6)) = 2
+            theGame(fastGame(9)) = 3
+            theGame(fastGame(8)) = 6
+            theGame(fastGame(7)) = 9
+            theGame(fastGame(4)) = 8
+            theGame(fastGame(1)) = 7
+            theGame(fastGame(2)) = 4
+            fastGameUpdate()
             loc()
         End If
     End Sub
 
     Private Sub rr_Click(sender As Object, e As EventArgs) Handles rr.Click
         If Not busy Then
-            For i = 1 To 9
-                If theGame(i) = 1 Then
-                    theGame(i) = 3
-                ElseIf theGame(i) = 2 Then
-                    theGame(i) = 6
-                ElseIf theGame(i) = 3 Then
-                    theGame(i) = 9
-                ElseIf theGame(i) = 6 Then
-                    theGame(i) = 8
-                ElseIf theGame(i) = 9 Then
-                    theGame(i) = 7
-                ElseIf theGame(i) = 8 Then
-                    theGame(i) = 4
-                ElseIf theGame(i) = 7 Then
-                    theGame(i) = 1
-                ElseIf theGame(i) = 4 Then
-                    theGame(i) = 2
-                End If
-            Next
+            theGame(fastGame(1)) = 3
+            theGame(fastGame(2)) = 6
+            theGame(fastGame(3)) = 9
+            theGame(fastGame(6)) = 8
+            theGame(fastGame(9)) = 7
+            theGame(fastGame(8)) = 4
+            theGame(fastGame(7)) = 1
+            theGame(fastGame(4)) = 2
+            fastGameUpdate()
             loc()
         End If
     End Sub
 
     Private Sub rh_Click(sender As Object, e As EventArgs) Handles rh.Click
         If Not busy Then
-            For i = 1 To 9
-                If theGame(i) = 1 Then
-                    theGame(i) = 3
-                ElseIf theGame(i) = 4 Then
-                    theGame(i) = 6
-                ElseIf theGame(i) = 7 Then
-                    theGame(i) = 9
-                ElseIf theGame(i) = 3 Then
-                    theGame(i) = 1
-                ElseIf theGame(i) = 6 Then
-                    theGame(i) = 4
-                ElseIf theGame(i) = 9 Then
-                    theGame(i) = 7
-                End If
-            Next
+            theGame(fastGame(1)) = 3
+            theGame(fastGame(4)) = 6
+            theGame(fastGame(7)) = 9
+            theGame(fastGame(3)) = 1
+            theGame(fastGame(6)) = 4
+            theGame(fastGame(9)) = 7
+            fastGameUpdate()
             loc()
         End If
     End Sub
 
     Private Sub rv_Click(sender As Object, e As EventArgs) Handles rv.Click
         If Not busy Then
-            For i = 1 To 9
-                If theGame(i) = 1 Then
-                    theGame(i) = 7
-                ElseIf theGame(i) = 2 Then
-                    theGame(i) = 8
-                ElseIf theGame(i) = 3 Then
-                    theGame(i) = 9
-                ElseIf theGame(i) = 7 Then
-                    theGame(i) = 1
-                ElseIf theGame(i) = 8 Then
-                    theGame(i) = 2
-                ElseIf theGame(i) = 9 Then
-                    theGame(i) = 3
-                End If
-            Next
+            theGame(fastGame(1)) = 7
+            theGame(fastGame(2)) = 8
+            theGame(fastGame(3)) = 9
+            theGame(fastGame(7)) = 1
+            theGame(fastGame(8)) = 2
+            theGame(fastGame(9)) = 3
+            fastGameUpdate()
             loc()
         End If
     End Sub
@@ -1643,13 +1614,14 @@ break:
 
 #Region "cheating"
     Sub swapping()
-        lzc(1, 7) : lzc(11, 17)
-        lzc(2, 8) : lzc(12, 18)
-        lzc(3, 9) : lzc(13, 19)
+        swapSub(1, 7) : swapSub(11, 17)
+        swapSub(2, 8) : swapSub(12, 18)
+        swapSub(3, 9) : swapSub(13, 19)
     End Sub
 
-    Sub lzc(z As Integer, c As Integer)
+    Sub swapSub(z As Integer, c As Integer)
         temp = theGame(z) : theGame(z) = theGame(c) : theGame(c) = temp
+        temp = fastGame(theGame(z)) : fastGame(theGame(z)) = fastGame(theGame(c)) : fastGame(theGame(c)) = temp
     End Sub
 
     Sub helping()
@@ -1869,6 +1841,7 @@ break:
     End Sub
 #End Region
 
+#Region "Buttons"
     Private Sub Bu1_Click(sender As Object, e As EventArgs) Handles Bu1.Click
         If lang.Text = "English" Then
             Sega2.Text = "حول"
@@ -1985,6 +1958,7 @@ And If you press the writing boxes, press F11 to remove the pressure.", msg, "Ho
 ولو ضغطت على مربعات الكتابة إضغط على F11 لإزالة الضغط.", msg, "كيفية إستخدام لوحة المفاتيح للعب ؟!")
         End If
     End Sub
+#End Region
 
 #Region "ToolTipTitle"
     Private Sub Sega_MouseHover(sender As Object, e As EventArgs) Handles MyBase.MouseHover, hp.MouseHover, z1.MouseHover, z2.MouseHover, z3.MouseHover, a1.MouseHover, a2.MouseHover, a3.MouseHover, c1.MouseHover, c2.MouseHover, c3.MouseHover, undo.MouseHover, redo.MouseHover, win1.MouseHover, win2.MouseHover, step1.MouseHover, step2.MouseHover, im0.MouseHover, im1.MouseHover, im2.MouseHover, player1.MouseHover, player2.MouseHover, name1.MouseHover, name2.MouseHover
