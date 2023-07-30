@@ -18,7 +18,7 @@
     Dim buttons As Integer = 1
     Dim bgClr As Integer = 245
     Dim theBest As Integer = 0
-    ' theGame(0) is player role, 10 is choosed piece, 11-13, 17-19 is movementOfPieces, 14 is level, 15 is who started playing first, 16 is style of game
+    ' theGame(0) is player role, 10 is selected piece, 11-13, 17-19 is movementOfPieces, 14 is level, 15 is who started playing first, 16 is style of game
     Dim theGame As New List(Of Integer)
     Dim fastGame As New List(Of Integer)
     Dim thePieces As New List(Of PictureBox)
@@ -91,7 +91,7 @@
                 End If
             ElseIf e.KeyCode = Keys.F5 Then
                 If ok1.Visible Then
-                    If Not ok1.Checked Or Not ok2.Checked Then
+                    If Not ok1.Checked OrElse Not ok2.Checked Then
                         ok1.Checked = True : ok2.Checked = True
                     Else
                         ok1.Checked = False
@@ -112,29 +112,29 @@
 
     Private Sub Sega_Key(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown, MyClass.KeyDown, Me.KeyDown, Bu1.KeyDown, rest.KeyDown, restA.KeyDown, start.KeyDown, Bu5.KeyDown, Bu6.KeyDown, Bu7.KeyDown, lang.KeyDown, help.KeyDown, B10.KeyDown, B11.KeyDown, XO.KeyDown, OX.KeyDown, secret.KeyDown, level.KeyDown, computer.KeyDown, playFirst.KeyDown, undo.KeyDown, redo.KeyDown, ok1.KeyDown, ok2.KeyDown, NoS.KeyDown, VaH.KeyDown, ns.KeyDown, nsAr.KeyDown, sv.KeyDown, ld.KeyDown, rh.KeyDown, rr.KeyDown, rl.KeyDown, rv.KeyDown, sv1.KeyDown, ld1.KeyDown, RB0.KeyDown, RB1.KeyDown, RB2.KeyDown, zoomIn.KeyDown, zoomOut.KeyDown
         If keyboard Then
-            If e.KeyCode = Keys.NumPad7 Or e.KeyCode = Keys.Q Then
+            If e.KeyCode = Keys.NumPad7 OrElse e.KeyCode = Keys.Q Then
                 zxcvi(fastGame(1))
-            ElseIf e.KeyCode = Keys.NumPad8 Or e.KeyCode = Keys.W Then
+            ElseIf e.KeyCode = Keys.NumPad8 OrElse e.KeyCode = Keys.W Then
                 zxcvi(fastGame(2))
-            ElseIf e.KeyCode = Keys.NumPad9 Or e.KeyCode = Keys.E Then
+            ElseIf e.KeyCode = Keys.NumPad9 OrElse e.KeyCode = Keys.E Then
                 zxcvi(fastGame(3))
-            ElseIf e.KeyCode = Keys.NumPad4 Or e.KeyCode = Keys.A Then
+            ElseIf e.KeyCode = Keys.NumPad4 OrElse e.KeyCode = Keys.A Then
                 zxcvi(fastGame(4))
-            ElseIf e.KeyCode = Keys.NumPad5 Or e.KeyCode = Keys.S Then
+            ElseIf e.KeyCode = Keys.NumPad5 OrElse e.KeyCode = Keys.S Then
                 zxcvi(fastGame(5))
-            ElseIf e.KeyCode = Keys.NumPad6 Or e.KeyCode = Keys.D Then
+            ElseIf e.KeyCode = Keys.NumPad6 OrElse e.KeyCode = Keys.D Then
                 zxcvi(fastGame(6))
-            ElseIf e.KeyCode = Keys.NumPad1 Or e.KeyCode = Keys.Z Then
+            ElseIf e.KeyCode = Keys.NumPad1 OrElse e.KeyCode = Keys.Z Then
                 zxcvi(fastGame(7))
-            ElseIf e.KeyCode = Keys.NumPad2 Or e.KeyCode = Keys.X Then
+            ElseIf e.KeyCode = Keys.NumPad2 OrElse e.KeyCode = Keys.X Then
                 zxcvi(fastGame(8))
-            ElseIf e.KeyCode = Keys.NumPad3 Or e.KeyCode = Keys.C Then
+            ElseIf e.KeyCode = Keys.NumPad3 OrElse e.KeyCode = Keys.C Then
                 zxcvi(fastGame(9))
-            ElseIf e.KeyCode = Keys.F2 Or e.KeyCode = Keys.O Then
+            ElseIf e.KeyCode = Keys.F2 OrElse e.KeyCode = Keys.O Then
                 If sv.Enabled = True Then
                     sve()
                 End If
-            ElseIf e.KeyCode = Keys.F4 Or e.KeyCode = Keys.L Then
+            ElseIf e.KeyCode = Keys.F4 OrElse e.KeyCode = Keys.L Then
                 If ld.Enabled = True Then
                     lde()
                 End If
@@ -154,15 +154,15 @@
                     bgClr -= 1
                 End If
                 clr2()
-            ElseIf e.KeyCode = Keys.M Or e.KeyCode = Keys.F9 Then
+            ElseIf e.KeyCode = Keys.M OrElse e.KeyCode = Keys.F9 Then
                 theBest = Not theBest
-            ElseIf e.KeyCode = Keys.H Or e.KeyCode = Keys.F10 Then
+            ElseIf e.KeyCode = Keys.H OrElse e.KeyCode = Keys.F10 Then
                 If help.Visible = True Then
                     helping()
                 End If
             ElseIf e.KeyCode = Keys.F5 Then
                 If ok1.Visible Then
-                    If Not ok1.Checked Or Not ok2.Checked Then
+                    If Not ok1.Checked OrElse Not ok2.Checked Then
                         ok1.Checked = True : ok2.Checked = True
                     Else
                         ok1.Checked = False
@@ -184,7 +184,7 @@
             ElseIf e.KeyCode = Keys.T Then
                 If computer.Checked = False Then
                     computer.Checked = True
-                ElseIf computer.Checked = True And Not busy Then
+                ElseIf computer.Checked = True AndAlso Not busy Then
                     computer.Checked = False
                 End If
             ElseIf e.KeyCode = Keys.Y Then
@@ -218,9 +218,9 @@
                 If start.Visible = True Then
                     StartSub()
                 End If
-            ElseIf e.KeyCode = Keys.B Or e.KeyCode = Keys.F1 Then
+            ElseIf e.KeyCode = Keys.B OrElse e.KeyCode = Keys.F1 Then
                 RstA()
-            ElseIf e.KeyCode = Keys.N Or e.KeyCode = Keys.F3 Then
+            ElseIf e.KeyCode = Keys.N OrElse e.KeyCode = Keys.F3 Then
                 Rst()
             ElseIf e.KeyCode = Keys.J Then
                 If VaH.Checked = True Then
@@ -234,7 +234,7 @@
                 Else
                     NoS.Checked = True
                 End If
-            ElseIf e.KeyCode = Keys.V And My.Computer.FileSystem.FileExists(sg + "New Text Document.txt") Then
+            ElseIf e.KeyCode = Keys.V AndAlso My.Computer.FileSystem.FileExists(sg + "New Text Document.txt") Then
                 If help.Visible = True Then
                     sve()
                     helping()
@@ -311,7 +311,7 @@
     End Sub
 
     Private Sub c1_MouseDown(sender As Object, e As MouseEventArgs) Handles c1.MouseDown
-        If theGame(0) = 1 And Not computer.Checked Then
+        If theGame(0) = 1 AndAlso Not computer.Checked Then
             hold = True
             zxcvi(7)
         Else
@@ -320,7 +320,7 @@
     End Sub
 
     Private Sub c2_MouseDown(sender As Object, e As MouseEventArgs) Handles c2.MouseDown
-        If theGame(0) = 1 And Not computer.Checked Then
+        If theGame(0) = 1 AndAlso Not computer.Checked Then
             hold = True
             zxcvi(8)
         Else
@@ -329,7 +329,7 @@
     End Sub
 
     Private Sub c3_MouseDown(sender As Object, e As MouseEventArgs) Handles c3.MouseDown
-        If theGame(0) = 1 And Not computer.Checked Then
+        If theGame(0) = 1 AndAlso Not computer.Checked Then
             hold = True
             zxcvi(9)
         Else
@@ -363,10 +363,10 @@
 #End Region
 
     Sub zxcvi(i As Integer)
-        If theGame(0) = 0 And (i = 1 Or i = 2 Or i = 3) Or theGame(0) = 1 And (i = 7 Or i = 8 Or i = 9) And Not computer.Checked Then
+        If theGame(0) = 0 AndAlso (i = 1 OrElse i = 2 OrElse i = 3) OrElse theGame(0) = 1 AndAlso (i = 7 OrElse i = 8 OrElse i = 9) AndAlso Not computer.Checked Then
             theGame(10) = i
             loc()
-        ElseIf theGame(10) > 0 And (i = 4 Or i = 5 Or i = 6) Then
+        ElseIf theGame(10) > 0 AndAlso (i = 4 OrElse i = 5 OrElse i = 6) Then
             moving(i, theGame(10), 1)
             If theGame(0) = 0 Then
                 step1.Text = step1.Text + 1
@@ -401,7 +401,7 @@
     End Sub
 
     Sub StartSub()
-        If start.Text = "Start" Or start.Text = "إبدأ" Then
+        If start.Text = "Start" OrElse start.Text = "إبدأ" Then
             If lang.Text = "عربي" Then
                 start.Text = "Stop"
             Else
@@ -458,7 +458,7 @@
             Next
         End If
         For i = 1 To 9
-            If i = 4 Or i = 5 Or i = 6 Then
+            If i = 4 OrElse i = 5 OrElse i = 6 Then
             Else
                 theGame(10 + i) = theGame(16)
             End If
@@ -475,7 +475,7 @@
             Positions()
             step1.Text = "0" : step2.Text = "0"
             undo1 = "" : redo1 = "" : nf() : rf()
-            ok1.Text = "OK" : ok = -1 * (ok1.Checked And ok2.Checked)
+            ok1.Text = "OK" : ok = -1 * (ok1.Checked AndAlso ok2.Checked)
             If ok = 1 Then ok1.Text += " +1"
             ok2.Text = ok1.Text
             loc()
@@ -621,28 +621,28 @@
         If name2.Text.Trim = "" Then name2.Text = name2.Tag
 
         wn19()
-        If Not NoS.Checked Or (NoS.Checked And step1.Text = step2.Text And theGame(20) = 2) Then
-            If lwz = 0 And lwc = 2 Then
+        If Not NoS.Checked OrElse (NoS.Checked AndAlso step1.Text = step2.Text AndAlso theGame(20) = 2) Then
+            If lwz = 0 AndAlso lwc = 2 Then
                 win1.Text += 1
                 zc(1, win:=True) : zc(2, win:=True) : zc(3, win:=True)
                 MsgBox(txt + name1.Text, msg, txt1) '
                 wn37()
                 Rst()
             End If
-            If lwc = 1 And lwz = 2 Then
+            If lwc = 1 AndAlso lwz = 2 Then
                 win2.Text += 1
                 zc(7, win:=True) : zc(8, win:=True) : zc(9, win:=True)
                 MsgBox(txt + name2.Text, msg, txt1) '
                 wn37()
                 Rst()
             End If
-        ElseIf step1.Text <> step2.Text And NoS.Checked And theGame(20) = 2 Then
+        ElseIf step1.Text <> step2.Text AndAlso NoS.Checked AndAlso theGame(20) = 2 Then
             If lwz = 0 Then
-                If step1.Text = step2.Text + 1 And theGame(0) = 1 Then theGame(20) = 0
+                If step1.Text = step2.Text + 1 AndAlso theGame(0) = 1 Then theGame(20) = 0
                 zc(1, win:=True) : zc(2, win:=True) : zc(3, win:=True)
             End If
             If lwc = 1 Then
-                If step2.Text = step1.Text + 1 And theGame(0) = 0 Then theGame(20) = 1
+                If step2.Text = step1.Text + 1 AndAlso theGame(0) = 0 Then theGame(20) = 1
                 zc(7, win:=True) : zc(8, win:=True) : zc(9, win:=True)
             End If
         ElseIf theGame(20) < 2 Then
@@ -697,13 +697,13 @@
         If computer.Checked Then
             name2.Tag = "Computer"
             name1.Tag = "Player"
-            If name2.Text.ToLower = "player2" Or name2.Text.Trim = "" Then name2.Text = name2.Tag
-            If name1.Text.ToLower = "player1" Or name1.Text.Trim = "" Then name1.Text = name1.Tag
+            If name2.Text.ToLower = "player2" OrElse name2.Text.Trim = "" Then name2.Text = name2.Tag
+            If name1.Text.ToLower = "player1" OrElse name1.Text.Trim = "" Then name1.Text = name1.Tag
         Else
             name2.Tag = "Player2"
             name1.Tag = "Player1"
-            If name2.Text.ToLower = "computer" Or name2.Text.Trim = "" Then name2.Text = name2.Tag
-            If name1.Text.ToLower = "player" Or name1.Text.Trim = "" Then name1.Text = name1.Tag
+            If name2.Text.ToLower = "computer" OrElse name2.Text.Trim = "" Then name2.Text = name2.Tag
+            If name1.Text.ToLower = "player" OrElse name1.Text.Trim = "" Then name1.Text = name1.Tag
         End If
     End Sub
 
@@ -738,7 +738,7 @@
             zc(i, theGame(10) = i, theGame(10 + i) = 0, lwz = 0)
         Next
         zc(4) : zc(5) : zc(6)
-        If theBest >= 4 And theBest <= 6 Then
+        If theBest >= 4 AndAlso theBest <= 6 Then
             zc(theBest, win:=True) : theBest = -1
         End If
     End Sub
@@ -826,7 +826,7 @@
     End Sub
 
     Sub ComputerTurn()
-        If Not busy And computer.Checked And theGame(0) = 1 And Not start.Visible Then
+        If Not busy AndAlso computer.Checked AndAlso theGame(0) = 1 AndAlso Not start.Visible Then
             busy = True
             Pwait.Visible = True : wait.Visible = True
             If fst.Value = 0 Then
@@ -846,7 +846,7 @@
         temp.AddRange(game)
         If theGame(14) = 0 Then GoTo theEnd
 
-        ''''''''''''''''''''If Not VaH.Checked And NoS.Checked And step2.Text = step1.Text Then  <إختيار الفوز القطري>  End If
+        ''''''''''''''''''''If Not VaH.Checked AndAlso NoS.Checked AndAlso step2.Text = step1.Text Then  <إختيار الفوز القطري>  End If
 
         While i < game.Count - 1
             If ComputerWin(game(i), game(i + 1)) Then
@@ -897,7 +897,7 @@
         End If
 
         ' التيقظ لعملية الفوز الثنائي ومنعه
-        If theGame(14) = 7 Or theGame(14) = 6 And constant < 75 Or theGame(14) = 5 And constant < 50 Or theGame(14) = 4 And constant < 25 Then
+        If theGame(14) = 7 OrElse theGame(14) = 6 AndAlso constant < 75 OrElse theGame(14) = 5 AndAlso constant < 50 OrElse theGame(14) = 4 AndAlso constant < 25 Then
             i = 0
             While i < game.Count - 1
                 If OpponentNotDouWin(game(i), game(i + 1)) Then
@@ -914,10 +914,10 @@
             End If
         End If
 
-        If theGame(17) = 0 Or theGame(18) = 0 Or theGame(19) = 0 Then
+        If theGame(17) = 0 OrElse theGame(18) = 0 OrElse theGame(19) = 0 Then
 
             ' حالات خاصة
-            If Not VaH.Checked And theGame(14) >= 6 Then ' أسوأ ما قمت به في حياتي .. جيدة ولكن ليست رائعة
+            If Not VaH.Checked AndAlso theGame(14) >= 6 Then ' أسوأ ما قمت به في حياتي .. جيدة ولكن ليست رائعة
 
                 i = 0
                 While i < game.Count - 1
@@ -980,7 +980,7 @@
                 temp.AddRange(game)
             End If
 
-            If theGame(14) = 7 And Not VaH.Checked Then ' وضع القطعة في المنتصف
+            If theGame(14) = 7 AndAlso Not VaH.Checked Then ' وضع القطعة في المنتصف
                 i = 0
                 While i < game.Count - 1
                     If PieceInMiddle(game(i), game(i + 1)) Then
@@ -1019,7 +1019,7 @@ theEnd:
         theGame(10) = game(choose * 2 + 1)
         Pwait.Visible = False : wait.Visible = False
         busy = False
-        If theBest = 0 Or computer.Checked And theGame(0) = 1 Then
+        If theBest = 0 OrElse computer.Checked AndAlso theGame(0) = 1 Then
             zxcvi(game(choose * 2))
         Else
             theBest = game(choose * 2) : loc()
@@ -1048,7 +1048,7 @@ theEnd:
         Dim yes As Boolean = False
         TempMove(space, blue, 1)
         For k = 4 To 6
-            If aRLine(1, 2, k) Or aRLine(1, 3, k) Or aRLine(2, 3, k) Then GoTo break
+            If aRLine(1, 2, k) OrElse aRLine(1, 3, k) OrElse aRLine(2, 3, k) Then GoTo break
         Next
         yes = True
 break:
@@ -1059,17 +1059,17 @@ break:
     Function ComputerDouWin(space As Byte, blue As Byte) As Boolean
         Dim counter As Integer = 0
         TempMove(space, blue, 1)
-        If theGame(17) > 0 And theGame(18) > 0 And (hLine(7, 8, 4) Or hLine(7, 8, 5) Or hLine(7, 8, 6)) Or theGame(17) > 0 And theGame(19) > 0 And (hLine(7, 9, 4) Or hLine(7, 9, 5) Or hLine(7, 9, 6)) Or theGame(18) > 0 And theGame(19) > 0 And (hLine(8, 9, 4) Or hLine(8, 9, 5) Or hLine(8, 9, 6)) Then
+        If theGame(17) > 0 AndAlso theGame(18) > 0 AndAlso (hLine(7, 8, 4) OrElse hLine(7, 8, 5) OrElse hLine(7, 8, 6)) OrElse theGame(17) > 0 AndAlso theGame(19) > 0 AndAlso (hLine(7, 9, 4) OrElse hLine(7, 9, 5) OrElse hLine(7, 9, 6)) OrElse theGame(18) > 0 AndAlso theGame(19) > 0 AndAlso (hLine(8, 9, 4) OrElse hLine(8, 9, 5) OrElse hLine(8, 9, 6)) Then
             counter += 1
         End If
-        If theGame(17) > 0 And theGame(18) > 0 And (vLine(7, 8, 4) Or vLine(7, 8, 5) Or vLine(7, 8, 6)) Or theGame(17) > 0 And theGame(19) > 0 And (vLine(7, 9, 4) Or vLine(7, 9, 5) Or vLine(7, 9, 6)) Or theGame(18) > 0 And theGame(19) > 0 And (vLine(8, 9, 4) Or vLine(8, 9, 5) Or vLine(8, 9, 6)) Then
+        If theGame(17) > 0 AndAlso theGame(18) > 0 AndAlso (vLine(7, 8, 4) OrElse vLine(7, 8, 5) OrElse vLine(7, 8, 6)) OrElse theGame(17) > 0 AndAlso theGame(19) > 0 AndAlso (vLine(7, 9, 4) OrElse vLine(7, 9, 5) OrElse vLine(7, 9, 6)) OrElse theGame(18) > 0 AndAlso theGame(19) > 0 AndAlso (vLine(8, 9, 4) OrElse vLine(8, 9, 5) OrElse vLine(8, 9, 6)) Then
             counter += 1
         End If
         If Not VaH.Checked Then
-            If theGame(17) > 0 And theGame(18) > 0 And (mDiagonal(7, 8, 4) Or mDiagonal(7, 8, 5) Or mDiagonal(7, 8, 6)) Or theGame(17) > 0 And theGame(19) > 0 And (mDiagonal(7, 9, 4) Or mDiagonal(7, 9, 5) Or mDiagonal(7, 9, 6)) Or theGame(18) > 0 And theGame(19) > 0 And (mDiagonal(8, 9, 4) Or mDiagonal(8, 9, 5) Or mDiagonal(8, 9, 6)) Then
+            If theGame(17) > 0 AndAlso theGame(18) > 0 AndAlso (mDiagonal(7, 8, 4) OrElse mDiagonal(7, 8, 5) OrElse mDiagonal(7, 8, 6)) OrElse theGame(17) > 0 AndAlso theGame(19) > 0 AndAlso (mDiagonal(7, 9, 4) OrElse mDiagonal(7, 9, 5) OrElse mDiagonal(7, 9, 6)) OrElse theGame(18) > 0 AndAlso theGame(19) > 0 AndAlso (mDiagonal(8, 9, 4) OrElse mDiagonal(8, 9, 5) OrElse mDiagonal(8, 9, 6)) Then
                 counter += 1
             End If
-            If theGame(17) > 0 And theGame(18) > 0 And (sDiagonal(7, 8, 4) Or sDiagonal(7, 8, 5) Or sDiagonal(7, 8, 6)) Or theGame(17) > 0 And theGame(19) > 0 And (sDiagonal(7, 9, 4) Or sDiagonal(7, 9, 5) Or sDiagonal(7, 9, 6)) Or theGame(18) > 0 And theGame(19) > 0 And (sDiagonal(8, 9, 4) Or sDiagonal(8, 9, 5) Or sDiagonal(8, 9, 6)) Then
+            If theGame(17) > 0 AndAlso theGame(18) > 0 AndAlso (sDiagonal(7, 8, 4) OrElse sDiagonal(7, 8, 5) OrElse sDiagonal(7, 8, 6)) OrElse theGame(17) > 0 AndAlso theGame(19) > 0 AndAlso (sDiagonal(7, 9, 4) OrElse sDiagonal(7, 9, 5) OrElse sDiagonal(7, 9, 6)) OrElse theGame(18) > 0 AndAlso theGame(19) > 0 AndAlso (sDiagonal(8, 9, 4) OrElse sDiagonal(8, 9, 5) OrElse sDiagonal(8, 9, 6)) Then
                 counter += 1
             End If
         End If
@@ -1084,19 +1084,19 @@ break:
             For j = 1 To 3
                 counter = 0
                 TempMove(i, j, 1)
-                If aBLine(7, 8, 4) Or aBLine(7, 8, 5) Or aBLine(7, 8, 6) Or aBLine(7, 9, 4) Or aBLine(7, 9, 5) Or aBLine(7, 9, 6) Or aBLine(8, 9, 4) Or aBLine(8, 9, 5) Or aBLine(8, 9, 6) Then
+                If aBLine(7, 8, 4) OrElse aBLine(7, 8, 5) OrElse aBLine(7, 8, 6) OrElse aBLine(7, 9, 4) OrElse aBLine(7, 9, 5) OrElse aBLine(7, 9, 6) OrElse aBLine(8, 9, 4) OrElse aBLine(8, 9, 5) OrElse aBLine(8, 9, 6) Then
                 Else
-                    If theGame(11) > 0 And theGame(12) > 0 And (hLine(1, 2, 4) Or hLine(1, 2, 5) Or hLine(1, 2, 6)) Or theGame(11) > 0 And theGame(13) > 0 And (hLine(1, 3, 4) Or hLine(1, 3, 5) Or hLine(1, 3, 6)) Or theGame(12) > 0 And theGame(13) > 0 And (hLine(2, 3, 4) Or hLine(2, 3, 5) Or hLine(2, 3, 6)) Then
+                    If theGame(11) > 0 AndAlso theGame(12) > 0 AndAlso (hLine(1, 2, 4) OrElse hLine(1, 2, 5) OrElse hLine(1, 2, 6)) OrElse theGame(11) > 0 AndAlso theGame(13) > 0 AndAlso (hLine(1, 3, 4) OrElse hLine(1, 3, 5) OrElse hLine(1, 3, 6)) OrElse theGame(12) > 0 AndAlso theGame(13) > 0 AndAlso (hLine(2, 3, 4) OrElse hLine(2, 3, 5) OrElse hLine(2, 3, 6)) Then
                         counter += 1
                     End If
-                    If theGame(11) > 0 And theGame(12) > 0 And (vLine(1, 2, 4) Or vLine(1, 2, 5) Or vLine(1, 2, 6)) Or theGame(11) > 0 And theGame(13) > 0 And (vLine(1, 3, 4) Or vLine(1, 3, 5) Or vLine(1, 3, 6)) Or theGame(12) > 0 And theGame(13) > 0 And (vLine(2, 3, 4) Or vLine(2, 3, 5) Or vLine(2, 3, 6)) Then
+                    If theGame(11) > 0 AndAlso theGame(12) > 0 AndAlso (vLine(1, 2, 4) OrElse vLine(1, 2, 5) OrElse vLine(1, 2, 6)) OrElse theGame(11) > 0 AndAlso theGame(13) > 0 AndAlso (vLine(1, 3, 4) OrElse vLine(1, 3, 5) OrElse vLine(1, 3, 6)) OrElse theGame(12) > 0 AndAlso theGame(13) > 0 AndAlso (vLine(2, 3, 4) OrElse vLine(2, 3, 5) OrElse vLine(2, 3, 6)) Then
                         counter += 1
                     End If
                     If Not VaH.Checked Then
-                        If theGame(11) > 0 And theGame(12) > 0 And (mDiagonal(1, 2, 4) Or mDiagonal(1, 2, 5) Or mDiagonal(1, 2, 6)) Or theGame(11) > 0 And theGame(13) > 0 And (mDiagonal(1, 3, 4) Or mDiagonal(1, 3, 5) Or mDiagonal(1, 3, 6)) Or theGame(12) > 0 And theGame(13) > 0 And (mDiagonal(2, 3, 4) Or mDiagonal(2, 3, 5) Or mDiagonal(2, 3, 6)) Then
+                        If theGame(11) > 0 AndAlso theGame(12) > 0 AndAlso (mDiagonal(1, 2, 4) OrElse mDiagonal(1, 2, 5) OrElse mDiagonal(1, 2, 6)) OrElse theGame(11) > 0 AndAlso theGame(13) > 0 AndAlso (mDiagonal(1, 3, 4) OrElse mDiagonal(1, 3, 5) OrElse mDiagonal(1, 3, 6)) OrElse theGame(12) > 0 AndAlso theGame(13) > 0 AndAlso (mDiagonal(2, 3, 4) OrElse mDiagonal(2, 3, 5) OrElse mDiagonal(2, 3, 6)) Then
                             counter += 1
                         End If
-                        If theGame(11) > 0 And theGame(12) > 0 And (sDiagonal(1, 2, 4) Or sDiagonal(1, 2, 5) Or sDiagonal(1, 2, 6)) Or theGame(11) > 0 And theGame(13) > 0 And (sDiagonal(1, 3, 4) Or sDiagonal(1, 3, 5) Or sDiagonal(1, 3, 6)) Or theGame(12) > 0 And theGame(13) > 0 And (sDiagonal(2, 3, 4) Or sDiagonal(2, 3, 5) Or sDiagonal(2, 3, 6)) Then
+                        If theGame(11) > 0 AndAlso theGame(12) > 0 AndAlso (sDiagonal(1, 2, 4) OrElse sDiagonal(1, 2, 5) OrElse sDiagonal(1, 2, 6)) OrElse theGame(11) > 0 AndAlso theGame(13) > 0 AndAlso (sDiagonal(1, 3, 4) OrElse sDiagonal(1, 3, 5) OrElse sDiagonal(1, 3, 6)) OrElse theGame(12) > 0 AndAlso theGame(13) > 0 AndAlso (sDiagonal(2, 3, 4) OrElse sDiagonal(2, 3, 5) OrElse sDiagonal(2, 3, 6)) Then
                             counter += 1
                         End If
                     End If
@@ -1126,10 +1126,10 @@ break:
                 TempMove(i, j, 1)
                 For i1 = 4 To 6
                     For j1 = 7 To 9
-                        If ComputerWin(i1, j1) Or ComputerDouWin(i1, j1) Then
+                        If ComputerWin(i1, j1) OrElse ComputerDouWin(i1, j1) Then
                             yes = True
                             GoTo break
-                        ElseIf i1 = 6 And j1 = 9 Then
+                        ElseIf i1 = 6 AndAlso j1 = 9 Then
                             yes = False
                         End If
                     Next
@@ -1152,10 +1152,10 @@ break2:
                 TempMove(i, j, 1)
                 For i1 = 4 To 6
                     For j1 = 7 To 9
-                        If OpponentNotWin(i1, j1) And DiagonalCatchingSleeperComputerPiece(i1, j1) And OpponentNotDouWin(i1, j1) Then
+                        If OpponentNotWin(i1, j1) AndAlso DiagonalCatchingSleeperComputerPiece(i1, j1) AndAlso OpponentNotDouWin(i1, j1) Then
                             yes = True
                             GoTo break
-                        ElseIf i1 = 6 And j1 = 9 Then
+                        ElseIf i1 = 6 AndAlso j1 = 9 Then
                             yes = False
                         End If
                     Next
@@ -1170,21 +1170,21 @@ break2:
         Return yes
     End Function
 
-    Function DiagonalCatchingSleeperOpponentPiece(space As Byte, blue As Byte) ' مستبعدة
+    Function DiagonalCatchingSleeperOpponentPiece(space As Byte, blue As Byte) As Boolean ' مستبعدة
         Dim yes As Boolean = False
         TempMove(space, blue, 1)
-        If aBlueLoc(5) And (aBlueLoc(9) And RedLoc(1) Or aBlueLoc(7) And RedLoc(3) Or aBlueLoc(3) And RedLoc(7) Or aBlueLoc(1) And RedLoc(9)) Then yes = True
+        If aBlueLoc(5) AndAlso (aBlueLoc(9) AndAlso RedLoc(1) OrElse aBlueLoc(7) AndAlso RedLoc(3) OrElse aBlueLoc(3) AndAlso RedLoc(7) OrElse aBlueLoc(1) AndAlso RedLoc(9)) Then yes = True
         TempMove(space, blue, -1)
         Return yes
     End Function
 
-    Function DiagonalCatchingSleeperComputerPiece(space As Byte, blue As Byte)
+    Function DiagonalCatchingSleeperComputerPiece(space As Byte, blue As Byte) As Boolean
         Dim yes As Boolean = True
         TempMove(space, blue, 1)
         For i = 4 To 6
             For j = 1 To 3
                 TempMove(i, j, 1)
-                If aRedLoc(5) And (aRedLoc(9) And BlueLoc(1) Or aRedLoc(7) And BlueLoc(3) Or aRedLoc(3) And BlueLoc(7) Or aRedLoc(1) And BlueLoc(9)) Then
+                If aRedLoc(5) AndAlso (aRedLoc(9) AndAlso BlueLoc(1) OrElse aRedLoc(7) AndAlso BlueLoc(3) OrElse aRedLoc(3) AndAlso BlueLoc(7) OrElse aRedLoc(1) AndAlso BlueLoc(9)) Then
                     yes = False
                 End If
                 TempMove(i, j, -1)
@@ -1196,66 +1196,66 @@ break:
         Return yes
     End Function
 
-    Function redIdle(piece As Integer) As Boolean
-        Return piece <= 3 And theGame(10 + piece) = 0
+    Function redIdle(piece As Byte) As Boolean
+        Return piece <= 3 AndAlso theGame(10 + piece) = 0
     End Function
 
-    Function blueIdle(piece As Integer) As Boolean
-        Return piece >= 7 And theGame(10 + piece) = 0
+    Function blueIdle(piece As Byte) As Boolean
+        Return piece >= 7 AndAlso theGame(10 + piece) = 0
     End Function
 
-    Function aRLine(piece1 As Integer, piece2 As Integer, piece3 As Integer) As Boolean ' active red in line
-        If redIdle(piece1) Or redIdle(piece2) Or redIdle(piece3) Then Return False
+    Function aRLine(piece1 As Byte, piece2 As Byte, piece3 As Byte) As Boolean ' active red in line
+        If redIdle(piece1) OrElse redIdle(piece2) OrElse redIdle(piece3) Then Return False
         Return line(piece1, piece2, piece3)
     End Function
 
-    Function aBLine(piece1 As Integer, piece2 As Integer, piece3 As Integer) As Boolean ' active blue in line
-        If blueIdle(piece1) Or blueIdle(piece2) Or blueIdle(piece3) Then Return False
+    Function aBLine(piece1 As Byte, piece2 As Byte, piece3 As Byte) As Boolean ' active blue in line
+        If blueIdle(piece1) OrElse blueIdle(piece2) OrElse blueIdle(piece3) Then Return False
         Return line(piece1, piece2, piece3)
     End Function
 
-    Function hLine(piece1 As Integer, piece2 As Integer, piece3 As Integer) As Boolean ' Horizontal line
+    Function hLine(piece1 As Byte, piece2 As Byte, piece3 As Byte) As Boolean ' Horizontal line
         For i = 1 To 7 Step 3
-            If (theGame(piece1) = i Or theGame(piece2) = i Or theGame(piece3) = i) And (theGame(piece1) = i + 1 Or theGame(piece2) = i + 1 Or theGame(piece3) = i + 1) And (theGame(piece1) = i + 2 Or theGame(piece2) = i + 2 Or theGame(piece3) = i + 2) Then Return True
+            If (theGame(piece1) = i OrElse theGame(piece2) = i OrElse theGame(piece3) = i) AndAlso (theGame(piece1) = i + 1 OrElse theGame(piece2) = i + 1 OrElse theGame(piece3) = i + 1) AndAlso (theGame(piece1) = i + 2 OrElse theGame(piece2) = i + 2 OrElse theGame(piece3) = i + 2) Then Return True
         Next
         Return False
     End Function
 
-    Function vLine(piece1 As Integer, piece2 As Integer, piece3 As Integer) As Boolean ' Vertical line
+    Function vLine(piece1 As Byte, piece2 As Byte, piece3 As Byte) As Boolean ' Vertical line
         For i = 1 To 3
-            If (theGame(piece1) = i Or theGame(piece2) = i Or theGame(piece3) = i) And (theGame(piece1) = i + 3 Or theGame(piece2) = i + 3 Or theGame(piece3) = i + 3) And (theGame(piece1) = i + 6 Or theGame(piece2) = i + 6 Or theGame(piece3) = i + 6) Then Return True
+            If (theGame(piece1) = i OrElse theGame(piece2) = i OrElse theGame(piece3) = i) AndAlso (theGame(piece1) = i + 3 OrElse theGame(piece2) = i + 3 OrElse theGame(piece3) = i + 3) AndAlso (theGame(piece1) = i + 6 OrElse theGame(piece2) = i + 6 OrElse theGame(piece3) = i + 6) Then Return True
         Next
         Return False
     End Function
 
-    Function mDiagonal(piece1 As Integer, piece2 As Integer, piece3 As Integer) As Boolean ' Main Diagonal
-        Return (theGame(piece1) = 1 Or theGame(piece2) = 1 Or theGame(piece3) = 1) And (theGame(piece1) = 5 Or theGame(piece2) = 5 Or theGame(piece3) = 5) And (theGame(piece1) = 9 Or theGame(piece2) = 9 Or theGame(piece3) = 9)
+    Function mDiagonal(piece1 As Byte, piece2 As Byte, piece3 As Byte) As Boolean ' Main Diagonal
+        Return (theGame(piece1) = 1 OrElse theGame(piece2) = 1 OrElse theGame(piece3) = 1) AndAlso (theGame(piece1) = 5 OrElse theGame(piece2) = 5 OrElse theGame(piece3) = 5) AndAlso (theGame(piece1) = 9 OrElse theGame(piece2) = 9 OrElse theGame(piece3) = 9)
     End Function
 
-    Function sDiagonal(piece1 As Integer, piece2 As Integer, piece3 As Integer) As Boolean ' Secondary Diagonal
-        Return (theGame(piece1) = 3 Or theGame(piece2) = 3 Or theGame(piece3) = 3) And (theGame(piece1) = 5 Or theGame(piece2) = 5 Or theGame(piece3) = 5) And (theGame(piece1) = 7 Or theGame(piece2) = 7 Or theGame(piece3) = 7)
+    Function sDiagonal(piece1 As Byte, piece2 As Byte, piece3 As Byte) As Boolean ' Secondary Diagonal
+        Return (theGame(piece1) = 3 OrElse theGame(piece2) = 3 OrElse theGame(piece3) = 3) AndAlso (theGame(piece1) = 5 OrElse theGame(piece2) = 5 OrElse theGame(piece3) = 5) AndAlso (theGame(piece1) = 7 OrElse theGame(piece2) = 7 OrElse theGame(piece3) = 7)
     End Function
 
-    Function line(piece1 As Integer, piece2 As Integer, piece3 As Integer) As Boolean
+    Function line(piece1 As Byte, piece2 As Byte, piece3 As Byte) As Boolean
         If hLine(piece1, piece2, piece3) Then Return True
         If vLine(piece1, piece2, piece3) Then Return True
-        Return Not VaH.Checked And (mDiagonal(piece1, piece2, piece3) Or sDiagonal(piece1, piece2, piece3))
+        Return Not VaH.Checked AndAlso (mDiagonal(piece1, piece2, piece3) OrElse sDiagonal(piece1, piece2, piece3))
     End Function
 
-    Function RedLoc(loc As Integer) As Boolean
-        Return theGame(1) = loc And theGame(11) = 0 Or theGame(2) = loc And theGame(12) = 0 Or theGame(3) = loc And theGame(13) = 0
+    Function RedLoc(loc As Byte) As Boolean
+        Return theGame(1) = loc AndAlso theGame(11) = 0 OrElse theGame(2) = loc AndAlso theGame(12) = 0 OrElse theGame(3) = loc AndAlso theGame(13) = 0
     End Function
 
-    Function aRedLoc(loc As Integer) As Boolean
-        Return theGame(1) = loc And theGame(11) > 0 Or theGame(2) = loc And theGame(12) > 0 Or theGame(3) = loc And theGame(13) > 0
+    Function aRedLoc(loc As Byte) As Boolean
+        Return theGame(1) = loc AndAlso theGame(11) > 0 OrElse theGame(2) = loc AndAlso theGame(12) > 0 OrElse theGame(3) = loc AndAlso theGame(13) > 0
     End Function
 
-    Function BlueLoc(loc As Integer) As Boolean
-        Return theGame(7) = loc And theGame(17) = 0 Or theGame(8) = loc And theGame(18) = 0 Or theGame(9) = loc And theGame(19) = 0
+    Function BlueLoc(loc As Byte) As Boolean
+        Return theGame(7) = loc AndAlso theGame(17) = 0 OrElse theGame(8) = loc AndAlso theGame(18) = 0 OrElse theGame(9) = loc AndAlso theGame(19) = 0
     End Function
 
-    Function aBlueLoc(loc As Integer) As Boolean
-        Return theGame(7) = loc And theGame(17) > 0 Or theGame(8) = loc And theGame(18) > 0 Or theGame(9) = loc And theGame(19) > 0
+    Function aBlueLoc(loc As Byte) As Boolean
+        Return theGame(7) = loc AndAlso theGame(17) > 0 OrElse theGame(8) = loc AndAlso theGame(18) > 0 OrElse theGame(9) = loc AndAlso theGame(19) > 0
     End Function
 #End Region
 #End Region
@@ -1612,9 +1612,9 @@ break:
 
 #Region "cheating"
     Sub swapping()
-        swapSub(1, 7) : swapSub(11, 17)
-        swapSub(2, 8) : swapSub(12, 18)
-        swapSub(3, 9) : swapSub(13, 19)
+        swapSub(1, 7) : swapSub2(11, 17)
+        swapSub(2, 8) : swapSub2(12, 18)
+        swapSub(3, 9) : swapSub2(13, 19)
     End Sub
 
     Sub swapSub(z As Integer, c As Integer)
@@ -1622,9 +1622,13 @@ break:
         temp = fastGame(theGame(z)) : fastGame(theGame(z)) = fastGame(theGame(c)) : fastGame(theGame(c)) = temp
     End Sub
 
+    Sub swapSub2(z As Integer, c As Integer)
+        temp = theGame(z) : theGame(z) = theGame(c) : theGame(c) = temp
+    End Sub
+
     Sub helping()
         If Not busy Then
-            If ok1.Checked = True And ok2.Checked = True Then
+            If ok1.Checked = True AndAlso ok2.Checked = True Then
                 If theGame(0) = "0" Then
                     busy = True
                     swapping()
@@ -1632,7 +1636,7 @@ break:
                     theGame(14) = 7
                     ComputerIntelligence()
                     busy = False
-                ElseIf theGame(0) = "1" And Not computer.Checked Then
+                ElseIf theGame(0) = "1" AndAlso Not computer.Checked Then
                     busy = True
                     swap = theGame(14)
                     theGame(14) = 7
@@ -1650,7 +1654,7 @@ break:
 
     Sub undoSub()
         If Not busy Then
-            If ok1.Checked = True And ok2.Checked = True Then
+            If ok1.Checked = True AndAlso ok2.Checked = True Then
                 Dim gh As String
                 gh = undo1.Substring(undo1.Length - 2)
                 redo1 += gh
@@ -1663,7 +1667,7 @@ break:
                     theGame(0) = 0
                 End If
                 theGame(10) = 0
-                If gh(1) = "1" Or gh(1) = "2" Or gh(1) = "3" Then
+                If gh(1) = "1" OrElse gh(1) = "2" OrElse gh(1) = "3" Then
                     step1.Text = step1.Text - 1
                 Else
                     step2.Text = step2.Text - 1
@@ -1688,7 +1692,7 @@ break:
 
     Sub redoSub()
         If Not busy Then
-            If ok1.Checked = True And ok2.Checked = True Then
+            If ok1.Checked = True AndAlso ok2.Checked = True Then
                 Dim gh As String
                 gh = redo1.Substring(redo1.Length - 2)
                 undo1 += gh
@@ -1700,7 +1704,7 @@ break:
                     theGame(0) = 0
                 End If
                 theGame(10) = 0
-                If gh(1) = "1" Or gh(1) = "2" Or gh(1) = "3" Then
+                If gh(1) = "1" OrElse gh(1) = "2" OrElse gh(1) = "3" Then
                     step1.Text = step1.Text + 1
                 Else
                     step2.Text = step2.Text + 1
@@ -1751,7 +1755,7 @@ break:
 
     Private Sub XO_Click(sender As Object, e As EventArgs) Handles XO.Click
         If Not busy Then
-            If ok1.Checked = True And ok2.Checked = True Then
+            If ok1.Checked = True AndAlso ok2.Checked = True Then
                 busy = True
                 swapping()
                 Dim temp As String = step1.Text : step1.Text = step2.Text : step2.Text = temp
@@ -1788,7 +1792,7 @@ break:
 
     Private Sub OX_Click(sender As Object, e As EventArgs) Handles OX.Click
         If Not busy Then
-            If ok1.Checked = True And ok2.Checked = True Then
+            If ok1.Checked = True AndAlso ok2.Checked = True Then
                 busy = True
                 If theGame(0) = "0" Then
                     theGame(0) = "1"
@@ -1819,7 +1823,7 @@ break:
         Else
             MsgBox(("هذه الأدوات تساعدك على التحرر من قيود اللعبة بغرض التجربة أو معرفة إحتمالات الخطوات المختلفة أو التدريب والتعلم أو الغش وعلى كلا اللاعبين أن يوافقا معا على هذه الخواص بالضغط على موافق"), msg, "؟!?")
         End If
-        If ok1.Checked And ok2.Checked Then
+        If ok1.Checked AndAlso ok2.Checked Then
             For i = 1 To 9
                 TTen.SetToolTip(thePieces(i), i)
             Next
@@ -1827,7 +1831,7 @@ break:
     End Sub
 
     Private Sub ok_CheCha(sender As Object, e As EventArgs) Handles ok1.CheckedChanged, ok2.CheckedChanged
-        If ok1.Checked And ok2.Checked Then
+        If ok1.Checked AndAlso ok2.Checked Then
             ok += 1
             ok1.Text = "OK +" + ok.ToString
             ok2.Text = "OK +" + ok.ToString
@@ -1856,7 +1860,7 @@ break:
                 Wn()
             End If
         Else
-            If mDiagonal(1, 2, 3) Or sDiagonal(1, 2, 3) Or mDiagonal(7, 8, 9) Or sDiagonal(7, 8, 9) Then
+            If mDiagonal(1, 2, 3) OrElse sDiagonal(1, 2, 3) OrElse mDiagonal(7, 8, 9) OrElse sDiagonal(7, 8, 9) Then
                 theGame(20) = 2
                 loc()
             End If
