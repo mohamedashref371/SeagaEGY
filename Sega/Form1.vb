@@ -1,5 +1,5 @@
 ﻿Public Class Sega
-    Dim sg As String = My.Computer.FileSystem.SpecialDirectories.AllUsersApplicationData.Replace("1.0.371.3317", "")
+    Dim sg As String = My.Computer.FileSystem.SpecialDirectories.AllUsersApplicationData.Replace(Application.ProductVersion, "")
     Dim msg As MsgBoxStyle = vbInformation
     Dim split As String = "\"
     Dim temp As Integer
@@ -715,17 +715,17 @@
 
     Sub zc(z As Integer, Optional selected As Boolean = False, Optional sleep As Boolean = False, Optional win As Boolean = False) ' image of piece   ' slow
         If z <= 3 Then
-            bitmap = New Bitmap(pictures(0), New Size(98, 98))
+            bitmap = New Bitmap(pictures(0), New Size(256, 256))
         ElseIf z >= 7 Then
-            bitmap = New Bitmap(pictures(1), New Size(98, 98))
+            bitmap = New Bitmap(pictures(1), New Size(256, 256))
         Else
-            bitmap = New Bitmap(My.Resources._as, New Size(98, 98))
+            bitmap = New Bitmap(My.Resources._as, New Size(256, 256))
         End If
         If selected Then Graphics.FromImage(bitmap).DrawImage(My.Resources._as, New Point(0, 0))
         If sleep Then
-            Graphics.FromImage(bitmap).DrawImage(My.Resources.sleep, New Point(75, 0))
+            Graphics.FromImage(bitmap).DrawImage(My.Resources.sleep, New Point(196, 0))
         ElseIf win Then
-            Graphics.FromImage(bitmap).DrawImage(My.Resources.win, New Point(75, 0))
+            Graphics.FromImage(bitmap).DrawImage(My.Resources.win, New Point(196, 0))
         End If
         thePieces(z).BackgroundImage = bitmap
     End Sub
@@ -2020,7 +2020,7 @@ And If you press the writing boxes, press F11 to remove the pressure.", msg, "Ho
         zx = Not zx
 
         XO5()
-        clr = pictures(0).GetPixel(30, 30)
+        clr = pictures(0).GetPixel(78, 78)
         player1.ForeColor = clr
         name1.ForeColor = clr
         win1.ForeColor = clr
@@ -2045,7 +2045,7 @@ And If you press the writing boxes, press F11 to remove the pressure.", msg, "Ho
         Pwait.BackgroundImage = pictures(2)
         Icon = Icon.FromHandle(pictures(1).GetHicon())
         XO5()
-        clr = pictures(1).GetPixel(30, 30)
+        clr = pictures(1).GetPixel(78, 78)
         player2.ForeColor = clr
         name2.ForeColor = clr
         intelligence.ForeColor = clr

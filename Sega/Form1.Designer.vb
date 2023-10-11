@@ -70,12 +70,16 @@ Partial Class Sega
         Me.OFD2 = New System.Windows.Forms.OpenFileDialog()
         Me.TTen = New System.Windows.Forms.ToolTip(Me.components)
         Me.XO = New System.Windows.Forms.Button()
+        Me.TTar = New System.Windows.Forms.ToolTip(Me.components)
+        Me.lnsAr = New System.Windows.Forms.Label()
+        Me.LfAr = New System.Windows.Forms.Label()
+        Me.nsAr = New System.Windows.Forms.ComboBox()
+        Me.fstAr = New System.Windows.Forms.NumericUpDown()
+        Me.zoomOut = New System.Windows.Forms.Button()
+        Me.zoomIn = New System.Windows.Forms.Button()
         Me.im2 = New System.Windows.Forms.PictureBox()
         Me.im1 = New System.Windows.Forms.PictureBox()
         Me.im0 = New System.Windows.Forms.PictureBox()
-        Me.redo = New System.Windows.Forms.Button()
-        Me.undo = New System.Windows.Forms.Button()
-        Me.zoomIn = New System.Windows.Forms.Button()
         Me.sv1 = New System.Windows.Forms.Button()
         Me.ld1 = New System.Windows.Forms.Button()
         Me.P11 = New System.Windows.Forms.PictureBox()
@@ -95,19 +99,16 @@ Partial Class Sega
         Me.c3 = New System.Windows.Forms.PictureBox()
         Me.c2 = New System.Windows.Forms.PictureBox()
         Me.c1 = New System.Windows.Forms.PictureBox()
+        Me.redo = New System.Windows.Forms.Button()
+        Me.undo = New System.Windows.Forms.Button()
         Me.rr = New System.Windows.Forms.Button()
         Me.rl = New System.Windows.Forms.Button()
         Me.rh = New System.Windows.Forms.Button()
         Me.rv = New System.Windows.Forms.Button()
         Me.Pwait = New System.Windows.Forms.PictureBox()
         Me.PB1 = New System.Windows.Forms.PictureBox()
-        Me.TTar = New System.Windows.Forms.ToolTip(Me.components)
-        Me.lnsAr = New System.Windows.Forms.Label()
-        Me.LfAr = New System.Windows.Forms.Label()
-        Me.nsAr = New System.Windows.Forms.ComboBox()
-        Me.fstAr = New System.Windows.Forms.NumericUpDown()
-        Me.zoomOut = New System.Windows.Forms.Button()
         CType(Me.fst, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.fstAr, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.im2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.im1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.im0, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -130,7 +131,6 @@ Partial Class Sega
         CType(Me.c1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Pwait, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PB1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.fstAr, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Bu1
@@ -696,6 +696,85 @@ Partial Class Sega
         Me.XO.UseVisualStyleBackColor = False
         Me.XO.Visible = False
         '
+        'TTar
+        '
+        Me.TTar.Active = False
+        Me.TTar.AutomaticDelay = 1000
+        '
+        'lnsAr
+        '
+        Me.lnsAr.AutoSize = True
+        Me.lnsAr.Font = New System.Drawing.Font("Tahoma", 13.0!)
+        Me.lnsAr.Location = New System.Drawing.Point(111, 481)
+        Me.lnsAr.Name = "lnsAr"
+        Me.lnsAr.Size = New System.Drawing.Size(335, 22)
+        Me.lnsAr.TabIndex = 115
+        Me.lnsAr.Text = "عندما لا يفز أحد: الذي قام باللعب أولاً، يلعب"
+        Me.lnsAr.Visible = False
+        '
+        'LfAr
+        '
+        Me.LfAr.AutoSize = True
+        Me.LfAr.Font = New System.Drawing.Font("Tahoma", 15.0!)
+        Me.LfAr.ForeColor = System.Drawing.Color.Blue
+        Me.LfAr.Location = New System.Drawing.Point(145, 520)
+        Me.LfAr.Name = "LfAr"
+        Me.LfAr.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.LfAr.Size = New System.Drawing.Size(261, 24)
+        Me.LfAr.TabIndex = 142
+        Me.LfAr.Text = "سرعة الحاسوب بالملي ثانية :"
+        Me.LfAr.Visible = False
+        '
+        'nsAr
+        '
+        Me.nsAr.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.nsAr.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.nsAr.Font = New System.Drawing.Font("Tahoma", 13.0!)
+        Me.nsAr.FormattingEnabled = True
+        Me.nsAr.Items.AddRange(New Object() {"أولا", "آخرا"})
+        Me.nsAr.Location = New System.Drawing.Point(34, 478)
+        Me.nsAr.Name = "nsAr"
+        Me.nsAr.Size = New System.Drawing.Size(77, 29)
+        Me.nsAr.TabIndex = 143
+        Me.nsAr.Visible = False
+        '
+        'fstAr
+        '
+        Me.fstAr.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.fstAr.Font = New System.Drawing.Font("Tahoma", 15.0!)
+        Me.fstAr.ForeColor = System.Drawing.Color.Blue
+        Me.fstAr.Location = New System.Drawing.Point(47, 516)
+        Me.fstAr.Maximum = New Decimal(New Integer() {350, 0, 0, 0})
+        Me.fstAr.Name = "fstAr"
+        Me.fstAr.Size = New System.Drawing.Size(85, 32)
+        Me.fstAr.TabIndex = 144
+        Me.fstAr.Value = New Decimal(New Integer() {175, 0, 0, 0})
+        Me.fstAr.Visible = False
+        '
+        'zoomOut
+        '
+        Me.zoomOut.BackColor = System.Drawing.Color.Transparent
+        Me.zoomOut.BackgroundImage = Global.Sega.My.Resources.Resources.sa
+        Me.zoomOut.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.zoomOut.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.zoomOut.Location = New System.Drawing.Point(7, 196)
+        Me.zoomOut.Name = "zoomOut"
+        Me.zoomOut.Size = New System.Drawing.Size(40, 40)
+        Me.zoomOut.TabIndex = 145
+        Me.zoomOut.UseVisualStyleBackColor = False
+        '
+        'zoomIn
+        '
+        Me.zoomIn.BackColor = System.Drawing.Color.Transparent
+        Me.zoomIn.BackgroundImage = Global.Sega.My.Resources.Resources.ba
+        Me.zoomIn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.zoomIn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.zoomIn.Location = New System.Drawing.Point(7, 150)
+        Me.zoomIn.Name = "zoomIn"
+        Me.zoomIn.Size = New System.Drawing.Size(40, 40)
+        Me.zoomIn.TabIndex = 141
+        Me.zoomIn.UseVisualStyleBackColor = False
+        '
         'im2
         '
         Me.im2.BackColor = System.Drawing.Color.Transparent
@@ -734,50 +813,6 @@ Partial Class Sega
         Me.im0.TabStop = False
         Me.TTen.SetToolTip(Me.im0, "the default")
         Me.TTar.SetToolTip(Me.im0, "الافتراضي")
-        '
-        'redo
-        '
-        Me.redo.BackColor = System.Drawing.Color.Transparent
-        Me.redo.BackgroundImage = Global.Sega.My.Resources.Resources.redo
-        Me.redo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.redo.Enabled = False
-        Me.redo.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.redo.Font = New System.Drawing.Font("Tahoma", 20.0!)
-        Me.redo.ForeColor = System.Drawing.Color.DarkGreen
-        Me.redo.Location = New System.Drawing.Point(309, 400)
-        Me.redo.Name = "redo"
-        Me.redo.Size = New System.Drawing.Size(69, 40)
-        Me.redo.TabIndex = 25
-        Me.TTen.SetToolTip(Me.redo, "Redo")
-        Me.redo.UseVisualStyleBackColor = False
-        '
-        'undo
-        '
-        Me.undo.BackColor = System.Drawing.Color.Transparent
-        Me.undo.BackgroundImage = Global.Sega.My.Resources.Resources.undo
-        Me.undo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.undo.Enabled = False
-        Me.undo.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.undo.Font = New System.Drawing.Font("Tahoma", 20.0!)
-        Me.undo.ForeColor = System.Drawing.Color.DarkGreen
-        Me.undo.Location = New System.Drawing.Point(234, 400)
-        Me.undo.Name = "undo"
-        Me.undo.Size = New System.Drawing.Size(69, 40)
-        Me.undo.TabIndex = 24
-        Me.TTen.SetToolTip(Me.undo, "Undo")
-        Me.undo.UseVisualStyleBackColor = False
-        '
-        'zoomIn
-        '
-        Me.zoomIn.BackColor = System.Drawing.Color.Transparent
-        Me.zoomIn.BackgroundImage = Global.Sega.My.Resources.Resources.ba
-        Me.zoomIn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.zoomIn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.zoomIn.Location = New System.Drawing.Point(7, 150)
-        Me.zoomIn.Name = "zoomIn"
-        Me.zoomIn.Size = New System.Drawing.Size(40, 40)
-        Me.zoomIn.TabIndex = 141
-        Me.zoomIn.UseVisualStyleBackColor = False
         '
         'sv1
         '
@@ -882,7 +917,6 @@ Partial Class Sega
         'z3
         '
         Me.z3.BackColor = System.Drawing.Color.Transparent
-        'Me.z3.BackgroundImage = Global.Sega.My.Resources.Resources.zx
         Me.z3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.z3.Location = New System.Drawing.Point(312, 78)
         Me.z3.Name = "z3"
@@ -893,7 +927,6 @@ Partial Class Sega
         'z2
         '
         Me.z2.BackColor = System.Drawing.Color.Transparent
-        'Me.z2.BackgroundImage = Global.Sega.My.Resources.Resources.zx
         Me.z2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.z2.Location = New System.Drawing.Point(194, 78)
         Me.z2.Name = "z2"
@@ -904,7 +937,6 @@ Partial Class Sega
         'z1
         '
         Me.z1.BackColor = System.Drawing.Color.Transparent
-        'Me.z1.BackgroundImage = Global.Sega.My.Resources.Resources.zx
         Me.z1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.z1.Location = New System.Drawing.Point(76, 78)
         Me.z1.Name = "z1"
@@ -915,7 +947,6 @@ Partial Class Sega
         'a3
         '
         Me.a3.BackColor = System.Drawing.Color.Transparent
-        'Me.a3.BackgroundImage = Global.Sega.My.Resources.Resources._as
         Me.a3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.a3.Location = New System.Drawing.Point(312, 190)
         Me.a3.Name = "a3"
@@ -927,7 +958,6 @@ Partial Class Sega
         'a2
         '
         Me.a2.BackColor = System.Drawing.Color.Transparent
-        'Me.a2.BackgroundImage = Global.Sega.My.Resources.Resources._as
         Me.a2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.a2.Location = New System.Drawing.Point(194, 190)
         Me.a2.Name = "a2"
@@ -939,7 +969,6 @@ Partial Class Sega
         'a1
         '
         Me.a1.BackColor = System.Drawing.Color.Transparent
-        'Me.a1.BackgroundImage = Global.Sega.My.Resources.Resources._as
         Me.a1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.a1.Location = New System.Drawing.Point(76, 190)
         Me.a1.Name = "a1"
@@ -951,7 +980,6 @@ Partial Class Sega
         'c3
         '
         Me.c3.BackColor = System.Drawing.Color.Transparent
-        'Me.c3.BackgroundImage = Global.Sega.My.Resources.Resources.cv
         Me.c3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.c3.Location = New System.Drawing.Point(312, 302)
         Me.c3.Name = "c3"
@@ -962,7 +990,6 @@ Partial Class Sega
         'c2
         '
         Me.c2.BackColor = System.Drawing.Color.Transparent
-        'Me.c2.BackgroundImage = Global.Sega.My.Resources.Resources.cv
         Me.c2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.c2.Location = New System.Drawing.Point(194, 302)
         Me.c2.Name = "c2"
@@ -973,13 +1000,44 @@ Partial Class Sega
         'c1
         '
         Me.c1.BackColor = System.Drawing.Color.Transparent
-        'Me.c1.BackgroundImage = Global.Sega.My.Resources.Resources.cv
         Me.c1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.c1.Location = New System.Drawing.Point(76, 302)
         Me.c1.Name = "c1"
         Me.c1.Size = New System.Drawing.Size(77, 77)
         Me.c1.TabIndex = 40
         Me.c1.TabStop = False
+        '
+        'redo
+        '
+        Me.redo.BackColor = System.Drawing.Color.Transparent
+        Me.redo.BackgroundImage = Global.Sega.My.Resources.Resources.redo
+        Me.redo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.redo.Enabled = False
+        Me.redo.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.redo.Font = New System.Drawing.Font("Tahoma", 20.0!)
+        Me.redo.ForeColor = System.Drawing.Color.DarkGreen
+        Me.redo.Location = New System.Drawing.Point(309, 400)
+        Me.redo.Name = "redo"
+        Me.redo.Size = New System.Drawing.Size(69, 40)
+        Me.redo.TabIndex = 25
+        Me.TTen.SetToolTip(Me.redo, "Redo")
+        Me.redo.UseVisualStyleBackColor = False
+        '
+        'undo
+        '
+        Me.undo.BackColor = System.Drawing.Color.Transparent
+        Me.undo.BackgroundImage = Global.Sega.My.Resources.Resources.undo
+        Me.undo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.undo.Enabled = False
+        Me.undo.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.undo.Font = New System.Drawing.Font("Tahoma", 20.0!)
+        Me.undo.ForeColor = System.Drawing.Color.DarkGreen
+        Me.undo.Location = New System.Drawing.Point(234, 400)
+        Me.undo.Name = "undo"
+        Me.undo.Size = New System.Drawing.Size(69, 40)
+        Me.undo.TabIndex = 24
+        Me.TTen.SetToolTip(Me.undo, "Undo")
+        Me.undo.UseVisualStyleBackColor = False
         '
         'rr
         '
@@ -1054,73 +1112,6 @@ Partial Class Sega
         Me.PB1.Size = New System.Drawing.Size(50, 47)
         Me.PB1.TabIndex = 50
         Me.PB1.TabStop = False
-        '
-        'TTar
-        '
-        Me.TTar.Active = False
-        Me.TTar.AutomaticDelay = 1000
-        '
-        'lnsAr
-        '
-        Me.lnsAr.AutoSize = True
-        Me.lnsAr.Font = New System.Drawing.Font("Tahoma", 13.0!)
-        Me.lnsAr.Location = New System.Drawing.Point(111, 481)
-        Me.lnsAr.Name = "lnsAr"
-        Me.lnsAr.Size = New System.Drawing.Size(335, 22)
-        Me.lnsAr.TabIndex = 115
-        Me.lnsAr.Text = "عندما لا يفز أحد: الذي قام باللعب أولاً، يلعب"
-        Me.lnsAr.Visible = False
-        '
-        'LfAr
-        '
-        Me.LfAr.AutoSize = True
-        Me.LfAr.Font = New System.Drawing.Font("Tahoma", 15.0!)
-        Me.LfAr.ForeColor = System.Drawing.Color.Blue
-        Me.LfAr.Location = New System.Drawing.Point(145, 520)
-        Me.LfAr.Name = "LfAr"
-        Me.LfAr.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.LfAr.Size = New System.Drawing.Size(261, 24)
-        Me.LfAr.TabIndex = 142
-        Me.LfAr.Text = "سرعة الحاسوب بالملي ثانية :"
-        Me.LfAr.Visible = False
-        '
-        'nsAr
-        '
-        Me.nsAr.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.nsAr.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.nsAr.Font = New System.Drawing.Font("Tahoma", 13.0!)
-        Me.nsAr.FormattingEnabled = True
-        Me.nsAr.Items.AddRange(New Object() {"أولا", "آخرا"})
-        Me.nsAr.Location = New System.Drawing.Point(34, 478)
-        Me.nsAr.Name = "nsAr"
-        Me.nsAr.Size = New System.Drawing.Size(77, 29)
-        Me.nsAr.TabIndex = 143
-        Me.nsAr.Visible = False
-        '
-        'fstAr
-        '
-        Me.fstAr.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.fstAr.Font = New System.Drawing.Font("Tahoma", 15.0!)
-        Me.fstAr.ForeColor = System.Drawing.Color.Blue
-        Me.fstAr.Location = New System.Drawing.Point(47, 516)
-        Me.fstAr.Maximum = New Decimal(New Integer() {350, 0, 0, 0})
-        Me.fstAr.Name = "fstAr"
-        Me.fstAr.Size = New System.Drawing.Size(85, 32)
-        Me.fstAr.TabIndex = 144
-        Me.fstAr.Value = New Decimal(New Integer() {175, 0, 0, 0})
-        Me.fstAr.Visible = False
-        '
-        'zoomOut
-        '
-        Me.zoomOut.BackColor = System.Drawing.Color.Transparent
-        Me.zoomOut.BackgroundImage = Global.Sega.My.Resources.Resources.sa
-        Me.zoomOut.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.zoomOut.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.zoomOut.Location = New System.Drawing.Point(7, 196)
-        Me.zoomOut.Name = "zoomOut"
-        Me.zoomOut.Size = New System.Drawing.Size(40, 40)
-        Me.zoomOut.TabIndex = 145
-        Me.zoomOut.UseVisualStyleBackColor = False
         '
         'Sega
         '
@@ -1210,8 +1201,9 @@ Partial Class Sega
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.MaximizeBox = False
         Me.Name = "Sega"
-        Me.Text = "SEAGA EGY 2023 v1.0.371.3317"
+        Me.Text = "SEAGA EGY 2023 v1.1.371.3317"
         CType(Me.fst, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.fstAr, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.im2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.im1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.im0, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1234,7 +1226,6 @@ Partial Class Sega
         CType(Me.c1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Pwait, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PB1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.fstAr, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

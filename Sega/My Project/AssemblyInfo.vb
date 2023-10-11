@@ -8,7 +8,7 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("SEAGA EGY 2023 v1.0")>
+<Assembly: AssemblyTitle("SEAGA EGY 2023 v1.1")>
 <Assembly: AssemblyDescription("SEAGA EGY 2023")>
 <Assembly: AssemblyCompany("Family Kings and Queens of Computer")>
 <Assembly: AssemblyProduct("SEAGA EGY 2023")>
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("1.0.371.3317")>
-<Assembly: AssemblyFileVersion("1.0.371.3317")>
+<Assembly: AssemblyVersion("1.1.371.3317")>
+<Assembly: AssemblyFileVersion("1.1.371.3317")>
