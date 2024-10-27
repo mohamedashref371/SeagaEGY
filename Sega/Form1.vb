@@ -31,9 +31,10 @@
     Dim images As New List(Of Bitmap) ' from My.Resources
     Dim readyImages As New List(Of Bitmap)
 
+    ' https://app.mediafire.com/q1gvy1de2rybq
+
     Private Sub Sega_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Icon = Icon.FromHandle(My.Resources.cv.GetHicon())
-        If Not CheckHash(Sega2.LMhmd.Text, Sega2.Ihash) Then End
         ld.Enabled = My.Computer.FileSystem.FileExists(sg + "save.seaga")
         thePieces.AddRange({PB1, z1, z2, z3, a1, a2, a3, c1, c2, c3})
         For i = 0 To thePieces.Count - 1
@@ -1335,9 +1336,6 @@ break:
             NoS.Text = "خطوات كلا اللاعبين تكون متساوية"
             computer.Text = "الحاسوب"
             wait.Text = "...إنتظر"
-            Sega2.Text = "حول"
-            Sega2.downloadLink.Text = "إضغط هنا  لتحميل آخر إصدار من اللعبة"
-            Sega2.downloadLink.Location = New Point(120, 9)
             level.Items.Clear()
             level.Items.AddRange({"غبي", "مبتدئ", "متوسط", "جيد", "متقدم", "جيد جدا", "ممتاز", "محترف"})
             level.RightToLeft = RightToLeft.Yes
@@ -1374,9 +1372,6 @@ break:
             NoS.Text = "The steps of both players be equal"
             computer.Text = "Computer"
             wait.Text = "Wait..."
-            Sega2.Text = "About"
-            Sega2.downloadLink.Text = "Click here  to download the latest version of the game"
-            Sega2.downloadLink.Location = New Point(58, 9)
             level.Items.Clear()
             level.Items.AddRange({"Stupid", "Beginner", "Medium", "Good", "Advanced", "Very Good", "Excellent", "Professional"})
             level.RightToLeft = RightToLeft.No
@@ -1903,12 +1898,7 @@ break:
 
 #Region "Buttons"
     Private Sub Bu1_Click(sender As Object, e As EventArgs) Handles Bu1.Click
-        If lang.Text = "English" Then
-            Sega2.Text = "حول"
-            Sega2.downloadLink.Text = "إضغط هنا  لتحميل آخر إصدار من اللعبة"
-            Sega2.downloadLink.Location = New Point(120, 9)
-        End If
-        Sega2.Show()
+        Process.Start("https://github.com/mohamedashref371/SeagaEGY/releases/latest")
     End Sub
 
     Private Sub VaH_CheckedChanged(sender As Object, e As EventArgs) Handles VaH.CheckedChanged
@@ -2123,7 +2113,7 @@ And If you press the writing boxes, press F11 to remove the pressure.", msg, "Ho
     End Sub
 
     Private Sub XO5()
-        Dim bitmap As Bitmap = New Bitmap(44, 100)
+        Dim bitmap As New Bitmap(44, 100)
         Graphics.FromImage(bitmap).DrawImage(images(0), 0, 0, 44, 44)
         Graphics.FromImage(bitmap).DrawImage(images(1), 0, 56, 44, 44)
         Graphics.FromImage(bitmap).DrawImage(images(3), New Point(2, 17))
