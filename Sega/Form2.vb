@@ -6,10 +6,10 @@
     End Sub
 
     Private Sub I_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles I.LinkClicked
-        Process.Start("https://facebook.com/Mohamed3713317")
+        Process.Start("https://www.youtube.com/channel/UCS2-gBRB3I7K6xA-Vuf-lGQ")
     End Sub
 
-    Private Sub ckh_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles ckh.LinkClicked
+    Private Sub DownloadLink_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles downloadLink.LinkClicked
         Process.Start("https://github.com/mohamedashref371/SeagaEGY/releases/latest")
     End Sub
 

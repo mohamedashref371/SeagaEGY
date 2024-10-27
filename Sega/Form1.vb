@@ -1336,8 +1336,8 @@ break:
             computer.Text = "الحاسوب"
             wait.Text = "...إنتظر"
             Sega2.Text = "حول"
-            Sega2.ckh.Text = "إضغط هنا  لتحميل آخر إصدار من اللعبة"
-            Sega2.ckh.Location = New Point(120, 9)
+            Sega2.downloadLink.Text = "إضغط هنا  لتحميل آخر إصدار من اللعبة"
+            Sega2.downloadLink.Location = New Point(120, 9)
             level.Items.Clear()
             level.Items.AddRange({"غبي", "مبتدئ", "متوسط", "جيد", "متقدم", "جيد جدا", "ممتاز", "محترف"})
             level.RightToLeft = RightToLeft.Yes
@@ -1375,8 +1375,8 @@ break:
             computer.Text = "Computer"
             wait.Text = "Wait..."
             Sega2.Text = "About"
-            Sega2.ckh.Text = "Click here  to download the latest version of the game"
-            Sega2.ckh.Location = New Point(58, 9)
+            Sega2.downloadLink.Text = "Click here  to download the latest version of the game"
+            Sega2.downloadLink.Location = New Point(58, 9)
             level.Items.Clear()
             level.Items.AddRange({"Stupid", "Beginner", "Medium", "Good", "Advanced", "Very Good", "Excellent", "Professional"})
             level.RightToLeft = RightToLeft.No
@@ -1905,8 +1905,8 @@ break:
     Private Sub Bu1_Click(sender As Object, e As EventArgs) Handles Bu1.Click
         If lang.Text = "English" Then
             Sega2.Text = "حول"
-            Sega2.ckh.Text = "إضغط هنا  لتحميل آخر إصدار من اللعبة"
-            Sega2.ckh.Location = New Point(120, 9)
+            Sega2.downloadLink.Text = "إضغط هنا  لتحميل آخر إصدار من اللعبة"
+            Sega2.downloadLink.Location = New Point(120, 9)
         End If
         Sega2.Show()
     End Sub
