@@ -344,7 +344,7 @@
         zxcvi(4)
     End Sub
 
-    Private Sub a1_Clic(sender As Object, e As EventArgs) Handles a1.MouseMove, a1.MouseEnter, a1.MouseHover
+    Private Sub a1_Mouse(sender As Object, e As EventArgs) Handles a1.MouseMove, a1.MouseEnter, a1.MouseHover
         If hold Then zxcvi(4)
     End Sub
 
@@ -352,7 +352,7 @@
         zxcvi(5)
     End Sub
 
-    Private Sub a2_Clic(sender As Object, e As EventArgs) Handles a2.MouseMove, a2.MouseEnter, a2.MouseHover
+    Private Sub a2_Mouse(sender As Object, e As EventArgs) Handles a2.MouseMove, a2.MouseEnter, a2.MouseHover
         If hold Then zxcvi(5)
     End Sub
 
@@ -360,7 +360,7 @@
         zxcvi(6)
     End Sub
 
-    Private Sub a3_Clic(sender As Object, e As EventArgs) Handles a3.MouseMove, a3.MouseEnter, a3.MouseHover
+    Private Sub a3_Mouse(sender As Object, e As EventArgs) Handles a3.MouseMove, a3.MouseEnter, a3.MouseHover
         If hold Then zxcvi(6)
     End Sub
 #End Region
