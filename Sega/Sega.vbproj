@@ -65,7 +65,7 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>seaga.ico</ApplicationIcon>
+    <ApplicationIcon>emojicat-seaga.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
@@ -101,6 +101,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdditionalImages.vb" />
     <Compile Include="Crypto.vb" />
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
@@ -185,6 +186,25 @@
     <None Include="Resources\win.png" />
     <None Include="Resources\XO3.png" />
     <None Include="Resources\XO7.png" />
+    <Content Include="emojicat-seaga.ico" />
+    <None Include="Resources\cs.png" />
+    <None Include="Resources\cs3.png" />
+    <None Include="Resources\cs4.png" />
+    <None Include="Resources\cv_.png" />
+    <None Include="Resources\cv2.png" />
+    <None Include="Resources\cv3.png" />
+    <None Include="Resources\cv4.png" />
+    <None Include="Resources\cv23.png" />
+    <None Include="Resources\cv24.png" />
+    <None Include="Resources\zs.png" />
+    <None Include="Resources\zs3.png" />
+    <None Include="Resources\zs4.png" />
+    <None Include="Resources\zx_.png" />
+    <None Include="Resources\zx2.png" />
+    <None Include="Resources\zx3.png" />
+    <None Include="Resources\zx4.png" />
+    <None Include="Resources\zx23.png" />
+    <None Include="Resources\zx24.png" />
     <Content Include="seaga.ico" />
     <Content Include="zx.ico" />
   </ItemGroup>
