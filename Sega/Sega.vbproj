@@ -185,7 +185,6 @@
     <None Include="Resources\win.png" />
     <None Include="Resources\XO3.png" />
     <None Include="Resources\XO7.png" />
-    <Content Include="emojicat-seaga.ico" />
     <Content Include="seaga.ico" />
     <Content Include="zx.ico" />
   </ItemGroup>
