@@ -32,7 +32,6 @@ Partial Class Sega2
         Me.f2 = New System.Windows.Forms.Label()
         Me.f3 = New System.Windows.Forms.Label()
         Me.f4 = New System.Windows.Forms.Label()
-        Me.dy = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'LMhmd
@@ -148,19 +147,6 @@ Partial Class Sega2
         Me.f4.Size = New System.Drawing.Size(25, 25)
         Me.f4.TabIndex = 37
         '
-        'dy
-        '
-        Me.dy.AutoSize = True
-        Me.dy.BackColor = System.Drawing.Color.Transparent
-        Me.dy.Font = New System.Drawing.Font("Tahoma", 17.0!)
-        Me.dy.ForeColor = System.Drawing.Color.White
-        Me.dy.Location = New System.Drawing.Point(143, 42)
-        Me.dy.Name = "dy"
-        Me.dy.Size = New System.Drawing.Size(240, 28)
-        Me.dy.TabIndex = 38
-        Me.dy.Text = "هذا اليوم هو يوم ميلادي"
-        Me.dy.Visible = False
-        '
         'Sega2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -177,7 +163,6 @@ Partial Class Sega2
         Me.Controls.Add(Me.LMhmd)
         Me.Controls.Add(Me.I)
         Me.Controls.Add(Me.MyP)
-        Me.Controls.Add(Me.dy)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.Name = "Sega2"
@@ -197,5 +182,4 @@ Partial Class Sega2
     Friend WithEvents f2 As Label
     Friend WithEvents f3 As Label
     Friend WithEvents f4 As Label
-    Friend WithEvents dy As Label
 End Class
