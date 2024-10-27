@@ -41,7 +41,7 @@
         Next
         images.AddRange({My.Resources.zx, My.Resources.cv, My.Resources.Rotat, My.Resources.XO3, My.Resources.XO7, My.Resources._as, My.Resources.sleep, My.Resources.win})
         CreateReadyImages()
-        Icon = Icon.FromHandle(readyImages(12).GetHicon())
+        Icon = Icon.FromHandle(readyImages(indexOfBlueStart).GetHicon())
 
         ' theGame(0) is player role, 10 is selected piece, 11-13, 17-19 is movementOfPieces, 14 is level, 15 is who started playing first, 16 is style of game
         theGame.AddRange({3, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 0, 0, 0, 4, 3, 0, 0, 0, 0, 2})
@@ -413,7 +413,7 @@
             End If
             Dim rand = New Random
             theGame(15) = rand.Next(0, 2)
-            PB1.BackgroundImage = images(theGame(15))
+            PB1.BackgroundImage = readyImages(theGame(15) * indexOfBlueStart)
             T1.Start()
         Else
             T1.Stop()
@@ -440,14 +440,14 @@
 
     Private Sub T1_Tick(sender As Object, e As EventArgs) Handles T1.Tick
         theGame(15) = 1 - theGame(15)
-        PB1.BackgroundImage = images(theGame(15))
+        PB1.BackgroundImage = readyImages(theGame(15) * indexOfBlueStart)
     End Sub
 
     Sub ox2()
         PB1.BackgroundImage = Nothing : OX.BackgroundImage = Nothing
         If theGame(0) > 2 Then Exit Sub
-        PB1.BackgroundImage = images(theGame(0))
-        OX.BackgroundImage = images(1 - theGame(0))
+        PB1.BackgroundImage = readyImages(theGame(0) * indexOfBlueStart)
+        OX.BackgroundImage = readyImages((1 - theGame(0)) * indexOfBlueStart)
     End Sub
 
     Sub Positions()
@@ -661,8 +661,8 @@
                         GetImage(1, sleep:=True) : GetImage(2, sleep:=True) : GetImage(3, sleep:=True)
                         GetImage(7, sleep:=True) : GetImage(8, sleep:=True) : GetImage(9, sleep:=True)
                         theGame(0) = sn
-                        PB1.BackgroundImage = images(sn)
-                        OX.BackgroundImage = images(1 - sn)
+                        PB1.BackgroundImage = readyImages(sn * indexOfBlueStart)
+                        OX.BackgroundImage = readyImages((1 - sn) * indexOfBlueStart)
                     Else
                         win1.Text = win1.Text + 1
                         MsgBox(txt + name1.Text, msg, txt1) '
@@ -679,8 +679,8 @@
                         GetImage(1, sleep:=True) : GetImage(2, sleep:=True) : GetImage(3, sleep:=True)
                         GetImage(7, sleep:=True) : GetImage(8, sleep:=True) : GetImage(9, sleep:=True)
                         theGame(0) = 1 - sn
-                        PB1.BackgroundImage = images(theGame(0))
-                        OX.BackgroundImage = images(1 - theGame(0))
+                        PB1.BackgroundImage = readyImages(theGame(0) * indexOfBlueStart)
+                        OX.BackgroundImage = readyImages((1 - theGame(0)) * indexOfBlueStart)
                     Else
                         win2.Text = win2.Text + 1
                         MsgBox(txt + name2.Text, msg, txt1) '
@@ -717,6 +717,7 @@
         Next
     End Sub
 
+    Dim indexOfBlueStart = 12
     Sub CreateReadyImages()
         readyImages.Clear()
 
@@ -2115,7 +2116,7 @@ And If you press the writing boxes, press F11 to remove the pressure.", msg, "Ho
     Private Sub XO5()
         Dim bitmap As New Bitmap(44, 100)
         Graphics.FromImage(bitmap).DrawImage(readyImages(0), 0, 0, 44, 44)
-        Graphics.FromImage(bitmap).DrawImage(readyImages(12), 0, 56, 44, 44)
+        Graphics.FromImage(bitmap).DrawImage(readyImages(indexOfBlueStart), 0, 56, 44, 44)
         Graphics.FromImage(bitmap).DrawImage(images(3), New Point(2, 17))
         Graphics.FromImage(bitmap).DrawImage(images(4), New Point(2, 17))
         XO.BackgroundImage = Nothing : XO.BackgroundImage = bitmap
