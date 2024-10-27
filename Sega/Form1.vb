@@ -18,7 +18,7 @@
     Dim buttons As Integer = 1
     Dim bgClr As Integer = 245
     Dim theBest As Integer = 0
-    ' theGame(0) is player role, 10 is selected piece, 11-13, 17-19 is movementOfPieces, 14 is level, 15 is who started playing first, 16 is style of game
+
     Dim theGame As New List(Of Integer)
     Dim fastGame As New List(Of Integer)
     Dim thePieces As New List(Of PictureBox)
@@ -29,7 +29,8 @@
     Dim bitmap As Bitmap
     Dim zx As Boolean = False
     Dim cv As Boolean = False
-    Dim pictures As New List(Of Bitmap) ' Pictures of Pieces
+    Dim images As New List(Of Bitmap) ' from My.Resources
+    Dim readyImages As New List(Of Bitmap)
 
     Private Sub Sega_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Icon = Icon.FromHandle(My.Resources.cv.GetHicon())
@@ -39,7 +40,9 @@
         For i = 0 To thePieces.Count - 1
             locations.Add(thePieces(i).Location)
         Next
-        pictures.AddRange({My.Resources.zx, My.Resources.cv, My.Resources.Rotat, My.Resources.XO3, My.Resources.XO7})
+        images.AddRange({My.Resources.zx, My.Resources.cv, My.Resources.Rotat, My.Resources.XO3, My.Resources.XO7, My.Resources._as, My.Resources.sleep, My.Resources.win})
+
+        ' theGame(0) is player role, 10 is selected piece, 11-13, 17-19 is movementOfPieces, 14 is level, 15 is who started playing first, 16 is style of game
         theGame.AddRange({3, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 0, 0, 0, 4, 3, 0, 0, 0, 0, 2})
         fastGame.AddRange({0, 1, 2, 3, 4, 5, 6, 7, 8, 9})
         iLevel() : plyFrstN() : nsn() ' سيكون هنا عربي وانجليزي بدل هذا السطر
@@ -47,7 +50,7 @@
         Text = Text.Replace(".371.3317", "")
     End Sub
 
-#Region "Keys and Mouse 🤷‍♂️"
+#Region "Keys and Mouse 🤷‍"
     Private Sub nm12_Key(sender As Object, e As KeyEventArgs) Handles name1.KeyDown, name2.KeyDown, fst.KeyDown, fstAr.KeyDown
         If e.KeyCode = Keys.F11 Then
             keyboard = True
@@ -86,7 +89,7 @@
             ElseIf e.KeyCode = Keys.F9 Then
                 theBest = Not theBest
             ElseIf e.KeyCode = Keys.F10 Then
-                If help.Visible = True Then
+                If help.Visible Then
                     helping()
                 End If
             ElseIf e.KeyCode = Keys.F5 Then
@@ -409,7 +412,7 @@
             End If
             Dim rand = New Random
             theGame(15) = rand.Next(0, 2)
-            PB1.BackgroundImage = pictures(theGame(15))
+            PB1.BackgroundImage = images(theGame(15))
             T1.Start()
         Else
             T1.Stop()
@@ -436,14 +439,14 @@
 
     Private Sub T1_Tick(sender As Object, e As EventArgs) Handles T1.Tick
         theGame(15) = 1 - theGame(15)
-        PB1.BackgroundImage = pictures(theGame(15))
+        PB1.BackgroundImage = images(theGame(15))
     End Sub
 
     Sub ox2()
         PB1.BackgroundImage = Nothing : OX.BackgroundImage = Nothing
         If theGame(0) > 2 Then Exit Sub
-        PB1.BackgroundImage = pictures(theGame(0))
-        OX.BackgroundImage = pictures(1 - theGame(0))
+        PB1.BackgroundImage = images(theGame(0))
+        OX.BackgroundImage = images(1 - theGame(0))
     End Sub
 
     Sub Positions()
@@ -657,8 +660,8 @@
                         zc(1, sleep:=True) : zc(2, sleep:=True) : zc(3, sleep:=True)
                         zc(7, sleep:=True) : zc(8, sleep:=True) : zc(9, sleep:=True)
                         theGame(0) = sn
-                        PB1.BackgroundImage = pictures(sn)
-                        OX.BackgroundImage = pictures(1 - sn)
+                        PB1.BackgroundImage = images(sn)
+                        OX.BackgroundImage = images(1 - sn)
                     Else
                         win1.Text = win1.Text + 1
                         MsgBox(txt + name1.Text, msg, txt1) '
@@ -675,8 +678,8 @@
                         zc(1, sleep:=True) : zc(2, sleep:=True) : zc(3, sleep:=True)
                         zc(7, sleep:=True) : zc(8, sleep:=True) : zc(9, sleep:=True)
                         theGame(0) = 1 - sn
-                        PB1.BackgroundImage = pictures(theGame(0))
-                        OX.BackgroundImage = pictures(1 - theGame(0))
+                        PB1.BackgroundImage = images(theGame(0))
+                        OX.BackgroundImage = images(1 - theGame(0))
                     Else
                         win2.Text = win2.Text + 1
                         MsgBox(txt + name2.Text, msg, txt1) '
@@ -715,17 +718,17 @@
 
     Sub zc(z As Integer, Optional selected As Boolean = False, Optional sleep As Boolean = False, Optional win As Boolean = False) ' image of piece   ' slow
         If z <= 3 Then
-            bitmap = New Bitmap(pictures(0), New Size(256, 256))
+            bitmap = New Bitmap(images(0))
         ElseIf z >= 7 Then
-            bitmap = New Bitmap(pictures(1), New Size(256, 256))
+            bitmap = New Bitmap(images(1))
         Else
-            bitmap = New Bitmap(My.Resources._as, New Size(256, 256))
+            bitmap = New Bitmap(images(5))
         End If
-        If selected Then Graphics.FromImage(bitmap).DrawImage(My.Resources._as, New Point(0, 0))
+        If selected Then Graphics.FromImage(bitmap).DrawImage(images(5), New Point(0, 0))
         If sleep Then
-            Graphics.FromImage(bitmap).DrawImage(My.Resources.sleep, New Point(196, 0))
+            Graphics.FromImage(bitmap).DrawImage(images(6), New Point(images(0).Width - images(6).Width, 0))
         ElseIf win Then
-            Graphics.FromImage(bitmap).DrawImage(My.Resources.win, New Point(196, 0))
+            Graphics.FromImage(bitmap).DrawImage(images(7), New Point(images(0).Width - images(7).Width, 0))
         End If
         thePieces(z).BackgroundImage = bitmap
     End Sub
@@ -1628,7 +1631,7 @@ break:
 
     Sub helping()
         If Not busy Then
-            If ok1.Checked = True AndAlso ok2.Checked = True Then
+            If ok1.Checked AndAlso ok2.Checked Then
                 If theGame(0) = "0" Then
                     busy = True
                     swapping()
@@ -2011,16 +2014,17 @@ And If you press the writing boxes, press F11 to remove the pressure.", msg, "Ho
 
     Private Sub player1_Click(sender As Object, e As EventArgs) Handles player1.Click
         If zx Then
-            switchColorRG(pictures(0))
-            switchColorRG(pictures(3))
+            switchColorRG(images(0))
+            switchColorRG(images(3))
         Else
-            switchColorGB(pictures(0))
-            switchColorGB(pictures(3))
+            switchColorGB(images(0))
+            switchColorGB(images(3))
         End If
         zx = Not zx
 
         XO5()
-        clr = pictures(0).GetPixel(78, 78)
+        Dim num = images(0).Width * 0.3
+        clr = images(0).GetPixel(num, num)
         player1.ForeColor = clr
         name1.ForeColor = clr
         win1.ForeColor = clr
@@ -2032,20 +2036,21 @@ And If you press the writing boxes, press F11 to remove the pressure.", msg, "Ho
     Private Sub player2_Click(sender As Object, e As EventArgs) Handles player2.Click
         TTen.SetToolTip(player2, "") : TTar.SetToolTip(player2, "")
         If cv Then
-            switchColorRG(pictures(1))
-            switchColorRG(pictures(2))
-            switchColorRG(pictures(4))
+            switchColorRG(images(1))
+            switchColorRG(images(2))
+            switchColorRG(images(4))
         Else
-            switchColorGB(pictures(1))
-            switchColorGB(pictures(2))
-            switchColorGB(pictures(4))
+            switchColorGB(images(1))
+            switchColorGB(images(2))
+            switchColorGB(images(4))
         End If
         cv = Not cv
 
-        Pwait.BackgroundImage = pictures(2)
-        Icon = Icon.FromHandle(pictures(1).GetHicon())
+        Pwait.BackgroundImage = images(2)
+        Icon = Icon.FromHandle(images(1).GetHicon())
         XO5()
-        clr = pictures(1).GetPixel(78, 78)
+        Dim num = images(1).Width * 0.3
+        clr = images(1).GetPixel(num, num)
         player2.ForeColor = clr
         name2.ForeColor = clr
         intelligence.ForeColor = clr
@@ -2062,10 +2067,10 @@ And If you press the writing boxes, press F11 to remove the pressure.", msg, "Ho
 
     Private Sub XO5()
         bitmap = New Bitmap(44, 100)
-        Graphics.FromImage(bitmap).DrawImage(pictures(0), 0, 0, 44, 44)
-        Graphics.FromImage(bitmap).DrawImage(pictures(1), 0, 56, 44, 44)
-        Graphics.FromImage(bitmap).DrawImage(pictures(3), New Point(2, 17))
-        Graphics.FromImage(bitmap).DrawImage(pictures(4), New Point(2, 17))
+        Graphics.FromImage(bitmap).DrawImage(images(0), 0, 0, 44, 44)
+        Graphics.FromImage(bitmap).DrawImage(images(1), 0, 56, 44, 44)
+        Graphics.FromImage(bitmap).DrawImage(images(3), New Point(2, 17))
+        Graphics.FromImage(bitmap).DrawImage(images(4), New Point(2, 17))
         XO.BackgroundImage = Nothing : XO.BackgroundImage = bitmap
     End Sub
 #End Region
