@@ -26,7 +26,6 @@
     Dim originalLocations As List(Of Point)
 
     Dim clr As Color
-    Dim bitmap As Bitmap
     Dim zx As Boolean = False
     Dim cv As Boolean = False
     Dim images As New List(Of Bitmap) ' from My.Resources
@@ -41,6 +40,7 @@
             locations.Add(thePieces(i).Location)
         Next
         images.AddRange({My.Resources.zx, My.Resources.cv, My.Resources.Rotat, My.Resources.XO3, My.Resources.XO7, My.Resources._as, My.Resources.sleep, My.Resources.win})
+        CreateReadyImages()
 
         ' theGame(0) is player role, 10 is selected piece, 11-13, 17-19 is movementOfPieces, 14 is level, 15 is who started playing first, 16 is style of game
         theGame.AddRange({3, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 0, 0, 0, 4, 3, 0, 0, 0, 0, 2})
@@ -370,7 +370,7 @@
             theGame(10) = i
             loc()
         ElseIf theGame(10) > 0 AndAlso (i = 4 OrElse i = 5 OrElse i = 6) Then
-            moving(i, theGame(10), 1)
+            PieceMoving(i, theGame(10), 1)
             If theGame(0) = 0 Then
                 step1.Text = step1.Text + 1
                 theGame(0) = 1
@@ -386,13 +386,13 @@
         End If
     End Sub
 
-    Sub moving(a As Integer, zc As Integer, plus As Integer)
+    Sub PieceMoving(a As Integer, zc As Integer, plus As Integer)
         temp = theGame(a) : theGame(a) = theGame(zc) : theGame(zc) = temp
         temp = fastGame(theGame(a)) : fastGame(theGame(a)) = fastGame(theGame(zc)) : fastGame(theGame(zc)) = temp
         theGame(zc + 10) += plus
     End Sub
 
-    Sub fastGameUpdate()
+    Sub FastGameUpdate()
         For i = 1 To 9
             fastGame(theGame(i)) = i
         Next
@@ -466,7 +466,7 @@
                 theGame(10 + i) = theGame(16)
             End If
         Next
-        fastGameUpdate() ' new
+        FastGameUpdate() ' new
     End Sub
 
     Private Sub Rest_Click(sender As Object, e As EventArgs) Handles rest.Click
@@ -627,14 +627,14 @@
         If Not NoS.Checked OrElse (NoS.Checked AndAlso step1.Text = step2.Text AndAlso theGame(20) = 2) Then
             If lwz = 0 AndAlso lwc = 2 Then
                 win1.Text += 1
-                zc(1, win:=True) : zc(2, win:=True) : zc(3, win:=True)
+                GetImage(1, win:=True) : GetImage(2, win:=True) : GetImage(3, win:=True)
                 MsgBox(txt + name1.Text, msg, txt1) '
                 wn37()
                 Rst()
             End If
             If lwc = 1 AndAlso lwz = 2 Then
                 win2.Text += 1
-                zc(7, win:=True) : zc(8, win:=True) : zc(9, win:=True)
+                GetImage(7, win:=True) : GetImage(8, win:=True) : GetImage(9, win:=True)
                 MsgBox(txt + name2.Text, msg, txt1) '
                 wn37()
                 Rst()
@@ -642,11 +642,11 @@
         ElseIf step1.Text <> step2.Text AndAlso NoS.Checked AndAlso theGame(20) = 2 Then
             If lwz = 0 Then
                 If step1.Text = step2.Text + 1 AndAlso theGame(0) = 1 Then theGame(20) = 0
-                zc(1, win:=True) : zc(2, win:=True) : zc(3, win:=True)
+                GetImage(1, win:=True) : GetImage(2, win:=True) : GetImage(3, win:=True)
             End If
             If lwc = 1 Then
                 If step2.Text = step1.Text + 1 AndAlso theGame(0) = 0 Then theGame(20) = 1
-                zc(7, win:=True) : zc(8, win:=True) : zc(9, win:=True)
+                GetImage(7, win:=True) : GetImage(8, win:=True) : GetImage(9, win:=True)
             End If
         ElseIf theGame(20) < 2 Then
             If step1.Text = step2.Text Then
@@ -657,8 +657,8 @@
                         nf()
                         rf()
                         theGame(20) = 2
-                        zc(1, sleep:=True) : zc(2, sleep:=True) : zc(3, sleep:=True)
-                        zc(7, sleep:=True) : zc(8, sleep:=True) : zc(9, sleep:=True)
+                        GetImage(1, sleep:=True) : GetImage(2, sleep:=True) : GetImage(3, sleep:=True)
+                        GetImage(7, sleep:=True) : GetImage(8, sleep:=True) : GetImage(9, sleep:=True)
                         theGame(0) = sn
                         PB1.BackgroundImage = images(sn)
                         OX.BackgroundImage = images(1 - sn)
@@ -675,8 +675,8 @@
                         nf()
                         rf()
                         theGame(20) = 2
-                        zc(1, sleep:=True) : zc(2, sleep:=True) : zc(3, sleep:=True)
-                        zc(7, sleep:=True) : zc(8, sleep:=True) : zc(9, sleep:=True)
+                        GetImage(1, sleep:=True) : GetImage(2, sleep:=True) : GetImage(3, sleep:=True)
+                        GetImage(7, sleep:=True) : GetImage(8, sleep:=True) : GetImage(9, sleep:=True)
                         theGame(0) = 1 - sn
                         PB1.BackgroundImage = images(theGame(0))
                         OX.BackgroundImage = images(1 - theGame(0))
@@ -716,7 +716,36 @@
         Next
     End Sub
 
-    Sub zc(z As Integer, Optional selected As Boolean = False, Optional sleep As Boolean = False, Optional win As Boolean = False) ' image of piece   ' slow
+    Sub CreateReadyImages()
+        readyImages.Clear()
+
+
+        readyImages.Add(CreateImage(1)) ' 000
+        readyImages.Add(CreateImage(1, selected:=True)) ' 001
+        readyImages.Add(CreateImage(1, win:=True)) ' 010
+        readyImages.Add(CreateImage(1, selected:=True, win:=True)) ' 011
+        readyImages.Add(CreateImage(1, sleep:=True)) ' 100 
+        readyImages.Add(CreateImage(1, selected:=True, sleep:=True)) ' 101
+
+        readyImages.Add(CreateImage(5)) ' 6
+        readyImages.Add(CreateImage(5, win:=True))
+        readyImages.Add(CreateImage(5, sleep:=True))
+
+
+        readyImages.Add(CreateImage(5)) ' 9
+        readyImages.Add(CreateImage(5, win:=True))
+        readyImages.Add(CreateImage(5, sleep:=True))
+
+        readyImages.Add(CreateImage(9)) ' 12
+        readyImages.Add(CreateImage(9, selected:=True))
+        readyImages.Add(CreateImage(9, win:=True))
+        readyImages.Add(CreateImage(9, selected:=True, win:=True))
+        readyImages.Add(CreateImage(9, sleep:=True))
+        readyImages.Add(CreateImage(9, selected:=True, sleep:=True))
+    End Sub
+
+    Function CreateImage(z As Integer, Optional sleep As Boolean = False, Optional win As Boolean = False, Optional selected As Boolean = False) As Bitmap
+        Dim bitmap As Bitmap
         If z <= 3 Then
             bitmap = New Bitmap(images(0))
         ElseIf z >= 7 Then
@@ -725,25 +754,33 @@
             bitmap = New Bitmap(images(5))
         End If
         If selected Then Graphics.FromImage(bitmap).DrawImage(images(5), New Point(0, 0))
-        If sleep Then
-            Graphics.FromImage(bitmap).DrawImage(images(6), New Point(images(0).Width - images(6).Width, 0))
-        ElseIf win Then
-            Graphics.FromImage(bitmap).DrawImage(images(7), New Point(images(0).Width - images(7).Width, 0))
+        If sleep Then Graphics.FromImage(bitmap).DrawImage(images(6), New Point(images(0).Width - images(6).Width, 0))
+        If win Then Graphics.FromImage(bitmap).DrawImage(images(7), New Point(images(0).Width - images(7).Width, 0))
+        Return bitmap
+    End Function
+
+    Sub GetImage(z As Integer, Optional sleep As Boolean = False, Optional win As Boolean = False, Optional selected As Boolean = False) ' image of piece   ' slow
+        Dim num As Integer
+        If z <= 3 Then
+            num = Math.Abs(sleep * 4 + win * 2 + selected)
+        ElseIf z >= 7 Then
+            num = 12 + Math.Abs(sleep * 4 + win * 2 + selected)
+        ElseIf theGame(1) = 1 Then
+            num = 9 + Math.Abs(sleep * 2 + win)
+        Else
+            num = 6 + Math.Abs(sleep * 2 + win)
         End If
-        thePieces(z).BackgroundImage = bitmap
+        thePieces(z).BackgroundImage = readyImages(num)
     End Sub
 
     Sub pic()
         For i = 7 To 9
-            zc(i, theGame(10) = i, theGame(10 + i) = 0, lwc = 1)
+            GetImage(i, theGame(10 + i) = 0, lwc = 1, theGame(10) = i)
         Next
         For i = 1 To 3
-            zc(i, theGame(10) = i, theGame(10 + i) = 0, lwz = 0)
+            GetImage(i, theGame(10 + i) = 0, lwz = 0, theGame(10) = i)
         Next
-        zc(4) : zc(5) : zc(6)
-        If theBest >= 4 AndAlso theBest <= 6 Then
-            zc(theBest, win:=True) : theBest = -1
-        End If
+        GetImage(4) : GetImage(5) : GetImage(6)
     End Sub
 
     Sub loc()
@@ -1007,7 +1044,7 @@ theEnd:
             theGame(14) = swap
             swap = -1
             If theGame(0) = 0 Then
-                swapping()
+                PiecesSwapping()
                 For i = 0 To game.Count / 2 - 1
                     game(i * 2 + 1) -= 6
                 Next
@@ -1016,7 +1053,7 @@ theEnd:
         Choosing(game)
     End Sub
 
-    Sub Choosing(ByRef game As List(Of Byte))
+    Sub Choosing(game As List(Of Byte))
         Dim rand = New Random
         Dim choose As Integer = rand.Next(0, game.Count / 2)
         theGame(10) = game(choose * 2 + 1)
@@ -1025,8 +1062,26 @@ theEnd:
         If theBest = 0 OrElse computer.Checked AndAlso theGame(0) = 1 Then
             zxcvi(game(choose * 2))
         Else
-            theBest = game(choose * 2) : loc()
+            Dim num As Integer = theGame(0) * 6
+            If game.Count = 18 AndAlso (theGame(11 + num) > 0 OrElse theGame(12 + num) > 0 OrElse theGame(13 + num) > 0) Then
+                theBest = -2
+            Else
+                theBest = game(choose * 2)
+            End If
+            loc()
+            TheBestUI()
         End If
+    End Sub
+
+    Sub TheBestUI()
+        If theBest >= 4 AndAlso theBest <= 6 Then
+            GetImage(theBest, win:=True)
+        ElseIf theBest = -2 Then
+            GetImage(4, sleep:=True)
+            GetImage(5, sleep:=True)
+            GetImage(6, sleep:=True)
+        End If
+        theBest = -1
     End Sub
 
 #Region "Computer Intelligence Functions"
@@ -1396,7 +1451,7 @@ break:
         sve1()
     End Sub
 
-    Sub LoadG(ByRef file As String)
+    Sub LoadG(file As String)
         Try
             Dim Data As String() = file.Split(split)
             If Data.Length <> 36 Then
@@ -1411,7 +1466,7 @@ break:
             For i = 0 To 20
                 theGame(i) = Data(i + 8) ' 8 to 28
             Next
-            fastGameUpdate() ' new
+            FastGameUpdate() ' new
             VaH.Checked = Data(29) : NoS.Checked = Data(30)
             computer.Checked = Data(31)
             ok1.Checked = Data(32) : ok2.Checked = Data(32) : ok = Data(33)
@@ -1566,7 +1621,7 @@ break:
             theGame(fastGame(4)) = 8
             theGame(fastGame(1)) = 7
             theGame(fastGame(2)) = 4
-            fastGameUpdate()
+            FastGameUpdate()
             loc()
         End If
     End Sub
@@ -1581,7 +1636,7 @@ break:
             theGame(fastGame(8)) = 4
             theGame(fastGame(7)) = 1
             theGame(fastGame(4)) = 2
-            fastGameUpdate()
+            FastGameUpdate()
             loc()
         End If
     End Sub
@@ -1594,7 +1649,7 @@ break:
             theGame(fastGame(3)) = 1
             theGame(fastGame(6)) = 4
             theGame(fastGame(9)) = 7
-            fastGameUpdate()
+            FastGameUpdate()
             loc()
         End If
     End Sub
@@ -1607,14 +1662,14 @@ break:
             theGame(fastGame(7)) = 1
             theGame(fastGame(8)) = 2
             theGame(fastGame(9)) = 3
-            fastGameUpdate()
+            FastGameUpdate()
             loc()
         End If
     End Sub
 #End Region
 
 #Region "cheating"
-    Sub swapping()
+    Sub PiecesSwapping()
         swapSub(1, 7) : swapSub2(11, 17)
         swapSub(2, 8) : swapSub2(12, 18)
         swapSub(3, 9) : swapSub2(13, 19)
@@ -1634,7 +1689,7 @@ break:
             If ok1.Checked AndAlso ok2.Checked Then
                 If theGame(0) = "0" Then
                     busy = True
-                    swapping()
+                    PiecesSwapping()
                     swap = theGame(14)
                     theGame(14) = 7
                     ComputerIntelligence()
@@ -1662,7 +1717,7 @@ break:
                 gh = undo1.Substring(undo1.Length - 2)
                 redo1 += gh
                 undo1 = undo1.Substring(0, undo1.Length - 2)
-                moving(gh(0).ToString, gh(1).ToString, -1)
+                PieceMoving(gh(0).ToString, gh(1).ToString, -1)
                 theGame(20) = 2
                 If theGame(0) = 0 Then
                     theGame(0) = 1
@@ -1700,7 +1755,7 @@ break:
                 gh = redo1.Substring(redo1.Length - 2)
                 undo1 += gh
                 redo1 = redo1.Substring(0, redo1.Length - 2)
-                moving(gh(0).ToString, gh(1).ToString, 1)
+                PieceMoving(gh(0).ToString, gh(1).ToString, 1)
                 If theGame(0) = 0 Then
                     theGame(0) = 1
                 ElseIf theGame(0) = 1 Then
@@ -1728,7 +1783,7 @@ break:
         redoSub()
     End Sub
 
-    Private Sub secret_CheckedChanged(sender As Object, e As EventArgs) Handles secret.CheckedChanged
+    Private Sub Secret_CheckedChanged(sender As Object, e As EventArgs) Handles secret.CheckedChanged
         If secret.Checked Then
             XO.Visible = True : OX.Visible = True
         Else
@@ -1760,7 +1815,7 @@ break:
         If Not busy Then
             If ok1.Checked = True AndAlso ok2.Checked = True Then
                 busy = True
-                swapping()
+                PiecesSwapping()
                 Dim temp As String = step1.Text : step1.Text = step2.Text : step2.Text = temp
                 theGame(0) = 1 - theGame(0)
                 If theGame(15) = 0 Then ' can not be theGame(15) = 1 - theGame(15)
@@ -1992,7 +2047,7 @@ And If you press the writing boxes, press F11 to remove the pressure.", msg, "Ho
 #End Region
 
 #Region "ChangeColors"
-    Sub switchColorRG(picture As Bitmap)
+    Sub SwitchColorRG(picture As Bitmap)
         For i = 0 To picture.Width - 1
             For j = 0 To picture.Height - 1
                 clr = picture.GetPixel(i, j)
@@ -2002,7 +2057,7 @@ And If you press the writing boxes, press F11 to remove the pressure.", msg, "Ho
         Next
     End Sub
 
-    Sub switchColorGB(picture As Bitmap)
+    Sub SwitchColorGB(picture As Bitmap)
         For i = 0 To picture.Width - 1
             For j = 0 To picture.Height - 1
                 clr = picture.GetPixel(i, j)
@@ -2012,15 +2067,16 @@ And If you press the writing boxes, press F11 to remove the pressure.", msg, "Ho
         Next
     End Sub
 
-    Private Sub player1_Click(sender As Object, e As EventArgs) Handles player1.Click
+    Private Sub Player1_Click(sender As Object, e As EventArgs) Handles player1.Click
         If zx Then
-            switchColorRG(images(0))
-            switchColorRG(images(3))
+            SwitchColorRG(images(0))
+            SwitchColorRG(images(3))
         Else
-            switchColorGB(images(0))
-            switchColorGB(images(3))
+            SwitchColorGB(images(0))
+            SwitchColorGB(images(3))
         End If
         zx = Not zx
+        CreateReadyImages()
 
         XO5()
         Dim num = images(0).Width * 0.3
@@ -2033,18 +2089,19 @@ And If you press the writing boxes, press F11 to remove the pressure.", msg, "Ho
         pic() : ox2()
     End Sub
 
-    Private Sub player2_Click(sender As Object, e As EventArgs) Handles player2.Click
+    Private Sub Player2_Click(sender As Object, e As EventArgs) Handles player2.Click
         TTen.SetToolTip(player2, "") : TTar.SetToolTip(player2, "")
         If cv Then
-            switchColorRG(images(1))
-            switchColorRG(images(2))
-            switchColorRG(images(4))
+            SwitchColorRG(images(1))
+            SwitchColorRG(images(2))
+            SwitchColorRG(images(4))
         Else
-            switchColorGB(images(1))
-            switchColorGB(images(2))
-            switchColorGB(images(4))
+            SwitchColorGB(images(1))
+            SwitchColorGB(images(2))
+            SwitchColorGB(images(4))
         End If
         cv = Not cv
+        CreateReadyImages()
 
         Pwait.BackgroundImage = images(2)
         Icon = Icon.FromHandle(images(1).GetHicon())
@@ -2066,7 +2123,7 @@ And If you press the writing boxes, press F11 to remove the pressure.", msg, "Ho
     End Sub
 
     Private Sub XO5()
-        bitmap = New Bitmap(44, 100)
+        Dim bitmap As Bitmap = New Bitmap(44, 100)
         Graphics.FromImage(bitmap).DrawImage(images(0), 0, 0, 44, 44)
         Graphics.FromImage(bitmap).DrawImage(images(1), 0, 56, 44, 44)
         Graphics.FromImage(bitmap).DrawImage(images(3), New Point(2, 17))
