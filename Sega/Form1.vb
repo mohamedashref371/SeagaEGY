@@ -40,7 +40,7 @@
             locations.Add(thePieces(i).Location)
         Next
         images.AddRange({My.Resources.zx, My.Resources.cv, My.Resources.Rotat, My.Resources.XO3, My.Resources.XO7, My.Resources._as, My.Resources.sleep, My.Resources.win})
-        CreateReadyImages()
+        AdditionalImages.AddIn(readyImages)
         Icon = Icon.FromHandle(readyImages(12).GetHicon())
 
         ' theGame(0) is player role, 10 is selected piece, 11-13, 17-19 is movementOfPieces, 14 is level, 15 is who started playing first, 16 is style of game
