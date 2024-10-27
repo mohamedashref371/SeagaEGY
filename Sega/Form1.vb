@@ -767,7 +767,7 @@
             num = Math.Abs(sleep * 4 + win * 2 + selected)
         ElseIf z >= 7 Then
             num = 12 + Math.Abs(sleep * 4 + win * 2 + selected)
-        ElseIf theGame(1) = 1 Then
+        ElseIf theGame(0) = 1 Then
             num = 9 + Math.Abs(sleep * 2 + win)
         Else
             num = 6 + Math.Abs(sleep * 2 + win)
