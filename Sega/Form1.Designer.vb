@@ -70,6 +70,11 @@ Partial Class Sega
         Me.OFD2 = New System.Windows.Forms.OpenFileDialog()
         Me.TTen = New System.Windows.Forms.ToolTip(Me.components)
         Me.XO = New System.Windows.Forms.Button()
+        Me.im2 = New System.Windows.Forms.PictureBox()
+        Me.im1 = New System.Windows.Forms.PictureBox()
+        Me.im0 = New System.Windows.Forms.PictureBox()
+        Me.redo = New System.Windows.Forms.Button()
+        Me.undo = New System.Windows.Forms.Button()
         Me.TTar = New System.Windows.Forms.ToolTip(Me.components)
         Me.lnsAr = New System.Windows.Forms.Label()
         Me.LfAr = New System.Windows.Forms.Label()
@@ -77,9 +82,6 @@ Partial Class Sega
         Me.fstAr = New System.Windows.Forms.NumericUpDown()
         Me.zoomOut = New System.Windows.Forms.Button()
         Me.zoomIn = New System.Windows.Forms.Button()
-        Me.im2 = New System.Windows.Forms.PictureBox()
-        Me.im1 = New System.Windows.Forms.PictureBox()
-        Me.im0 = New System.Windows.Forms.PictureBox()
         Me.sv1 = New System.Windows.Forms.Button()
         Me.ld1 = New System.Windows.Forms.Button()
         Me.P11 = New System.Windows.Forms.PictureBox()
@@ -99,8 +101,6 @@ Partial Class Sega
         Me.c3 = New System.Windows.Forms.PictureBox()
         Me.c2 = New System.Windows.Forms.PictureBox()
         Me.c1 = New System.Windows.Forms.PictureBox()
-        Me.redo = New System.Windows.Forms.Button()
-        Me.undo = New System.Windows.Forms.Button()
         Me.rr = New System.Windows.Forms.Button()
         Me.rl = New System.Windows.Forms.Button()
         Me.rh = New System.Windows.Forms.Button()
@@ -108,10 +108,10 @@ Partial Class Sega
         Me.Pwait = New System.Windows.Forms.PictureBox()
         Me.PB1 = New System.Windows.Forms.PictureBox()
         CType(Me.fst, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.fstAr, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.im2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.im1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.im0, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.fstAr, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.P11, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.P10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PB9, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -696,6 +696,77 @@ Partial Class Sega
         Me.XO.UseVisualStyleBackColor = False
         Me.XO.Visible = False
         '
+        'im2
+        '
+        Me.im2.BackColor = System.Drawing.Color.Transparent
+        Me.im2.BackgroundImage = Global.Sega.My.Resources.Resources.unno2
+        Me.im2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.im2.Location = New System.Drawing.Point(418, 304)
+        Me.im2.Name = "im2"
+        Me.im2.Size = New System.Drawing.Size(41, 41)
+        Me.im2.TabIndex = 139
+        Me.im2.TabStop = False
+        Me.TTen.SetToolTip(Me.im2, "Perhaps this style of game solves the problems of half the world's population")
+        Me.TTar.SetToolTip(Me.im2, "قد يحل هذا النمط في اللعبة مشاكل نصف سكان العالم")
+        '
+        'im1
+        '
+        Me.im1.BackColor = System.Drawing.Color.Transparent
+        Me.im1.BackgroundImage = Global.Sega.My.Resources.Resources.unno1
+        Me.im1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.im1.Location = New System.Drawing.Point(418, 255)
+        Me.im1.Name = "im1"
+        Me.im1.Size = New System.Drawing.Size(41, 41)
+        Me.im1.TabIndex = 137
+        Me.im1.TabStop = False
+        Me.TTen.SetToolTip(Me.im1, "My life has improved for the better because of this style")
+        Me.TTar.SetToolTip(Me.im1, "لقد تحسنت حياتي للأفضل بسبب هذا النمط")
+        '
+        'im0
+        '
+        Me.im0.BackColor = System.Drawing.Color.Transparent
+        Me.im0.BackgroundImage = Global.Sega.My.Resources.Resources.normal
+        Me.im0.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.im0.Location = New System.Drawing.Point(418, 206)
+        Me.im0.Name = "im0"
+        Me.im0.Size = New System.Drawing.Size(41, 41)
+        Me.im0.TabIndex = 135
+        Me.im0.TabStop = False
+        Me.TTen.SetToolTip(Me.im0, "the default")
+        Me.TTar.SetToolTip(Me.im0, "الافتراضي")
+        '
+        'redo
+        '
+        Me.redo.BackColor = System.Drawing.Color.Transparent
+        Me.redo.BackgroundImage = Global.Sega.My.Resources.Resources.redo
+        Me.redo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.redo.Enabled = False
+        Me.redo.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.redo.Font = New System.Drawing.Font("Tahoma", 20.0!)
+        Me.redo.ForeColor = System.Drawing.Color.DarkGreen
+        Me.redo.Location = New System.Drawing.Point(309, 400)
+        Me.redo.Name = "redo"
+        Me.redo.Size = New System.Drawing.Size(69, 40)
+        Me.redo.TabIndex = 25
+        Me.TTen.SetToolTip(Me.redo, "Redo")
+        Me.redo.UseVisualStyleBackColor = False
+        '
+        'undo
+        '
+        Me.undo.BackColor = System.Drawing.Color.Transparent
+        Me.undo.BackgroundImage = Global.Sega.My.Resources.Resources.undo
+        Me.undo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.undo.Enabled = False
+        Me.undo.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.undo.Font = New System.Drawing.Font("Tahoma", 20.0!)
+        Me.undo.ForeColor = System.Drawing.Color.DarkGreen
+        Me.undo.Location = New System.Drawing.Point(234, 400)
+        Me.undo.Name = "undo"
+        Me.undo.Size = New System.Drawing.Size(69, 40)
+        Me.undo.TabIndex = 24
+        Me.TTen.SetToolTip(Me.undo, "Undo")
+        Me.undo.UseVisualStyleBackColor = False
+        '
         'TTar
         '
         Me.TTar.Active = False
@@ -774,45 +845,6 @@ Partial Class Sega
         Me.zoomIn.Size = New System.Drawing.Size(40, 40)
         Me.zoomIn.TabIndex = 141
         Me.zoomIn.UseVisualStyleBackColor = False
-        '
-        'im2
-        '
-        Me.im2.BackColor = System.Drawing.Color.Transparent
-        Me.im2.BackgroundImage = Global.Sega.My.Resources.Resources.unno2
-        Me.im2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.im2.Location = New System.Drawing.Point(418, 304)
-        Me.im2.Name = "im2"
-        Me.im2.Size = New System.Drawing.Size(41, 41)
-        Me.im2.TabIndex = 139
-        Me.im2.TabStop = False
-        Me.TTen.SetToolTip(Me.im2, "Perhaps this style of game solves the problems of half the world's population")
-        Me.TTar.SetToolTip(Me.im2, "قد يحل هذا النمط في اللعبة مشاكل نصف سكان العالم")
-        '
-        'im1
-        '
-        Me.im1.BackColor = System.Drawing.Color.Transparent
-        Me.im1.BackgroundImage = Global.Sega.My.Resources.Resources.unno1
-        Me.im1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.im1.Location = New System.Drawing.Point(418, 255)
-        Me.im1.Name = "im1"
-        Me.im1.Size = New System.Drawing.Size(41, 41)
-        Me.im1.TabIndex = 137
-        Me.im1.TabStop = False
-        Me.TTen.SetToolTip(Me.im1, "My life has improved for the better because of this style")
-        Me.TTar.SetToolTip(Me.im1, "لقد تحسنت حياتي للأفضل بسبب هذا النمط")
-        '
-        'im0
-        '
-        Me.im0.BackColor = System.Drawing.Color.Transparent
-        Me.im0.BackgroundImage = Global.Sega.My.Resources.Resources.normal
-        Me.im0.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.im0.Location = New System.Drawing.Point(418, 206)
-        Me.im0.Name = "im0"
-        Me.im0.Size = New System.Drawing.Size(41, 41)
-        Me.im0.TabIndex = 135
-        Me.im0.TabStop = False
-        Me.TTen.SetToolTip(Me.im0, "the default")
-        Me.TTar.SetToolTip(Me.im0, "الافتراضي")
         '
         'sv1
         '
@@ -1007,38 +1039,6 @@ Partial Class Sega
         Me.c1.TabIndex = 40
         Me.c1.TabStop = False
         '
-        'redo
-        '
-        Me.redo.BackColor = System.Drawing.Color.Transparent
-        Me.redo.BackgroundImage = Global.Sega.My.Resources.Resources.redo
-        Me.redo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.redo.Enabled = False
-        Me.redo.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.redo.Font = New System.Drawing.Font("Tahoma", 20.0!)
-        Me.redo.ForeColor = System.Drawing.Color.DarkGreen
-        Me.redo.Location = New System.Drawing.Point(309, 400)
-        Me.redo.Name = "redo"
-        Me.redo.Size = New System.Drawing.Size(69, 40)
-        Me.redo.TabIndex = 25
-        Me.TTen.SetToolTip(Me.redo, "Redo")
-        Me.redo.UseVisualStyleBackColor = False
-        '
-        'undo
-        '
-        Me.undo.BackColor = System.Drawing.Color.Transparent
-        Me.undo.BackgroundImage = Global.Sega.My.Resources.Resources.undo
-        Me.undo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.undo.Enabled = False
-        Me.undo.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.undo.Font = New System.Drawing.Font("Tahoma", 20.0!)
-        Me.undo.ForeColor = System.Drawing.Color.DarkGreen
-        Me.undo.Location = New System.Drawing.Point(234, 400)
-        Me.undo.Name = "undo"
-        Me.undo.Size = New System.Drawing.Size(69, 40)
-        Me.undo.TabIndex = 24
-        Me.TTen.SetToolTip(Me.undo, "Undo")
-        Me.undo.UseVisualStyleBackColor = False
-        '
         'rr
         '
         Me.rr.BackColor = System.Drawing.Color.Transparent
@@ -1201,12 +1201,12 @@ Partial Class Sega
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.MaximizeBox = False
         Me.Name = "Sega"
-        Me.Text = "SEAGA EGY 2023 v1.1.371.3317"
+        Me.Text = "SEAGA EGY 2023 v1.5.371.3317"
         CType(Me.fst, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.fstAr, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.im2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.im1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.im0, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.fstAr, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.P11, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.P10, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PB9, System.ComponentModel.ISupportInitialize).EndInit()

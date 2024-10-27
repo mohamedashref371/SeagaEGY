@@ -22,7 +22,7 @@
 
     Private Sub ckh_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles ckh.LinkClicked
         If Now.Day Mod 2 = 0 Then
-            Process.Start("https://www.mediafire.com/file/0wv97m4n96q5y0v")
+            Process.Start("https://github.com/mohamedashref371/SeagaEGY")
         Else
             Process.Start("https://www.mediafire.com/folder/97yewsgabttb1")
         End If
