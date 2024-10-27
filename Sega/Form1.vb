@@ -34,7 +34,6 @@
     ' https://app.mediafire.com/q1gvy1de2rybq
 
     Private Sub Sega_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Icon = Icon.FromHandle(My.Resources.cv.GetHicon())
         ld.Enabled = My.Computer.FileSystem.FileExists(sg + "save.seaga")
         thePieces.AddRange({PB1, z1, z2, z3, a1, a2, a3, c1, c2, c3})
         For i = 0 To thePieces.Count - 1
@@ -42,6 +41,7 @@
         Next
         images.AddRange({My.Resources.zx, My.Resources.cv, My.Resources.Rotat, My.Resources.XO3, My.Resources.XO7, My.Resources._as, My.Resources.sleep, My.Resources.win})
         CreateReadyImages()
+        Icon = Icon.FromHandle(readyImages(12).GetHicon())
 
         ' theGame(0) is player role, 10 is selected piece, 11-13, 17-19 is movementOfPieces, 14 is level, 15 is who started playing first, 16 is style of game
         theGame.AddRange({3, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 0, 0, 0, 4, 3, 0, 0, 0, 0, 2})
@@ -2114,8 +2114,8 @@ And If you press the writing boxes, press F11 to remove the pressure.", msg, "Ho
 
     Private Sub XO5()
         Dim bitmap As New Bitmap(44, 100)
-        Graphics.FromImage(bitmap).DrawImage(images(0), 0, 0, 44, 44)
-        Graphics.FromImage(bitmap).DrawImage(images(1), 0, 56, 44, 44)
+        Graphics.FromImage(bitmap).DrawImage(readyImages(0), 0, 0, 44, 44)
+        Graphics.FromImage(bitmap).DrawImage(readyImages(12), 0, 56, 44, 44)
         Graphics.FromImage(bitmap).DrawImage(images(3), New Point(2, 17))
         Graphics.FromImage(bitmap).DrawImage(images(4), New Point(2, 17))
         XO.BackgroundImage = Nothing : XO.BackgroundImage = bitmap
